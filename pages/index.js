@@ -1,7 +1,11 @@
-export default function HomePage() {
+import Heading from "@/components/Heading";
+import ProjectList from "@/components/ProjectList";
+
+export default function ProjectsOverviewPage() {
   return (
-    <div>
-      <h1>Hello from Next.js</h1>
-    </div>
+    <>
+      <Heading>Project Overview</Heading>
+      <ProjectList />
+    </>
   );
 }

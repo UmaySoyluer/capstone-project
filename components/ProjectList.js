@@ -13,12 +13,14 @@ export default function ProjectList() {
   }
 
   return (
-    <>
-      {projects?.length
-        ? projects.map((project) => (
-            <Project key={project.id} project={project} />
-          ))
-        : "No projects found."}
-    </>
+    <ul>
+      {projects?.length ? (
+        projects.map((project) => (
+          <Project key={project.id} project={project} />
+        ))
+      ) : (
+        <h1>No projects found.</h1>
+      )}
+    </ul>
   );
 }
