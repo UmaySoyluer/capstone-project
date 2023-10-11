@@ -4,7 +4,7 @@ import ProjectList from "@/components/ProjectList";
 export default function ProjectsOverviewPage() {
   return (
     <>
-      <Heading>Project Overview</Heading>
+      <h1>Project Overview</h1>
       <ProjectList />
     </>
   );

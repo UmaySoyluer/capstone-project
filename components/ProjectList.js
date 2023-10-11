@@ -6,7 +6,7 @@ export default function ProjectList() {
   const { data: projects, isLoading, error } = useSWR("/api/projects");
 
   if (isLoading) {
-    return <h1>Loading ... </h1>;
+    return <h2>Loading ... </h2>;
   }
   if (error) {
     return <Error message={error.message} />;
@@ -19,7 +19,7 @@ export default function ProjectList() {
           <Project key={project.id} project={project} />
         ))
       ) : (
-        <h1>No projects found.</h1>
+        <p>No projects found.</p>
       )}
     </ul>
   );
