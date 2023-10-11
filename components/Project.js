@@ -8,7 +8,7 @@ export default function Project({ project }) {
   return (
     <li>
       <Link href={`/projects/${id}`}>
-        <h3>{title}</h3>
+        <h2>{title}</h2>
       </Link>
     </li>
   );
