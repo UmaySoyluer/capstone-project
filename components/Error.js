@@ -1,3 +1,3 @@
 export default function Error({ message }) {
-  return <h1>Error! {message}</h1>;
+  return <p>Error! {message}</p>;
 }
