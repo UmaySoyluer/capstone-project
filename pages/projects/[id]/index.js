@@ -1,9 +1,10 @@
 import { useRouter } from "next/router";
 import useSWR from "swr";
+import { HiArrowLeft } from "react-icons/hi2";
 
 import Error from "@/components/Error";
 import Heading from "@/components/Heading";
-import Button from "@/components/Button";
+import StyledButton from "@/components/StyledButton";
 
 export default function ProjectDetailPage() {
   const router = useRouter();
@@ -19,7 +20,9 @@ export default function ProjectDetailPage() {
 
   return (
     <>
-      <Button />
+      <StyledButton onClick={router.back}>
+        <HiArrowLeft />
+      </StyledButton>
       <Heading>{title}</Heading>
       <article>
         <h3>{department}</h3>
