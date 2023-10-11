@@ -3,7 +3,7 @@ import useSWR from "swr";
 
 import Error from "@/components/Error";
 import Heading from "@/components/Heading";
-import Button from "@/components/Button";
+import Button, { DeleteButton } from "@/components/Button";
 
 export default function ProjectDetailPage() {
   const router = useRouter();
@@ -17,10 +17,19 @@ export default function ProjectDetailPage() {
 
   const { title, description, endDate, department, teamLead } = project;
 
+  async function handleDelete() {
+    await fetch(`/api/projects/${id}`, {
+      method: "DELETE",
+    });
+
+    router.push("/");
+  }
+
   return (
     <>
       <Button />
       <Heading>{title}</Heading>
+      <DeleteButton handleClick={handleDelete} />
       <article>
         <h3>{department}</h3>
         <p>{teamLead}</p>
