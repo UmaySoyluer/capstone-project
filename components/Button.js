@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { HiArrowLeft, HiOutlineTrash } from "react-icons/hi2";
 
-export default function Button() {
+export default function BackLink() {
   return (
     <Link href={"/"}>
       <HiArrowLeft title="back" />
