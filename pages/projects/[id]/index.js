@@ -3,7 +3,7 @@ import useSWR from "swr";
 
 import Error from "@/components/Error";
 import Heading from "@/components/Heading";
-import Button, { DeleteLink } from "@/components/Button";
+import BackLink, { DeleteLink } from "@/components/Button";
 
 export default function ProjectDetailPage() {
   const router = useRouter();
@@ -27,7 +27,7 @@ export default function ProjectDetailPage() {
 
   return (
     <>
-      <Button />
+      <BackLink />
       <Heading>{title}</Heading>
       <DeleteLink href="/" />
       <article>
