@@ -12,13 +12,6 @@ export default async function handler(request, response) {
       return response.status(400).json({ message: error.message });
     }
   }
-  if (request.method === "POST") {
-    try {
-      await Project.create(request.body);
-      return response.status(200).json({ status: "Project created" });
-    } catch (error) {
-      return response.status(400).json({ message: error.message });
-    }
-  }
+
   response.status(405).json({ message: "Method not allowed" });
 }

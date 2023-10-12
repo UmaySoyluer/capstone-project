@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function ProjectsOverviewPage() {
   return (
     <>
-      <Heading>Project Overview</Heading>
+      <h1>Project Overview</h1>
       <Link href={"/projects/new"}>+</Link>
       <ProjectList />
     </>

@@ -5,6 +5,7 @@ import { HiArrowLeft } from "react-icons/hi2";
 import Error from "@/components/Error";
 import Heading from "@/components/Heading";
 import Link from "next/link";
+
 export default function ProjectDetailPage() {
   const router = useRouter();
   const { isReady } = router;
@@ -17,11 +18,16 @@ export default function ProjectDetailPage() {
 
   const { title, description, endDate, department, teamLead } = project;
 
+  function handleClick() {
+    router.push(`/projects/${id}/edit`);
+  }
+
   return (
     <>
       <Link href="/">
         <HiArrowLeft />
       </Link>
+
       <Heading>{title}</Heading>
       <article>
         <h3>{department}</h3>

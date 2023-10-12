@@ -11,16 +11,18 @@ export default function ProjectList() {
   if (error) {
     return <Error message={error.message} />;
   }
-
   return (
-    <ul>
-      {projects?.length ? (
-        projects.map((project) => (
-          <Project key={project.id} project={project} />
-        ))
+    <>
+      {projects ? (
+        <ul>
+          {projects?.length &&
+            projects.map((project) => (
+              <Project key={project._id} project={project} />
+            ))}
+        </ul>
       ) : (
         <p>No projects found.</p>
       )}
-    </ul>
+    </>
   );
 }
