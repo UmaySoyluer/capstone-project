@@ -7,7 +7,6 @@ export default function Form({ formName, onSubmit }) {
     event.preventDefault();
     const formData = new FormData(event.target);
     const project = Object.fromEntries(formData);
-    console.log(project);
     onSubmit(project);
   }
 
@@ -16,52 +15,35 @@ export default function Form({ formName, onSubmit }) {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="title">
-          {" "}
-          Name of project
-          <input type="text" name="title" id="title" required></input>
-        </label>
-        <label htmlFor="description">
-          {" "}
-          Description
-          <textarea
-            type="text"
-            name="description"
-            id="description"
-            required
-          ></textarea>
-        </label>
-        <label htmlFor="startDate">
-          {" "}
-          Start Date
-          <input type="date" name="startDate" id="startDate" required></input>
-        </label>
-        <label htmlFor="endDate">
-          {" "}
-          End Date
-          <input type="date" name="endDate" id="endDate" required></input>
-        </label>
-        <label htmlFor="department">
-          {" "}
-          Select Department
-          <select name="department" id="department" required>
-            <option value="development">Development</option>
-            <option value="design">Design</option>
-            <option value="marketing">Marketing</option>
-          </select>
-        </label>
-        <label htmlFor="teamLead">
-          {" "}
-          Project Lead
-          <textarea
-            type="text"
-            name="teamLead"
-            id="teamLead"
-            required
-          ></textarea>
-        </label>
+        <label htmlFor="title">Name of project</label>
+        <input type="text" name="title" id="title" required></input>
+
+        <label htmlFor="description">Description</label>
+        <textarea
+          type="text"
+          name="description"
+          id="description"
+          required
+        ></textarea>
+
+        <label htmlFor="startDate">Start Date</label>
+        <input type="date" name="startDate" id="startDate" required></input>
+
+        <label htmlFor="endDate">End Date</label>
+        <input type="date" name="endDate" id="endDate" required></input>
+
+        <label htmlFor="department">Select Department</label>
+        <select name="department" id="department" required>
+          <option value="development">Development</option>
+          <option value="design">Design</option>
+          <option value="marketing">Marketing</option>
+        </select>
+
+        <label htmlFor="teamLead">Project Lead</label>
+        <textarea type="text" name="teamLead" id="teamLead" required></textarea>
+
         <StyledButton type="submit">Submit</StyledButton>
-        <StyledButton onClick={router.back}>Cancel</StyledButton>
+        <Link href={"/"}>Cancel</Link>
       </form>
     </>
   );
