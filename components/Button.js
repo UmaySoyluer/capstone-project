@@ -9,10 +9,10 @@ export default function Button() {
   );
 }
 
-export function DeleteButton({ handleClick }) {
+export function DeleteLink({ href }) {
   return (
-    <button onClick={handleClick}>
-      <HiOutlineTrash title="Delete" />
-    </button>
+    <Link href={href}>
+      <HiOutlineTrash title="delete" />
+    </Link>
   );
 }

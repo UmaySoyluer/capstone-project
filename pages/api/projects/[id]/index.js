@@ -24,7 +24,9 @@ export default async function handler(request, response) {
       console.error(`Can't delete project ${id}: ${error}`);
     }
 
-    return response.status(201).json();
+    return response
+      .status(200)
+      .json({ status: "Project deleted successfully" });
   }
   return response.status(405).json({ message: "Method not allowed" });
 }
