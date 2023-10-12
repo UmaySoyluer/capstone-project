@@ -9,10 +9,10 @@ export default function BackLink() {
   );
 }
 
-export function DeleteLink({ href }) {
+export function DeleteButton({ handleClick }) {
   return (
-    <Link href={href}>
+    <button onClick={handleClick}>
       <HiOutlineTrash title="delete" />
-    </Link>
+    </button>
   );
 }
