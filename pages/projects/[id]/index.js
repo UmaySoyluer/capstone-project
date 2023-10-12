@@ -4,8 +4,7 @@ import { HiArrowLeft } from "react-icons/hi2";
 
 import Error from "@/components/Error";
 import Heading from "@/components/Heading";
-import StyledButton from "@/components/StyledButton";
-
+import Link from "next/link";
 export default function ProjectDetailPage() {
   const router = useRouter();
   const { isReady } = router;
@@ -20,9 +19,9 @@ export default function ProjectDetailPage() {
 
   return (
     <>
-      <StyledButton onClick={router.back}>
+      <Link href="/">
         <HiArrowLeft />
-      </StyledButton>
+      </Link>
       <Heading>{title}</Heading>
       <article>
         <h3>{department}</h3>
