@@ -1,6 +1,50 @@
 import Link from "next/link";
+import styled from "styled-components";
 import { useRouter } from "next/router";
 import StyledButton from "./StyledButton";
+import { CancelLink, SubmitButton } from "./Buttons";
+
+const StyledForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  padding-inline: 1.5rem;
+  margin-top: -0.5rem;
+`;
+
+const StyledLabel = styled.label`
+  margin-top: 1rem;
+  margin-bottom: 0.2rem;
+`;
+
+const StyledInput = styled.input`
+  padding-inline: 0.5rem;
+  padding-block: 0.3rem;
+  border-radius: 10px;
+  border: 1px solid black;
+`;
+
+const StyledTextArea = styled.textarea`
+  padding-inline: 0.5rem;
+  padding-block: 0.3rem;
+  resize: none;
+  border-radius: 10px;
+  border: 1px solid black;
+`;
+
+const StyledSelect = styled.select`
+  padding-inline: 0.5rem;
+  padding-block: 0.3rem;
+  border: 1px solid black;
+  border-radius: 10px;
+  background: transparent;
+`;
+
+const StyledButtonContainer = styled.div`
+  margin-top: 1.7rem;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row-reverse;
+`;
 
 export default function Form({ formName, onSubmit, value }) {
   function handleSubmit(event) {
@@ -14,43 +58,44 @@ export default function Form({ formName, onSubmit, value }) {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="title">Name of project</label>
+      <StyledForm onSubmit={handleSubmit}>
+        <StyledLabel htmlFor="title">Project name:</StyledLabel>
 
-        <input
+        <StyledInput
           type="text"
           name="title"
           id="title"
           required
           defaultValue={value?.title}
-        ></input>
+        ></StyledInput>
 
-        <label htmlFor="description">Description</label>
-        <textarea
+        <StyledLabel htmlFor="description">Description:</StyledLabel>
+        <StyledTextArea
           type="text"
           name="description"
           id="description"
+          rows={3}
           required
           defaultValue={value?.description}
-        ></textarea>
-        <label htmlFor="startDate">Start Date</label>
-        <input
+        ></StyledTextArea>
+        <StyledLabel htmlFor="startDate">Start Date:</StyledLabel>
+        <StyledInput
           type="date"
           name="startDate"
           id="startDate"
           required
           defaultValue={value?.startDate}
-        ></input>
-        <label htmlFor="endDate">End Date</label>
-        <input
+        ></StyledInput>
+        <StyledLabel htmlFor="endDate">Due Date:</StyledLabel>
+        <StyledInput
           type="date"
           name="endDate"
           id="endDate"
           required
           defaultValue={value?.endDate}
-        ></input>
-        <label htmlFor="department"> Select Department</label>
-        <select
+        ></StyledInput>
+        <StyledLabel htmlFor="department">Select Department:</StyledLabel>
+        <StyledSelect
           name="department"
           id="department"
           required
@@ -59,20 +104,23 @@ export default function Form({ formName, onSubmit, value }) {
           <option value="development">Development</option>
           <option value="design">Design</option>
           <option value="marketing">Marketing</option>
-        </select>
+        </StyledSelect>
 
-        <label htmlFor="teamLead">Project Lead</label>
-        <textarea
+        <StyledLabel htmlFor="teamLead">Project Lead:</StyledLabel>
+        <StyledInput
           type="text"
           name="teamLead"
           id="teamLead"
           required
           defaultValue={value?.teamLead}
-        ></textarea>
-        <StyledButton type="submit">Submit</StyledButton>
-        {value && <Link href={`/projects/${value._id}`}>Cancel</Link>}
-        {!value && <Link href={"/"}>Cancel</Link>}
-      </form>
+        />
+
+        <StyledButtonContainer>
+          <SubmitButton type="submit">Submit</SubmitButton>
+          {value && <CancelLink url={`/projects/${value._id}`} />}
+          {!value && <CancelLink url={"/"} />}
+        </StyledButtonContainer>
+      </StyledForm>
     </>
   );
 }
