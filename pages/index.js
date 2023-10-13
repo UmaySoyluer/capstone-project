@@ -1,12 +1,16 @@
-import Heading from "@/components/Heading";
 import ProjectList from "@/components/ProjectList";
 import Link from "next/link";
+import styled from "styled-components";
+
+const StyledMainHeadline = styled.h1`
+  margin-block: 1rem;
+  text-align: center;
+`;
 
 export default function ProjectsOverviewPage() {
   return (
     <>
-      <h1>Project Overview</h1>
-      <Link href={"/projects/new"}>+</Link>
+      <StyledMainHeadline>Project Overview</StyledMainHeadline>
       <ProjectList />
     </>
   );
