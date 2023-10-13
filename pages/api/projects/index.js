@@ -12,6 +12,7 @@ export default async function handler(request, response) {
       return response.status(400).json({ message: error.message });
     }
   }
+
   if (request.method === "POST") {
     try {
       const projectData = request.body;

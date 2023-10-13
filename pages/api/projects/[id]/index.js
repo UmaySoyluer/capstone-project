@@ -16,6 +16,22 @@ export default async function handler(request, response) {
       return response.status(404).json({ status: "Page not found" });
     }
   }
+
+  if (request.method === "DELETE") {
+    try {
+      await Project.findByIdAndDelete(id);
+      return response
+        .status(200)
+        .json({ status: "Project deleted successfully" });
+    } catch (error) {
+      console.error(`Can't delete project ${id}: ${error}`);
+      return response
+        .status(505)
+        .json({ status: `Can't delete project ${id}` });
+    }
+  }
+  
+
   if (request.method === "PUT") {
     try {
       const projectData = request.body;
@@ -25,4 +41,5 @@ export default async function handler(request, response) {
       return response.status(400).json({ message: error.message });
     }
   }
+  return response.status(405).json({ message: "Method not allowed" });
 }

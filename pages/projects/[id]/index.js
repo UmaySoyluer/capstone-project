@@ -4,7 +4,7 @@ import { HiArrowLeft, HiPencil } from "react-icons/hi2";
 
 import Error from "@/components/Error";
 import Heading from "@/components/Heading";
-import Link from "next/link";
+import { BackLink, DeleteButton } from "@/components/Buttons";
 
 export default function ProjectDetailPage() {
   const router = useRouter();
@@ -18,17 +18,23 @@ export default function ProjectDetailPage() {
 
   const { title, description, endDate, department, teamLead } = project;
 
+  async function handleDelete() {
+    await fetch(`/api/projects/${id}`, {
+      method: "DELETE",
+    });
+
+    router.push("/");
+  }
+
   return (
     <>
-      <Link href="/">
-        <HiArrowLeft />
-      </Link>
 
+      <BackLink />
       <Link href={`/projects/${id}/edit`}>
         <HiPencil />
       </Link>
-
       <Heading>{title}</Heading>
+      <DeleteButton handleClick={handleDelete} />
       <article>
         <h3>{department}</h3>
         <p>{teamLead}</p>
