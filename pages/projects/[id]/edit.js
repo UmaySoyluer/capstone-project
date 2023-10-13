@@ -22,7 +22,7 @@ export default function EditProjectPage() {
 
     if (response.ok) {
       mutate(`/api/projects/${id}`);
-      router.push("/");
+      router.push(`/projects/${id}`);
     }
   }
 
