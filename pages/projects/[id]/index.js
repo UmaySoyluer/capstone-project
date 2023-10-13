@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import useSWR from "swr";
-import { HiArrowLeft } from "react-icons/hi2";
+import { HiArrowLeft, HiPencil } from "react-icons/hi2";
 
 import Error from "@/components/Error";
 import Heading from "@/components/Heading";
@@ -18,14 +18,14 @@ export default function ProjectDetailPage() {
 
   const { title, description, endDate, department, teamLead } = project;
 
-  function handleClick() {
-    router.push(`/projects/${id}/edit`);
-  }
-
   return (
     <>
       <Link href="/">
         <HiArrowLeft />
+      </Link>
+
+      <Link href={`/projects/${id}/edit`}>
+        <HiPencil />
       </Link>
 
       <Heading>{title}</Heading>

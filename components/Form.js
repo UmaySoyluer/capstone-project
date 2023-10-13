@@ -70,8 +70,8 @@ export default function Form({ formName, onSubmit, value }) {
           defaultValue={value?.teamLead}
         ></textarea>
         <StyledButton type="submit">Submit</StyledButton>
-        <Link href={`/projects/${id}`}>Cancel</Link>
-
+        {value && <Link href={`/projects/${value._id}`}>Cancel</Link>}
+        {!value && <Link href={"/"}>Cancel</Link>}
       </form>
     </>
   );
