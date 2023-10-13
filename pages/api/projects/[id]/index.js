@@ -20,13 +20,15 @@ export default async function handler(request, response) {
   if (request.method === "DELETE") {
     try {
       await Project.findByIdAndDelete(id);
+      return response
+        .status(200)
+        .json({ status: "Project deleted successfully" });
     } catch (error) {
       console.error(`Can't delete project ${id}: ${error}`);
+      return response
+        .status(505)
+        .json({ status: `Can't delete project ${id}` });
     }
-
-    return response
-      .status(200)
-      .json({ status: "Project deleted successfully" });
   }
   return response.status(405).json({ message: "Method not allowed" });
 }

@@ -3,7 +3,7 @@ import useSWR from "swr";
 
 import Error from "@/components/Error";
 import Heading from "@/components/Heading";
-import BackLink, { DeleteButton } from "@/components/Buttons";
+import { BackLink, DeleteButton } from "@/components/Buttons";
 
 export default function ProjectDetailPage() {
   const router = useRouter();
