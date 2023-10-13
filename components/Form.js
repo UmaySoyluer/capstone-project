@@ -16,6 +16,7 @@ export default function Form({ formName, onSubmit, value }) {
     <>
       <form onSubmit={handleSubmit}>
         <label htmlFor="title">Name of project</label>
+
         <input
           type="text"
           name="title"
@@ -23,6 +24,7 @@ export default function Form({ formName, onSubmit, value }) {
           required
           defaultValue={value?.title}
         ></input>
+
         <label htmlFor="description">Description</label>
         <textarea
           type="text"
@@ -58,6 +60,7 @@ export default function Form({ formName, onSubmit, value }) {
           <option value="design">Design</option>
           <option value="marketing">Marketing</option>
         </select>
+
         <label htmlFor="teamLead">Project Lead</label>
         <textarea
           type="text"
@@ -68,6 +71,7 @@ export default function Form({ formName, onSubmit, value }) {
         ></textarea>
         <StyledButton type="submit">Submit</StyledButton>
         <Link href={`/projects/${id}`}>Cancel</Link>
+
       </form>
     </>
   );
