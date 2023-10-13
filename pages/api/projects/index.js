@@ -13,5 +13,15 @@ export default async function handler(request, response) {
     }
   }
 
-  return response.status(405).json({ message: "Method not allowed" });
+  if (request.method === "POST") {
+    try {
+      const projectData = request.body;
+      await Project.create(projectData);
+      return response.status(201).json({ message: "Project created" });
+    } catch (error) {
+      return response.status(400).json({ message: error.message });
+    }
+  }
+
+  response.status(405).json({ message: "Method not allowed" });
 }

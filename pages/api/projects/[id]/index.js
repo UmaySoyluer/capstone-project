@@ -30,5 +30,16 @@ export default async function handler(request, response) {
         .json({ status: `Can't delete project ${id}` });
     }
   }
+  
+
+  if (request.method === "PUT") {
+    try {
+      const projectData = request.body;
+      await Project.findByIdAndUpdate(id, projectData);
+      return response.status(200).json({ message: "Project updated" });
+    } catch (error) {
+      return response.status(400).json({ message: error.message });
+    }
+  }
   return response.status(405).json({ message: "Method not allowed" });
 }
