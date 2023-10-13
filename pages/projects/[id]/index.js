@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import useSWR from "swr";
-import { HiArrowLeft, HiPencil } from "react-icons/hi2";
+import { HiPencil } from "react-icons/hi2";
+import Link from "next/link";
 
 import Error from "@/components/Error";
 import Heading from "@/components/Heading";
@@ -28,7 +29,6 @@ export default function ProjectDetailPage() {
 
   return (
     <>
-
       <BackLink />
       <Link href={`/projects/${id}/edit`}>
         <HiPencil />
