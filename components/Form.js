@@ -1,7 +1,5 @@
-import Link from "next/link";
 import styled from "styled-components";
 import { useRouter } from "next/router";
-import StyledButton from "./StyledButton";
 import { CancelLink, SubmitButton } from "./Buttons";
 
 const StyledForm = styled.form`
@@ -20,7 +18,9 @@ const StyledInput = styled.input`
   padding-inline: 0.5rem;
   padding-block: 0.3rem;
   border-radius: 10px;
-  border: 1px solid black;
+  border: 1px solid var(--blue-500);
+  box-shadow: 0 5px 8px rgba(147, 197, 253, 0.25),
+    0 5px 8px rgba(147, 197, 253, 0.22);
 `;
 
 const StyledTextArea = styled.textarea`
@@ -28,15 +28,19 @@ const StyledTextArea = styled.textarea`
   padding-block: 0.3rem;
   resize: none;
   border-radius: 10px;
-  border: 1px solid black;
+  border: 1px solid var(--blue-500);
+  box-shadow: 0 5px 8px rgba(147, 197, 253, 0.25),
+    0 5px 8px rgba(147, 197, 253, 0.22);
 `;
 
 const StyledSelect = styled.select`
   padding-inline: 0.5rem;
   padding-block: 0.3rem;
-  border: 1px solid black;
+  border: 1px solid var(--blue-500);
   border-radius: 10px;
-  background: transparent;
+  background: white;
+  box-shadow: 0 5px 8px rgba(147, 197, 253, 0.25),
+    0 5px 8px rgba(147, 197, 253, 0.22);
 `;
 
 const StyledButtonContainer = styled.div`

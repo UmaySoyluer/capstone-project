@@ -6,18 +6,22 @@ export const StyledListItem = styled.li`
 `;
 
 export const StyledArticle = styled.article`
-  background: #fff;
-  border-radius: 2rem;
   width: 120px;
   height: 150px;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   display: grid;
   place-items: center;
 `;
 
 export const StyledLink = styled(Link)`
+  background: var(--blue-300);
+  border-radius: 2rem;
   text-decoration: none;
-  color: black;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  display: block;
+
+  &:hover {
+    background-color: white;
+  }
 `;
 
 const StyledTitle = styled.h3`

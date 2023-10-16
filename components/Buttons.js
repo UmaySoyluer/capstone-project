@@ -1,5 +1,11 @@
 import Link from "next/link";
-import { HiArrowLeft, HiOutlineTrash, HiPencil } from "react-icons/hi2";
+import {
+  HiArrowLeft,
+  HiOutlineTrash,
+  HiPencil,
+  HiCheck,
+} from "react-icons/hi2";
+import { MdOutlineCancel } from "react-icons/md";
 import styled from "styled-components";
 
 const StyledDeleteButton = styled.button`
@@ -35,35 +41,46 @@ export function EditLink({ url }) {
 // Form buttons
 
 const StyledSubmitButton = styled.button`
-  background: transparent;
+  background: var(--blue-500);
   border-radius: 10px;
   padding-inline: 1rem;
   padding-block: 0.3rem;
   width: 50%;
-  border: 1px solid black;
-
-  &:hover {
-  }
+  border: 1px solid var(--blue-500);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const StyledCancelLink = styled(Link)`
-  border: 1px solid black;
-  background: transparent;
+  border: 1px solid var(--violet-500);
+  background: var(--violet-500);
   border-radius: 10px;
   padding-inline: 1rem;
   padding-block: 0.3rem;
   width: 45%;
   text-align: center;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export function SubmitButton({ handleClick }) {
   return (
     <StyledSubmitButton type="submit" onClick={handleClick}>
-      Submit
+      <HiCheck title="submit" />
+      &#8203; Submit
     </StyledSubmitButton>
   );
 }
 
 export function CancelLink({ url }) {
-  return <StyledCancelLink href={url}>Cancel</StyledCancelLink>;
+  return (
+    <StyledCancelLink href={url}>
+      <MdOutlineCancel title="cancel" />
+      &#8203; Cancel
+    </StyledCancelLink>
+  );
 }
