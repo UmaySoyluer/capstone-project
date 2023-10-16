@@ -47,7 +47,7 @@ const StyledSubmitButton = styled.button`
   padding-block: 0.3rem;
   width: 50%;
   border: 1px solid var(--blue-500);
-  color: white;
+  color: var(--gray-100);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -61,7 +61,7 @@ const StyledCancelLink = styled(Link)`
   padding-block: 0.3rem;
   width: 45%;
   text-align: center;
-  color: white;
+  color: var(--gray-100);
   display: flex;
   justify-content: center;
   align-items: center;

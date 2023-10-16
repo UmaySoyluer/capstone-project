@@ -10,6 +10,7 @@ export const StyledArticle = styled.article`
   height: 150px;
   display: grid;
   place-items: center;
+  text-align: center;
 `;
 
 export const StyledLink = styled(Link)`
@@ -20,12 +21,13 @@ export const StyledLink = styled(Link)`
   display: block;
 
   &:hover {
-    background-color: white;
+    background-color: var(--gray-100);
   }
 `;
 
 const StyledTitle = styled.h3`
   font-size: 0.8rem;
+  width: 100px;
 `;
 
 export default function Project({ project }) {

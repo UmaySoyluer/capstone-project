@@ -1,7 +1,5 @@
 import { useRouter } from "next/router";
 import useSWR from "swr";
-import { HiPencil } from "react-icons/hi2";
-import Link from "next/link";
 import styled from "styled-components";
 
 import Error from "@/components/Error";
@@ -33,9 +31,13 @@ const StyledSection = styled.section`
   padding-inline: 1rem;
 `;
 
-const StyledArticle = styled.article`
+const StyledDescription = styled.article`
   margin-top: 1.5rem;
   padding-inline: 1rem;
+`;
+
+export const StyledContainer = styled.div`
+  margin: 0 2rem 0 2rem;
 `;
 
 export default function ProjectDetailPage() {
@@ -67,15 +69,18 @@ export default function ProjectDetailPage() {
           <DeleteButton handleClick={handleDelete} />
         </StyledToolBar>
       </StyledButtonContainer>
-      <Heading>{title}</Heading>
-      <StyledDepartment>{department}</StyledDepartment>
-      <StyledSection>
-        <p>{teamLead}</p>
-        <p>Due date: {endDate}</p>
-      </StyledSection>
-      <StyledArticle>
-        <p>{description}</p>
-      </StyledArticle>
+
+      <StyledContainer>
+        <Heading>{title}</Heading>
+        <StyledDepartment>{department}</StyledDepartment>
+        <StyledSection>
+          <p>{teamLead}</p>
+          <p>Due date: {endDate}</p>
+        </StyledSection>
+        <StyledDescription>
+          <p>{description}</p>
+        </StyledDescription>
+      </StyledContainer>
     </>
   );
 }
