@@ -3,7 +3,7 @@ import styled from "styled-components";
 export default function Task({ task }) {
   if (!task) return;
 
-  const { _id: id, title, description, tag, createdAt } = task;
+  const { _id: id, title } = task;
 
   const StyledListItem = styled.li`
     background: #fff;
