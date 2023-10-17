@@ -11,6 +11,7 @@ export const StyledArticle = styled.article`
   display: grid;
   place-items: center;
   text-align: center;
+  border-radius: 2rem;
 `;
 
 export const StyledLink = styled(Link)`
