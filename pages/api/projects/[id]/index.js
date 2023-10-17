@@ -10,7 +10,7 @@ export default async function handler(request, response) {
 
   if (request.method === "GET") {
     try {
-      const project = await Project.findById(id);
+      const project = await Project.findById(id).populate("tasks").exec();
       return response.status(200).json(project);
     } catch (error) {
       return response.status(404).json({ status: "Page not found" });
@@ -30,7 +30,6 @@ export default async function handler(request, response) {
         .json({ status: `Can't delete project ${id}` });
     }
   }
-  
 
   if (request.method === "PUT") {
     try {
