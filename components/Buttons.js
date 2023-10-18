@@ -1,5 +1,10 @@
 import Link from "next/link";
-import { HiArrowLeft, HiOutlineTrash, HiPencil } from "react-icons/hi2";
+import {
+  HiArrowLeft,
+  HiOutlineTrash,
+  HiPencil,
+  HiPlusCircle,
+} from "react-icons/hi2";
 import styled from "styled-components";
 
 const StyledDeleteButton = styled.button`
@@ -28,6 +33,14 @@ export function EditLink({ url }) {
   return (
     <Link href={url}>
       <HiPencil size={24} color="#1e3a8a" title="Pencil icon for edit" />
+    </Link>
+  );
+}
+
+export function AddTaskLink({ url }) {
+  return (
+    <Link href={url}>
+      <HiPlusCircle size={30} title="add task" />
     </Link>
   );
 }

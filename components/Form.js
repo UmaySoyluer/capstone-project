@@ -1,25 +1,25 @@
-import Link from "next/link";
 import styled from "styled-components";
 import { useRouter } from "next/router";
-import StyledButton from "./StyledButton";
+
 import { CancelLink, SubmitButton } from "./Buttons";
 
-const StyledForm = styled.form`
+export const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
   padding-inline: 1.5rem;
   margin-top: -0.5rem;
 `;
 
-const StyledLabel = styled.label`
+export const StyledLabel = styled.label`
   margin-top: 1rem;
   margin-bottom: 0.2rem;
   color: var(--color-brand-900);
   font-size: 0.9rem;
   font-weight: bold;
+  text-transform: capitalize;
 `;
 
-const StyledInput = styled.input`
+export const StyledInput = styled.input`
   padding-inline: 0.5rem;
   padding-block: 0.3rem;
   border-radius: 10px;
@@ -31,7 +31,7 @@ const StyledInput = styled.input`
   }
 `;
 
-const StyledTextArea = styled.textarea`
+export const StyledTextArea = styled.textarea`
   padding-inline: 0.5rem;
   padding-block: 0.3rem;
   resize: none;
@@ -44,7 +44,7 @@ const StyledTextArea = styled.textarea`
   }
 `;
 
-const StyledSelect = styled.select`
+export const StyledSelect = styled.select`
   padding-inline: 0.5rem;
   padding-block: 0.5rem;
   border-radius: 10px;
@@ -63,7 +63,7 @@ const StyledOption = styled.option`
   background-color: var(--color-gray-50);
 `;
 
-const StyledButtonContainer = styled.div`
+export const StyledButtonContainer = styled.div`
   margin-top: 1.7rem;
   display: flex;
   justify-content: space-between;

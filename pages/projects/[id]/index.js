@@ -4,8 +4,14 @@ import styled from "styled-components";
 
 import Error from "@/components/Error";
 import Heading from "@/components/Heading";
-import { BackLink, DeleteButton, EditLink } from "@/components/Buttons";
 import Loading from "@/components/Loading";
+import {
+  AddTaskLink,
+  BackLink,
+  DeleteButton,
+  EditLink,
+} from "@/components/Buttons";
+import TaskList from "@/components/TaskList";
 
 const StyledDepartment = styled.h3`
   font-size: 0.9rem;
@@ -46,6 +52,11 @@ const StyledToolBar = styled.div`
 const StyledArticle = styled.article`
   margin-top: 1.5rem;
   padding-inline: 1rem;
+`;
+
+const StyledButtonAddContainer = styled.div`
+  text-align: right;
+  padding: 1rem;
 `;
 
 export default function ProjectDetailPage() {
@@ -94,6 +105,13 @@ export default function ProjectDetailPage() {
         <StyledDescriptionListTitle>Description</StyledDescriptionListTitle>
         <dd>{description}</dd>
       </StyledArticle>
+
+      <StyledButtonAddContainer>
+        <AddTaskLink url={`/projects/${id}/tasks/newTask`} />
+      </StyledButtonAddContainer>
+
+      <TaskList />
+
     </>
   );
 }

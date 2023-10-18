@@ -1,5 +1,4 @@
 import ProjectList from "@/components/ProjectList";
-import Link from "next/link";
 import styled from "styled-components";
 
 const StyledMainHeadline = styled.h1`
