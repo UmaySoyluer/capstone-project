@@ -1,29 +1,28 @@
+import Link from "next/link";
 import useSWR from "swr";
 import styled from "styled-components";
 import { HiPlus } from "react-icons/hi2";
 
 import Project from "./Project";
 import Error from "@/components/Error";
-import { StyledLink } from "@/components/Project";
 import { StyledArticle } from "@/components/Project";
 import { StyledListItem } from "@/components/Project";
+import Loading from "./Loading";
 
 const StyledProjectsList = styled.ul`
   display: grid;
-  grid-template-columns: 40% 40%;
-  box-sizing: border-box;
-  gap: 1.3rem;
+  grid-template-columns: 1fr 1fr;
   place-items: center;
-  justify-content: center;
+  gap: 1.5rem;
   margin-top: 2rem;
-  margin-inline: auto;
+  padding-inline: 1.5rem;
 `;
 
 export default function ProjectList() {
   const { data: projects, isLoading, error } = useSWR("/api/projects");
 
   if (isLoading) {
-    return <h2>Loading ... </h2>;
+    return <Loading />;
   }
   if (error) {
     return <Error message={error.message} />;
@@ -33,11 +32,11 @@ export default function ProjectList() {
       {projects ? (
         <StyledProjectsList>
           <StyledListItem>
-            <StyledLink href={"/projects/new"}>
+            <Link href={"/projects/new"}>
               <StyledArticle>
-                <HiPlus size={22} title="create new project" />
+                <HiPlus size={32} color="#f9fafb" title="create new project" />
               </StyledArticle>
-            </StyledLink>
+            </Link>
           </StyledListItem>
 
           {projects?.length &&

@@ -1,45 +1,69 @@
-import Link from "next/link";
 import styled from "styled-components";
 import { useRouter } from "next/router";
-import StyledButton from "./StyledButton";
+
 import { CancelLink, SubmitButton } from "./Buttons";
 
-const StyledForm = styled.form`
+export const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
   padding-inline: 1.5rem;
   margin-top: -0.5rem;
 `;
 
-const StyledLabel = styled.label`
+export const StyledLabel = styled.label`
   margin-top: 1rem;
   margin-bottom: 0.2rem;
+  color: var(--color-brand-900);
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-transform: capitalize;
 `;
 
-const StyledInput = styled.input`
+export const StyledInput = styled.input`
   padding-inline: 0.5rem;
   padding-block: 0.3rem;
   border-radius: 10px;
-  border: 1px solid black;
+  border: 1px solid var(--color-gray-300);
+
+  &:focus {
+    border: none;
+    outline: 2px solid var(--color-brand-900);
+  }
 `;
 
-const StyledTextArea = styled.textarea`
+export const StyledTextArea = styled.textarea`
   padding-inline: 0.5rem;
   padding-block: 0.3rem;
   resize: none;
   border-radius: 10px;
-  border: 1px solid black;
+  border: 1px solid var(--color-gray-300);
+
+  &:focus {
+    border: none;
+    outline: 2px solid var(--color-brand-900);
+  }
 `;
 
-const StyledSelect = styled.select`
+export const StyledSelect = styled.select`
   padding-inline: 0.5rem;
-  padding-block: 0.3rem;
-  border: 1px solid black;
+  padding-block: 0.5rem;
   border-radius: 10px;
   background: transparent;
+  border: 1px solid var(--color-gray-300);
+
+  &:focus {
+    border: none;
+    outline: 2px solid var(--color-brand-900);
+  }
 `;
 
-const StyledButtonContainer = styled.div`
+const StyledOption = styled.option`
+  padding-inline: 0.5rem;
+  padding-block: 0.5rem;
+  background-color: var(--color-gray-50);
+`;
+
+export const StyledButtonContainer = styled.div`
   margin-top: 1.7rem;
   display: flex;
   justify-content: space-between;
@@ -101,9 +125,9 @@ export default function Form({ formName, onSubmit, value }) {
           required
           defaultValue={value?.department}
         >
-          <option value="development">Development</option>
-          <option value="design">Design</option>
-          <option value="marketing">Marketing</option>
+          <StyledOption value="development">Development</StyledOption>
+          <StyledOption value="design">Design</StyledOption>
+          <StyledOption value="marketing">Marketing</StyledOption>
         </StyledSelect>
 
         <StyledLabel htmlFor="teamLead">Project Lead:</StyledLabel>

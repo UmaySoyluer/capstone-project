@@ -13,6 +13,7 @@ export default async function handler(request, response) {
       const project = await Project.findById(id).populate("tasks").exec();
       return response.status(200).json(project);
     } catch (error) {
+      console.error(`Can't fetch project with tasks: ${error}`);
       return response.status(404).json({ status: "Page not found" });
     }
   }
