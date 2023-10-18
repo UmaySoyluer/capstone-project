@@ -6,7 +6,12 @@ import styled from "styled-components";
 
 import Error from "@/components/Error";
 import Heading from "@/components/Heading";
-import { BackLink, DeleteButton, EditLink } from "@/components/Buttons";
+import {
+  AddTaskLink,
+  BackLink,
+  DeleteButton,
+  EditLink,
+} from "@/components/Buttons";
 
 const StyledDepartment = styled.h3`
   font-size: 0.9rem;
@@ -76,6 +81,7 @@ export default function ProjectDetailPage() {
       <StyledArticle>
         <p>{description}</p>
       </StyledArticle>
+      <AddTaskLink url={`/projects/${id}/tasks/newTask`} />
     </>
   );
 }

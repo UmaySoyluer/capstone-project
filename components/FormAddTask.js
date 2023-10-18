@@ -1,41 +1,26 @@
 import styled from "styled-components";
 import { CancelLink, SubmitButton } from "./Buttons";
+import Heading from "./Heading";
+import { useState } from "react";
+import {
+  StyledButtonContainer,
+  StyledForm,
+  StyledInput,
+  StyledLabel,
+  StyledTextArea,
+} from "./Form";
 
-const StyledForm = styled.form`
-  display: flex;
-  flex-direction: column;
-  padding-inline: 1.5rem;
-  margin-top: -0.5rem;
-`;
-
-const StyledLabel = styled.label`
-  margin-top: 1rem;
-  margin-bottom: 0.2rem;
-`;
-
-const StyledInput = styled.input`
-  padding-inline: 0.5rem;
-  padding-block: 0.3rem;
+const StyledFieldset = styled.fieldset`
   border-radius: 10px;
   border: 1px solid black;
-`;
-
-const StyledTextArea = styled.textarea`
-  padding-inline: 0.5rem;
-  padding-block: 0.3rem;
-  resize: none;
-  border-radius: 10px;
-  border: 1px solid black;
-`;
-
-const StyledButtonContainer = styled.div`
-  margin-top: 1.7rem;
-  display: flex;
-  justify-content: space-between;
-  flex-direction: row-reverse;
+  > input {
+    padding: 1rem;
+  }
 `;
 
 export default function FormAddTask({ formName, onSubmit, value }) {
+  const [checkedTags, setCheckedTags] = useState(new Array(4).fill(false));
+
   function handleSubmit(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
@@ -43,9 +28,17 @@ export default function FormAddTask({ formName, onSubmit, value }) {
     onSubmit(project);
   }
 
+  function handleClick(position) {
+    const updatedCheckedState = checkedTags.map((item, index) =>
+      index === position ? !item : item
+    );
+
+    setCheckedTags(updatedCheckedState);
+  }
+
   return (
     <>
-      <h3>{formName}</h3>
+      <Heading>{formName}</Heading>
       <StyledForm onSubmit={handleSubmit}>
         <StyledLabel htmlFor="title">Task name:</StyledLabel>
 
@@ -67,30 +60,45 @@ export default function FormAddTask({ formName, onSubmit, value }) {
           defaultValue={value?.description}
         ></StyledTextArea>
 
-        <StyledLabel htmlFor="startDate">Start Date:</StyledLabel>
-        <StyledInput
-          type="date"
-          name="startDate"
-          id="startDate"
-          required
-          defaultValue={value?.startDate}
-        ></StyledInput>
-
-        <fieldset>
+        <StyledFieldset>
           <legend>Tags:</legend>
 
-          <StyledLabel for="urgent">Urgent</StyledLabel>
-          <StyledInput type="checkbox" id="urgent" name="urgent" />
+          <StyledLabel htmlFor="urgent">Urgent</StyledLabel>
+          <input
+            type="checkbox"
+            id="urgent"
+            name="urgent"
+            onClick={() => handleClick("urgent")}
+            checked={checkedTags["urgent"]}
+          />
 
-          <StyledLabel for="important">Important</StyledLabel>
-          <StyledInput type="checkbox" id="important" name="important" />
+          <StyledLabel htmlFor="important">Important</StyledLabel>
+          <input
+            type="checkbox"
+            id="important"
+            name="important"
+            onClick={() => handleClick("important")}
+            checked={checkedTags["important"]}
+          />
 
-          <StyledLabel for="optional">Optional</StyledLabel>
-          <StyledInput type="checkbox" id="optional" name="optional" />
+          <StyledLabel htmlFor="optional">Optional</StyledLabel>
+          <input
+            type="checkbox"
+            id="optional"
+            name="optional"
+            onClick={() => handleClick("optional")}
+            checked={checkedTags["optional"]}
+          />
 
-          <StyledLabel for="new">new</StyledLabel>
-          <StyledInput type="checkbox" id="new" name="new" />
-        </fieldset>
+          <StyledLabel htmlFor="new">New</StyledLabel>
+          <input
+            type="checkbox"
+            id="new"
+            name="new"
+            onClick={() => handleClick("new")}
+            checked={checkedTags["new"]}
+          />
+        </StyledFieldset>
 
         <StyledButtonContainer>
           <SubmitButton type="submit">Submit</SubmitButton>

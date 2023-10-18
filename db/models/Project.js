@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-
+import "./Task";
 const { Schema, model, models } = mongoose;
 
 const projectSchema = new Schema({
@@ -26,6 +26,10 @@ const projectSchema = new Schema({
   teamLead: {
     type: String,
     required: true,
+  },
+  tasks: {
+    type: [Schema.Types.ObjectId],
+    ref: "Task",
   },
 });
 
