@@ -11,10 +11,12 @@ import {
 } from "./Form";
 
 const StyledFieldset = styled.fieldset`
+  margin-top: 1rem;
   border-radius: 10px;
   border: 1px solid black;
+  padding: 0.2rem;
   > input {
-    padding: 1rem;
+    margin: 1rem;
   }
 `;
 
@@ -51,6 +53,7 @@ export default function FormAddTask({ formName, onSubmit, value }) {
         ></StyledInput>
 
         <StyledLabel htmlFor="description">Description:</StyledLabel>
+
         <StyledTextArea
           type="text"
           name="description"
@@ -58,7 +61,7 @@ export default function FormAddTask({ formName, onSubmit, value }) {
           rows={3}
           required
           defaultValue={value?.description}
-        ></StyledTextArea>
+        />
 
         <StyledFieldset>
           <legend>Tags:</legend>
