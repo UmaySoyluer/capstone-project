@@ -1,9 +1,10 @@
 import styled from "styled-components";
+import Link from "next/link";
 
-export default function Task({ task }) {
+export default function Task({ task, id }) {
   if (!task) return;
 
-  const { _id: id, title } = task;
+  const { _id: taskId, title } = task;
 
   const StyledListItem = styled.li`
     background: #fff;
@@ -21,7 +22,7 @@ export default function Task({ task }) {
 
   return (
     <StyledListItem>
-      <p>{title}</p>
+      <Link href={`/projects/${id}/tasks/${taskId}`}>{title}</Link>
     </StyledListItem>
   );
 }

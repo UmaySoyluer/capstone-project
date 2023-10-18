@@ -8,9 +8,9 @@ const StyledDeleteButton = styled.button`
   cursor: pointer;
 `;
 
-export function BackLink() {
+export function BackLink({ href }) {
   return (
-    <Link href={"/"}>
+    <Link href={href}>
       <HiArrowLeft title="back" size={20} />
     </Link>
   );
