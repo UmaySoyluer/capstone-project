@@ -78,8 +78,6 @@ export default function Form({ formName, onSubmit, value }) {
     onSubmit(project);
   }
 
-  const router = useRouter();
-
   return (
     <>
       <StyledForm onSubmit={handleSubmit}>

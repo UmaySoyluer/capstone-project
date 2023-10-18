@@ -16,7 +16,7 @@ const StyledLegend = styled.legend`
   margin-top: 1rem;
 `;
 
-export default function FormTask({ formName, onSubmit, value }) {
+export default function FormTask({ formName, onSubmit, id, value }) {
   const [tag, setTag] = useState("Backlog");
 
   function handleSubmit(event) {
@@ -85,7 +85,7 @@ export default function FormTask({ formName, onSubmit, value }) {
 
         <StyledButtonContainer>
           <SubmitButton type="submit">Submit</SubmitButton>
-          {value && <CancelLink url={`/projects/${value._id}`} />}
+          {value && <CancelLink url={`/projects/${id}/tasks/${value._id}`} />}
           {!value && <CancelLink url={"/"} />}
         </StyledButtonContainer>
       </StyledForm>

@@ -27,7 +27,7 @@ export default function EditProjectPage() {
 
     if (response.ok) {
       mutate(`/api/projects/${id}/tasks/${taskId}`);
-      router.push(`/projects/${id}`);
+      router.push(`/projects/${id}/tasks/${taskId}`);
     }
   }
 
@@ -36,7 +36,12 @@ export default function EditProjectPage() {
 
   return (
     <>
-      <FormTask onSubmit={editTask} formName="Edit a task" value={task} />
+      <FormTask
+        id={id}
+        onSubmit={editTask}
+        formName="Edit a task"
+        value={task}
+      />
     </>
   );
 }
