@@ -1,13 +1,17 @@
 import { useRouter } from "next/router";
 import useSWR from "swr";
-import { HiPencil } from "react-icons/hi2";
-import Link from "next/link";
 import styled from "styled-components";
 
 import Error from "@/components/Error";
 import Heading from "@/components/Heading";
-import { BackLink, DeleteButton, EditLink } from "@/components/Buttons";
+import {
+  AddTaskLink,
+  BackLink,
+  DeleteButton,
+  EditLink,
+} from "@/components/Buttons";
 import TaskList from "@/components/TaskList";
+
 
 const StyledDepartment = styled.h3`
   font-size: 0.9rem;
@@ -37,6 +41,11 @@ const StyledSection = styled.section`
 const StyledArticle = styled.article`
   margin-top: 1.5rem;
   padding-inline: 1rem;
+`;
+
+const StyledButtonAddContainer = styled.div`
+  text-align: right;
+  padding: 1rem;
 `;
 
 export default function ProjectDetailPage() {
@@ -77,7 +86,13 @@ export default function ProjectDetailPage() {
       <StyledArticle>
         <p>{description}</p>
       </StyledArticle>
+
+      <StyledButtonAddContainer>
+        <AddTaskLink url={`/projects/${id}/tasks/newTask`} />
+      </StyledButtonAddContainer>
+
       <TaskList />
+
     </>
   );
 }
