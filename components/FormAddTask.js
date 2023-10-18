@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { CancelLink, SubmitButton } from "./Buttons";
 import Heading from "./Heading";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import {
   StyledButtonContainer,
   StyledForm,
@@ -38,6 +38,8 @@ export default function FormAddTask({ formName, onSubmit, value }) {
     setCheckedTags(updatedCheckedState);
   }
 
+  const tagTypes = ["urgent", "important", "optional", "new"];
+
   return (
     <>
       <Heading>{formName}</Heading>
@@ -66,41 +68,18 @@ export default function FormAddTask({ formName, onSubmit, value }) {
         <StyledFieldset>
           <legend>Tags:</legend>
 
-          <StyledLabel htmlFor="urgent">Urgent</StyledLabel>
-          <input
-            type="checkbox"
-            id="urgent"
-            name="urgent"
-            onClick={() => handleClick("urgent")}
-            checked={checkedTags["urgent"]}
-          />
-
-          <StyledLabel htmlFor="important">Important</StyledLabel>
-          <input
-            type="checkbox"
-            id="important"
-            name="important"
-            onClick={() => handleClick("important")}
-            checked={checkedTags["important"]}
-          />
-
-          <StyledLabel htmlFor="optional">Optional</StyledLabel>
-          <input
-            type="checkbox"
-            id="optional"
-            name="optional"
-            onClick={() => handleClick("optional")}
-            checked={checkedTags["optional"]}
-          />
-
-          <StyledLabel htmlFor="new">New</StyledLabel>
-          <input
-            type="checkbox"
-            id="new"
-            name="new"
-            onClick={() => handleClick("new")}
-            checked={checkedTags["new"]}
-          />
+          {tagTypes.map((tag) => (
+            <Fragment key={tag}>
+              <StyledLabel htmlFor={tag}>{tag}</StyledLabel>
+              <input
+                type="checkbox"
+                id={tag}
+                name={tag}
+                onClick={() => handleClick(tag)}
+                checked={checkedTags[tag]}
+              />
+            </Fragment>
+          ))}
         </StyledFieldset>
 
         <StyledButtonContainer>

@@ -13,6 +13,7 @@ export const StyledForm = styled.form`
 export const StyledLabel = styled.label`
   margin-top: 1rem;
   margin-bottom: 0.2rem;
+  text-transform: capitalize;
 `;
 
 export const StyledInput = styled.input`
