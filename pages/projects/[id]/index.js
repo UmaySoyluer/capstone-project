@@ -10,6 +10,8 @@ import {
   DeleteButton,
   EditLink,
 } from "@/components/Buttons";
+import TaskList from "@/components/TaskList";
+
 
 const StyledDepartment = styled.h3`
   font-size: 0.9rem;
@@ -84,9 +86,13 @@ export default function ProjectDetailPage() {
       <StyledArticle>
         <p>{description}</p>
       </StyledArticle>
+
       <StyledButtonAddContainer>
         <AddTaskLink url={`/projects/${id}/tasks/newTask`} />
       </StyledButtonAddContainer>
+
+      <TaskList />
+
     </>
   );
 }
