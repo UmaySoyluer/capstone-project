@@ -16,7 +16,6 @@ export default async function handler(request, response) {
       return response.status(404).json({ status: "Task not found" });
     }
   }
-  //Delete Task
   if (request.method === "DELETE") {
     try {
       await Task.findByIdAndDelete(taskId);
@@ -24,7 +23,7 @@ export default async function handler(request, response) {
     } catch (error) {
       console.error(`Can't delete Task ${taskId}: ${error}`);
       return response
-        .status(505)
+        .status(500)
         .json({ status: `Can't delete Task ${taskId}` });
     }
   }
