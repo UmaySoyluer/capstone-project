@@ -1,10 +1,31 @@
 import { createGlobalStyle } from "styled-components";
 
-import { Roboto } from "next/font/google";
-
 export default createGlobalStyle`
 :root {
-  
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f3f4f6;
+  --color-gray-200: #e5e7eb;
+  --color-gray-300: #d1d5db;
+  --color-gray-400: #9ca3af;
+  --color-gray-500: #6b7280;
+  --color-gray-600: #4b5563;
+  --color-gray-700: #374151;
+  --color-gray-800: #1f2937;
+  --color-gray-900: #111827;
+  --color-gray-950: #030712;
+
+
+  --color-brand-50: #eff6ff;
+  --color-brand-100: #dbeafe;
+  --color-brand-200: #bfdbfe;
+  --color-brand-300: #93c5fd;
+  --color-brand-400: #60a5fa;
+  --color-brand-500: #3b82f6;
+  --color-brand-600: #2563eb;
+  --color-brand-700: #1d4ed8;
+  --color-brand-800: #1e40af;
+  --color-brand-900: #1e3a8a;
+  --color-brand-950: #172554;
 }
 
   *,
@@ -20,6 +41,8 @@ export default createGlobalStyle`
     min-height: 100vh;
     line-height: 1.5;
     font-family: roboto, sans-serif;
+    background-color: var(--color-gray-50);
+    color: var(--color-gray-900);
   }
 
   input,
@@ -28,6 +51,7 @@ export default createGlobalStyle`
   select {
     font: inherit;
     color: inherit;
+
   }
 
   button {
@@ -36,14 +60,6 @@ export default createGlobalStyle`
 
   *:disabled {
     cursor: not-allowed;
-  }
-
-
-  input:focus,
-  button:focus,
-  textarea:focus,
-  select:focus {
-    outline-offset: -1px;
   }
 
   button:has(svg) {

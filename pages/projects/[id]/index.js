@@ -1,16 +1,23 @@
 import { useRouter } from "next/router";
 import useSWR from "swr";
-import { HiPencil } from "react-icons/hi2";
-import Link from "next/link";
 import styled from "styled-components";
 
 import Error from "@/components/Error";
 import Heading from "@/components/Heading";
 import { BackLink, DeleteButton, EditLink } from "@/components/Buttons";
+import Loading from "@/components/Loading";
 
 const StyledDepartment = styled.h3`
   font-size: 0.9rem;
   margin-inline: 1rem;
+  text-transform: uppercase;
+  color: var(--color-brand-900);
+`;
+
+const StyledSectionTitle = styled.p`
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: var(--color-brand-900);
 `;
 
 const StyledButtonContainer = styled.div`
@@ -18,10 +25,12 @@ const StyledButtonContainer = styled.div`
   justify-content: space-between;
   padding-inline: 1rem;
   margin-top: 1.5rem;
+  margin-bottom: 1rem;
 `;
 
 const StyledToolBar = styled.div`
   display: flex;
+  align-items: center;
   gap: 1rem;
 `;
 
@@ -29,6 +38,7 @@ const StyledSection = styled.section`
   margin-top: 2rem;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   flex-wrap: wrap;
   padding-inline: 1rem;
 `;
@@ -45,7 +55,7 @@ export default function ProjectDetailPage() {
 
   const { data: project, isLoading, error } = useSWR(`/api/projects/${id}`);
 
-  if (!isReady || isLoading) return <h2>Loading..</h2>;
+  if (!isReady || isLoading) return <Loading />;
   if (error) return <Error message={error.message} />;
 
   const { title, description, endDate, department, teamLead } = project;
@@ -70,10 +80,17 @@ export default function ProjectDetailPage() {
       <Heading>{title}</Heading>
       <StyledDepartment>{department}</StyledDepartment>
       <StyledSection>
-        <p>{teamLead}</p>
-        <p>Due date: {endDate}</p>
+        <div>
+          <StyledSectionTitle>Team lead:</StyledSectionTitle>
+          <p>{teamLead}</p>
+        </div>
+        <div>
+          <StyledSectionTitle>Due date:</StyledSectionTitle>
+          <p>{endDate}</p>
+        </div>
       </StyledSection>
       <StyledArticle>
+        <StyledSectionTitle>Description</StyledSectionTitle>
         <p>{description}</p>
       </StyledArticle>
     </>

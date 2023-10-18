@@ -13,6 +13,9 @@ const nextConfig = {
 
     return config;
   },
+  images: {
+    domains: ["img.freepik.com", "media.tenor.com"],
+  },
 };
 
 module.exports = nextConfig;
