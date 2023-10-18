@@ -13,6 +13,7 @@ const taskSchema = new Schema(
     },
     tag: {
       type: String,
+      required: true,
     },
     createdAt: {
       type: Date,

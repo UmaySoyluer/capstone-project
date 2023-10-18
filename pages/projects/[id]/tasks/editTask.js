@@ -1,7 +1,7 @@
 import useSWR, { mutate } from "swr";
 import { useRouter } from "next/router";
 
-import FormAddTask from "@/components/FormAddTask";
+import FormTask from "@/components/FormAddTask";
 import Error from "@/components/Error";
 
 export default function EditProjectPage() {
@@ -31,7 +31,7 @@ export default function EditProjectPage() {
 
   return (
     <>
-      <FormAddTask onSubmit={editTask} formName="Edit a task" value={task} />
+      <FormTask onSubmit={editTask} formName="Edit a task" value={task} />
     </>
   );
 }

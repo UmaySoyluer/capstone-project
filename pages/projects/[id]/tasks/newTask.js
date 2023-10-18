@@ -1,7 +1,7 @@
 import { mutate } from "swr";
 import { useRouter } from "next/router";
 
-import FormAddTask from "@/components/FormAddTask";
+import FormTask from "@/components/FormTask";
 
 export default function CreateTaskPage() {
   const router = useRouter();
@@ -22,5 +22,5 @@ export default function CreateTaskPage() {
     }
   }
 
-  return <FormAddTask onSubmit={createTask} formName="Create a task" />;
+  return <FormTask onSubmit={createTask} formName="Create a task" />;
 }

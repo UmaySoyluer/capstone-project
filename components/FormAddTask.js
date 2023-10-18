@@ -20,7 +20,7 @@ const StyledFieldset = styled.fieldset`
   }
 `;
 
-export default function FormAddTask({ formName, onSubmit, value }) {
+export default function FormTask({ formName, onSubmit, value }) {
   const [checkedTags, setCheckedTags] = useState(new Array(4).fill(false));
 
   function handleSubmit(event) {
