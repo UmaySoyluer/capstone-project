@@ -16,5 +16,17 @@ export default async function handler(request, response) {
       return response.status(404).json({ status: "Task not found" });
     }
   }
+  //Delete Task
+  if (request.method === "DELETE") {
+    try {
+      await Task.findByIdAndDelete(taskId);
+      return response.status(200).json({ status: "Task deleted successfully" });
+    } catch (error) {
+      console.error(`Can't delete Task ${taskId}: ${error}`);
+      return response
+        .status(505)
+        .json({ status: `Can't delete Task ${taskId}` });
+    }
+  }
   return response.status(405).json({ message: "Method not allowed." });
 }
