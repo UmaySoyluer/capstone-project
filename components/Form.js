@@ -13,6 +13,9 @@ export const StyledForm = styled.form`
 export const StyledLabel = styled.label`
   margin-top: 1rem;
   margin-bottom: 0.2rem;
+  color: var(--color-brand-900);
+  font-size: 0.9rem;
+  font-weight: bold;
   text-transform: capitalize;
 `;
 
@@ -20,7 +23,12 @@ export const StyledInput = styled.input`
   padding-inline: 0.5rem;
   padding-block: 0.3rem;
   border-radius: 10px;
-  border: 1px solid black;
+  border: 1px solid var(--color-gray-300);
+
+  &:focus {
+    border: none;
+    outline: 2px solid var(--color-brand-900);
+  }
 `;
 
 export const StyledTextArea = styled.textarea`
@@ -28,15 +36,31 @@ export const StyledTextArea = styled.textarea`
   padding-block: 0.3rem;
   resize: none;
   border-radius: 10px;
-  border: 1px solid black;
+  border: 1px solid var(--color-gray-300);
+
+  &:focus {
+    border: none;
+    outline: 2px solid var(--color-brand-900);
+  }
 `;
 
 export const StyledSelect = styled.select`
   padding-inline: 0.5rem;
-  padding-block: 0.3rem;
-  border: 1px solid black;
+  padding-block: 0.5rem;
   border-radius: 10px;
   background: transparent;
+  border: 1px solid var(--color-gray-300);
+
+  &:focus {
+    border: none;
+    outline: 2px solid var(--color-brand-900);
+  }
+`;
+
+const StyledOption = styled.option`
+  padding-inline: 0.5rem;
+  padding-block: 0.5rem;
+  background-color: var(--color-gray-50);
 `;
 
 export const StyledButtonContainer = styled.div`
@@ -101,9 +125,9 @@ export default function Form({ formName, onSubmit, value }) {
           required
           defaultValue={value?.department}
         >
-          <option value="development">Development</option>
-          <option value="design">Design</option>
-          <option value="marketing">Marketing</option>
+          <StyledOption value="development">Development</StyledOption>
+          <StyledOption value="design">Design</StyledOption>
+          <StyledOption value="marketing">Marketing</StyledOption>
         </StyledSelect>
 
         <StyledLabel htmlFor="teamLead">Project Lead:</StyledLabel>
