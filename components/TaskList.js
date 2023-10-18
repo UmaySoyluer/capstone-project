@@ -24,8 +24,8 @@ const StyledContainer = styled.div`
   margin: 2rem auto;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 `;
-export default function TaskList() {
-  const { data: tasks, isLoading, error } = useSWR("/api/tasks");
+export default function TaskList({ id }) {
+  const { data: tasks, isLoading, error } = useSWR(`/api/projects/${id}/tasks`);
 
   if (isLoading) {
     return <h2>Loading ... </h2>;
@@ -40,7 +40,7 @@ export default function TaskList() {
         {tasks ? (
           <StyledTaskList>
             {tasks?.length &&
-              tasks.map((task) => <Task key={task._id} task={task} />)}
+              tasks.map((task) => <Task key={task._id} id={id} task={task} />)}
           </StyledTaskList>
         ) : (
           <p>No tasks found.</p>

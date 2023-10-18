@@ -13,10 +13,11 @@ const StyledDeleteButton = styled.button`
   cursor: pointer;
 `;
 
-export function BackLink() {
+export function BackLink({ href }) {
   return (
-    <Link href={"/"}>
-      <HiArrowLeft title="Icon for back to home" color="#1e3a8a" size={26} />
+
+    <Link href={href}>
+         <HiArrowLeft title="Icon for back to home" color="#1e3a8a" size={26} />
     </Link>
   );
 }

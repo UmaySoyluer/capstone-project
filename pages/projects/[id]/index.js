@@ -82,7 +82,7 @@ export default function ProjectDetailPage() {
   return (
     <>
       <StyledButtonContainer>
-        <BackLink />
+        <BackLink href={"/"} />
         <StyledToolBar>
           <EditLink url={`/projects/${id}/edit`} />
           <DeleteButton handleClick={handleDelete} />
@@ -106,12 +106,11 @@ export default function ProjectDetailPage() {
         <dd>{description}</dd>
       </StyledArticle>
 
+      <TaskList id={id} />
+
       <StyledButtonAddContainer>
         <AddTaskLink url={`/projects/${id}/tasks/newTask`} />
       </StyledButtonAddContainer>
-
-      <TaskList />
-
     </>
   );
 }
