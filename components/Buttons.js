@@ -40,7 +40,7 @@ export function EditLink({ url }) {
 export function AddTaskLink({ url }) {
   return (
     <Link href={url}>
-      <HiPlusCircle size={20} title="add task" />
+      <HiPlusCircle size={30} title="add task" />
     </Link>
   );
 }

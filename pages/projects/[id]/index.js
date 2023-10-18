@@ -1,7 +1,5 @@
 import { useRouter } from "next/router";
 import useSWR from "swr";
-import { HiPencil } from "react-icons/hi2";
-import Link from "next/link";
 import styled from "styled-components";
 
 import Error from "@/components/Error";
@@ -43,6 +41,11 @@ const StyledArticle = styled.article`
   padding-inline: 1rem;
 `;
 
+const StyledButtonAddContainer = styled.div`
+  text-align: right;
+  padding: 1rem;
+`;
+
 export default function ProjectDetailPage() {
   const router = useRouter();
   const { isReady } = router;
@@ -81,7 +84,9 @@ export default function ProjectDetailPage() {
       <StyledArticle>
         <p>{description}</p>
       </StyledArticle>
-      <AddTaskLink url={`/projects/${id}/tasks/newTask`} />
+      <StyledButtonAddContainer>
+        <AddTaskLink url={`/projects/${id}/tasks/newTask`} />
+      </StyledButtonAddContainer>
     </>
   );
 }
