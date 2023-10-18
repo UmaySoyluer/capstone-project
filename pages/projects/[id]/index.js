@@ -65,7 +65,6 @@ export default function ProjectDetailPage() {
   const { id } = router.query;
 
   const { data: project, isLoading, error } = useSWR(`/api/projects/${id}`);
-  console.log(project);
 
   if (!isReady || isLoading) return <Loading />;
   if (error) return <Error message={error.message} />;
