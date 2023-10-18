@@ -7,6 +7,9 @@ import Error from "@/components/Error";
 import { StyledLink } from "@/components/Project";
 import { StyledArticle } from "@/components/Project";
 import { StyledListItem } from "@/components/Project";
+import LoadingPage from "./LoadingPage";
+import ErrorPage from "@/pages/404";
+
 
 const StyledProjectsList = styled.ul`
   display: grid;
@@ -23,10 +26,10 @@ export default function ProjectList() {
   const { data: projects, isLoading, error } = useSWR("/api/projects");
 
   if (isLoading) {
-    return <h2>Loading ... </h2>;
+    return <LoadingPage/>;
   }
   if (error) {
-    return <Error message={error.message} />;
+    return <ErrorPage/>;
   }
   return (
     <>
