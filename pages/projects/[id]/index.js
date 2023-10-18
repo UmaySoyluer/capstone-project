@@ -35,7 +35,7 @@ const StyledDescriptionListTitle = styled.dt`
   color: var(--color-brand-900);
 `;
 
-const StyledButtonContainer = styled.div`
+export const StyledButtonContainer = styled.div`
   display: flex;
   justify-content: space-between;
   padding-inline: 1rem;
@@ -43,7 +43,7 @@ const StyledButtonContainer = styled.div`
   margin-bottom: 1rem;
 `;
 
-const StyledToolBar = styled.div`
+export const StyledToolBar = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;

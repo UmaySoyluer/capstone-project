@@ -4,13 +4,9 @@ import styled from "styled-components";
 
 import Error from "@/components/Error";
 import Heading from "@/components/Heading";
-import { BackLink } from "@/components/Buttons";
+import { BackLink, EditLink } from "@/components/Buttons";
 import Loading from "@/components/Loading";
-
-const StyledContainer = styled.div`
-  padding-inline: 1rem;
-  margin-top: 1.5rem;
-`;
+import { StyledButtonContainer, StyledToolBar } from "../..";
 
 const StyledSection = styled.section`
   margin-top: 1rem;
@@ -42,9 +38,13 @@ export default function TaskDetailPage() {
 
   return (
     <>
-      <StyledContainer>
+      <StyledButtonContainer>
         <BackLink href={`/projects/${id}`} />
-      </StyledContainer>
+        <StyledToolBar>
+          <EditLink url={`/projects/${id}/tasks/${taskId}/editTask`} />
+        </StyledToolBar>
+      </StyledButtonContainer>
+
       <Heading>Task : {title}</Heading>
       <StyledArticle>
         <h4>Description</h4>
