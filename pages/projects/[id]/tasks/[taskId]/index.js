@@ -5,6 +5,7 @@ import styled from "styled-components";
 import Error from "@/components/Error";
 import Heading from "@/components/Heading";
 import { BackLink } from "@/components/Buttons";
+import Loading from "@/components/Loading";
 
 const StyledContainer = styled.div`
   padding-inline: 1rem;
@@ -34,7 +35,7 @@ export default function TaskDetailPage() {
     error,
   } = useSWR(`/api/projects/${id}/tasks/${taskId}`);
 
-  if (!isReady || isLoading) return <h2>Loading..</h2>;
+  if (!isReady || isLoading) return <Loading />;
   if (error) return <Error message={error.message} />;
 
   const { title, description, tag, createdAt } = task;

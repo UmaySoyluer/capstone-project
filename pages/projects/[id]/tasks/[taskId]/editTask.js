@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 
 import FormTask from "@/components/FormTask";
 import Error from "@/components/Error";
+import Loading from "@/components/Loading";
 
 export default function EditProjectPage() {
   const router = useRouter();
@@ -30,7 +31,7 @@ export default function EditProjectPage() {
     }
   }
 
-  if (!isReady || isLoading) return <p>Loading...</p>;
+  if (!isReady || isLoading) return <Loading />;
   if (error) return <Error />;
 
   return (

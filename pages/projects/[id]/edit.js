@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 
 import Form from "@/components/Form";
 import Heading from "@/components/Heading";
+import Loading from "@/components/Loading";
 
 export default function EditProjectPage() {
   const router = useRouter();
@@ -26,7 +27,7 @@ export default function EditProjectPage() {
     }
   }
 
-  if (!isReady || isLoading) return <p>Loading...</p>;
+  if (!isReady || isLoading) return <Loading />;
   if (error) return <p>Something went wrong...</p>;
 
   return (
