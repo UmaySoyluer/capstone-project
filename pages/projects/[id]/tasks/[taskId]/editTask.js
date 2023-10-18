@@ -1,18 +1,22 @@
 import useSWR, { mutate } from "swr";
 import { useRouter } from "next/router";
 
-import FormTask from "@/components/FormAddTask";
+import FormTask from "@/components/FormTask";
 import Error from "@/components/Error";
 
 export default function EditProjectPage() {
   const router = useRouter();
   const { isReady } = router;
-  const { id } = router.query;
+  const { id, taskId } = router.query;
 
-  const { data: task, isLoading, error } = useSWR(`/api/projects/${id}`);
+  const {
+    data: task,
+    isLoading,
+    error,
+  } = useSWR(`/api/projects/${id}/tasks/${taskId}`);
 
   async function editTask(project) {
-    const response = await fetch(`/api/projects/${id}`, {
+    const response = await fetch(`/api/projects/${id}/tasks/${taskId}`, {
       method: "PUT",
       body: JSON.stringify(project),
       headers: {
@@ -21,7 +25,7 @@ export default function EditProjectPage() {
     });
 
     if (response.ok) {
-      mutate(`/api/projects/${id}`);
+      mutate(`/api/projects/${id}/tasks/${taskId}`);
       router.push(`/projects/${id}`);
     }
   }

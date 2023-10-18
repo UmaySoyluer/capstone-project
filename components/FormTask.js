@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { CancelLink, SubmitButton } from "./Buttons";
 import Heading from "./Heading";
-import { Fragment, useState } from "react";
+import { useState } from "react";
 import {
   StyledButtonContainer,
   StyledForm,
@@ -10,18 +10,14 @@ import {
   StyledTextArea,
 } from "./Form";
 
-const StyledFieldset = styled.fieldset`
+const StyledRadioContainer = styled.div``;
+
+const StyledLegend = styled.legend`
   margin-top: 1rem;
-  border-radius: 10px;
-  border: 1px solid black;
-  padding: 0.2rem;
-  > input {
-    margin: 1rem;
-  }
 `;
 
 export default function FormTask({ formName, onSubmit, value }) {
-  const [checkedTags, setCheckedTags] = useState(new Array(4).fill(false));
+  const [tag, setTag] = useState("Backlog");
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -30,15 +26,18 @@ export default function FormTask({ formName, onSubmit, value }) {
     onSubmit(project);
   }
 
-  function handleClick(position) {
-    const updatedCheckedState = checkedTags.map((item, index) =>
-      index === position ? !item : item
-    );
-
-    setCheckedTags(updatedCheckedState);
+  function handleChange(event) {
+    setTag(event.target.value);
   }
 
-  const tagTypes = ["urgent", "important", "optional", "new"];
+  const tagTypes = [
+    "Backlog",
+    "Sprint Backlog",
+    "In Progress",
+    "Code Review",
+    "Quality Assurance",
+    "Done",
+  ];
 
   return (
     <>
@@ -64,23 +63,25 @@ export default function FormTask({ formName, onSubmit, value }) {
           required
           defaultValue={value?.description}
         />
+        <StyledLegend>Select a Tag:</StyledLegend>
 
-        <StyledFieldset>
-          <legend>Tags:</legend>
-
-          {tagTypes.map((tag) => (
-            <Fragment key={tag}>
-              <StyledLabel htmlFor={tag}>{tag}</StyledLabel>
+        <StyledRadioContainer>
+          {tagTypes.map((tagsItem) => (
+            <div key={tagsItem}>
               <input
-                type="checkbox"
-                id={tag}
-                name={tag}
-                onClick={() => handleClick(tag)}
-                checked={checkedTags[tag]}
+                type="radio"
+                id={tagsItem}
+                name="tag"
+                value={tagsItem}
+                onChange={handleChange}
+                checked={tag === tagsItem}
+                required
               />
-            </Fragment>
+
+              <StyledLabel htmlFor={tagsItem}>{tagsItem}</StyledLabel>
+            </div>
           ))}
-        </StyledFieldset>
+        </StyledRadioContainer>
 
         <StyledButtonContainer>
           <SubmitButton type="submit">Submit</SubmitButton>
