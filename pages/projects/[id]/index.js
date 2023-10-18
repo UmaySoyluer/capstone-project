@@ -14,7 +14,16 @@ const StyledDepartment = styled.h3`
   color: var(--color-brand-900);
 `;
 
-const StyledSectionTitle = styled.p`
+const StyledDescriptionList = styled.dl`
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding-inline: 1rem;
+`;
+
+const StyledDescriptionListTitle = styled.dt`
   font-size: 0.9rem;
   font-weight: bold;
   color: var(--color-brand-900);
@@ -32,15 +41,6 @@ const StyledToolBar = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
-`;
-
-const StyledSection = styled.section`
-  margin-top: 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  padding-inline: 1rem;
 `;
 
 const StyledArticle = styled.article`
@@ -79,19 +79,20 @@ export default function ProjectDetailPage() {
       </StyledButtonContainer>
       <Heading>{title}</Heading>
       <StyledDepartment>{department}</StyledDepartment>
-      <StyledSection>
+      <StyledDescriptionList>
         <div>
-          <StyledSectionTitle>Team lead:</StyledSectionTitle>
-          <p>{teamLead}</p>
+          <StyledDescriptionListTitle>Team lead:</StyledDescriptionListTitle>
+          <dd>{teamLead}</dd>
         </div>
+
         <div>
-          <StyledSectionTitle>Due date:</StyledSectionTitle>
-          <p>{endDate}</p>
+          <StyledDescriptionListTitle>Due date:</StyledDescriptionListTitle>
+          <dd>{endDate}</dd>
         </div>
-      </StyledSection>
+      </StyledDescriptionList>
       <StyledArticle>
-        <StyledSectionTitle>Description</StyledSectionTitle>
-        <p>{description}</p>
+        <StyledDescriptionListTitle>Description</StyledDescriptionListTitle>
+        <dd>{description}</dd>
       </StyledArticle>
     </>
   );

@@ -43,6 +43,8 @@ export default createGlobalStyle`
     font-family: roboto, sans-serif;
     background-color: var(--color-gray-50);
     color: var(--color-gray-900);
+    width: 375px;
+    margin: auto;
   }
 
   input,

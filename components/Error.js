@@ -9,7 +9,7 @@ const StyledContainer = styled.div`
 `;
 
 export default function Error({ message }) {
-  console.log(message);
+  console.error(message);
   return (
     <StyledContainer>
       <Image
