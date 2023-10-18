@@ -65,6 +65,7 @@ export default function ProjectDetailPage() {
   const { id } = router.query;
 
   const { data: project, isLoading, error } = useSWR(`/api/projects/${id}`);
+  console.log(project);
 
   if (!isReady || isLoading) return <Loading />;
   if (error) return <Error message={error.message} />;
@@ -106,7 +107,7 @@ export default function ProjectDetailPage() {
         <dd>{description}</dd>
       </StyledArticle>
 
-      <TaskList id={id} />
+      <TaskList id={id} tasks={project.tasks} />
 
       <StyledButtonAddContainer>
         <AddTaskLink url={`/projects/${id}/tasks/newTask`} />

@@ -33,11 +33,9 @@ const projectSchema = new Schema(
       type: [Schema.Types.ObjectId],
       ref: "Task",
     },
-    
-     { timestamps: true }
   },
+  { timestamps: true }
 );
-
 
 const Project = models?.projects || model("projects", projectSchema);
 export default Project;
