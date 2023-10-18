@@ -4,6 +4,7 @@ import connect from "@/db/connect";
 
 export default async function handler(request, response) {
   await connect();
+
   const { id } = request.query;
 
   if (request.method === "POST") {
