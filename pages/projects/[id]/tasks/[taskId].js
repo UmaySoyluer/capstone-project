@@ -5,6 +5,7 @@ import styled from "styled-components";
 import Error from "@/components/Error";
 import Heading from "@/components/Heading";
 import { BackLink } from "@/components/Buttons";
+import { DeleteButton } from "@/components/Buttons";
 
 const StyledContainer = styled.div`
   padding-inline: 1rem;
@@ -38,11 +39,18 @@ export default function TaskDetailPage() {
   if (error) return <Error message={error.message} />;
 
   const { title, description, tag, createdAt } = task;
+  async function handleDelete() {
+    await fetch(`/api/projects/${id}/tasks/${taskId}`, {
+      method: "DELETE",
+    });
 
+    router.push(`/projects/${id}`);
+  }
   return (
     <>
       <StyledContainer>
         <BackLink href={`/projects/${id}`} />
+        <DeleteButton handleClick={handleDelete} />
       </StyledContainer>
       <Heading>Task : {title}</Heading>
       <StyledArticle>
