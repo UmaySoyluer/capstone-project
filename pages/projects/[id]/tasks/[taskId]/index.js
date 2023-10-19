@@ -4,9 +4,13 @@ import styled from "styled-components";
 
 import Error from "@/components/Error";
 import Heading from "@/components/Heading";
-import { BackLink, EditLink } from "@/components/Buttons";
-import Loading from "@/components/Loading";
-import { StyledButtonContainer, StyledToolBar } from "../..";
+import { BackLink } from "@/components/Buttons";
+import { DeleteButton } from "@/components/Buttons";
+
+const StyledContainer = styled.div`
+  padding-inline: 1rem;
+  margin-top: 1.5rem;
+`;
 
 const StyledSection = styled.section`
   margin-top: 1rem;
@@ -31,21 +35,23 @@ export default function TaskDetailPage() {
     error,
   } = useSWR(`/api/projects/${id}/tasks/${taskId}`);
 
-  if (!isReady || isLoading) return <Loading />;
+  if (!isReady || isLoading) return <h2>Loading..</h2>;
   if (error) return <Error message={error.message} />;
 
   const { title, description, tag, createdAt } = task;
-  const creationDate = createdAt.toLocaleDateString();
+  async function handleDelete() {
+    await fetch(`/api/projects/${id}/tasks/${taskId}`, {
+      method: "DELETE",
+    });
 
+    router.push(`/projects/${id}`);
+  }
   return (
     <>
-      <StyledButtonContainer>
+      <StyledContainer>
         <BackLink href={`/projects/${id}`} />
-        <StyledToolBar>
-          <EditLink url={`/projects/${id}/tasks/${taskId}/editTask`} />
-        </StyledToolBar>
-      </StyledButtonContainer>
-
+        <DeleteButton handleClick={handleDelete} />
+      </StyledContainer>
       <Heading>Task : {title}</Heading>
       <StyledArticle>
         <h4>Description</h4>
@@ -55,7 +61,7 @@ export default function TaskDetailPage() {
       </StyledArticle>
       <StyledArticle>
         <p>Active Tag : {tag}</p>
-        <p>Created at : {creationDate}</p>
+        <p>Created at : {createdAt}</p>
       </StyledArticle>
     </>
   );
