@@ -8,6 +8,10 @@ export const StyledListItem = styled.li`
   color: var(--color-gray-50);
   border-radius: 10px;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+
+  &:hover {
+    background-color: var(--color-brand-700);
+  }
 `;
 
 export const StyledArticle = styled.article`

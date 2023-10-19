@@ -17,10 +17,10 @@ export default function CreateTaskPage() {
     });
 
     if (response.ok) {
-      mutate();
+      mutate(`/api/projects/${id}`);
       router.push(`/projects/${id}`);
     }
   }
 
-  return <FormTask onSubmit={createTask} formName="Create a task" />;
+  return <FormTask id={id} onSubmit={createTask} formName="Create a task" />;
 }

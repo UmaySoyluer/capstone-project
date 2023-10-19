@@ -1,13 +1,17 @@
 import Link from "next/link";
-import {
-  HiArrowLeft,
-  HiOutlineTrash,
-  HiPencil,
-  HiPlusCircle,
-} from "react-icons/hi2";
+import { HiArrowLeft, HiOutlineTrash, HiPencil, HiPlus } from "react-icons/hi2";
 import styled from "styled-components";
 
+const StyledBackLink = styled(Link)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 const StyledDeleteButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background: transparent;
   border: none;
   cursor: pointer;
@@ -15,9 +19,9 @@ const StyledDeleteButton = styled.button`
 
 export function BackLink({ href }) {
   return (
-    <Link href={`${href}`}>
+    <StyledBackLink href={`${href}`}>
       <HiArrowLeft title="Icon for back to home" color="#1e3a8a" size={26} />
-    </Link>
+    </StyledBackLink>
   );
 }
 
@@ -29,19 +33,37 @@ export function DeleteButton({ handleClick }) {
   );
 }
 
+// Projects
+
+const StyledEditProjectLink = styled(Link)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 export function EditLink({ url }) {
   return (
-    <Link href={url}>
+    <StyledEditProjectLink href={url}>
       <HiPencil size={24} color="#1e3a8a" title="Pencil icon for edit" />
-    </Link>
+    </StyledEditProjectLink>
   );
 }
 
+// Tasks
+
+const StyledAddTaskLink = styled(Link)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 3rem;
+`;
+
 export function AddTaskLink({ url }) {
   return (
-    <Link href={url}>
-      <HiPlusCircle size={30} title="add task" />
-    </Link>
+    <StyledAddTaskLink href={url}>
+      <HiPlus size={26} title="add task" />
+    </StyledAddTaskLink>
   );
 }
 

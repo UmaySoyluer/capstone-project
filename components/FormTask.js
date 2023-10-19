@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { CancelLink, SubmitButton } from "./Buttons";
 import Heading from "./Heading";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   StyledButtonContainer,
   StyledForm,
@@ -10,14 +10,32 @@ import {
   StyledTextArea,
 } from "./Form";
 
-const StyledRadioContainer = styled.div``;
+const StyledRadioContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+`;
+
+const StyledRadioButtons = styled.input`
+  margin-right: 0.5rem;
+`;
 
 const StyledLegend = styled.legend`
   margin-top: 1rem;
+  margin-bottom: 0.2rem;
+  color: var(--color-brand-900);
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-transform: capitalize;
 `;
 
 export default function FormTask({ formName, onSubmit, id, value }) {
-  const [tag, setTag] = useState("Backlog");
+  const [tag, setTag] = useState();
+
+  useEffect(() => {
+    if (value) setTag(value.tag);
+    if (!value) setTag("Backlog");
+  }, [value]);
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -68,7 +86,7 @@ export default function FormTask({ formName, onSubmit, id, value }) {
         <StyledRadioContainer>
           {tagTypes.map((tagsItem) => (
             <div key={tagsItem}>
-              <input
+              <StyledRadioButtons
                 type="radio"
                 id={tagsItem}
                 name="tag"
@@ -86,7 +104,7 @@ export default function FormTask({ formName, onSubmit, id, value }) {
         <StyledButtonContainer>
           <SubmitButton type="submit">Submit</SubmitButton>
           {value && <CancelLink url={`/projects/${id}/tasks/${value._id}`} />}
-          {!value && <CancelLink url={"/"} />}
+          {!value && <CancelLink url={`/projects/${id}`} />}
         </StyledButtonContainer>
       </StyledForm>
     </>
