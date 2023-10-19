@@ -35,7 +35,7 @@ export default function TaskDetailPage() {
   if (error) return <Error message={error.message} />;
 
   const { title, description, tag, createdAt } = task;
-  const creationDate = createdAt.substr(0, 10);
+  const creationDate = createdAt.toLocaleDateString();
 
   return (
     <>
