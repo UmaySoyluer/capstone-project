@@ -15,7 +15,7 @@ const StyledDeleteButton = styled.button`
 
 export function BackLink({ href }) {
   return (
-    <Link href={`${href}`}>
+    <Link href={href}>
       <HiArrowLeft title="Icon for back to home" color="#1e3a8a" size={26} />
     </Link>
   );
