@@ -5,13 +5,9 @@ import { mutate } from "swr";
 
 import Error from "@/components/Error";
 import Heading from "@/components/Heading";
-import { BackLink } from "@/components/Buttons";
+import { BackLink, EditLink } from "@/components/Buttons";
 import { DeleteButton } from "@/components/Buttons";
-
-const StyledContainer = styled.div`
-  padding-inline: 1rem;
-  margin-top: 1.5rem;
-`;
+import { StyledButtonContainer, StyledToolBar } from "../..";
 
 const StyledSection = styled.section`
   margin-top: 1rem;
@@ -41,6 +37,8 @@ export default function TaskDetailPage() {
 
   const { title, description, tag, createdAt } = task;
 
+  const date = new Date(createdAt).toLocaleDateString();
+
   async function handleDelete() {
     await fetch(`/api/projects/${id}/tasks/${taskId}`, {
       method: "DELETE",
@@ -50,10 +48,13 @@ export default function TaskDetailPage() {
   }
   return (
     <>
-      <StyledContainer>
+      <StyledButtonContainer>
         <BackLink href={`/projects/${id}`} />
-        <DeleteButton handleClick={handleDelete} />
-      </StyledContainer>
+        <StyledToolBar>
+          <DeleteButton handleClick={handleDelete} />
+          <EditLink url={`/projects/${id}/tasks/${taskId}/editTask`} />
+        </StyledToolBar>
+      </StyledButtonContainer>
       <Heading>Task : {title}</Heading>
       <StyledArticle>
         <h4>Description</h4>
@@ -63,7 +64,7 @@ export default function TaskDetailPage() {
       </StyledArticle>
       <StyledArticle>
         <p>Active Tag : {tag}</p>
-        <p>Created at : {createdAt}</p>
+        <p>Created at : {date}</p>
       </StyledArticle>
     </>
   );
