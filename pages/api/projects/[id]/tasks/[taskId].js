@@ -16,6 +16,19 @@ export default async function handler(request, response) {
       return response.status(404).json({ status: "Task not found" });
     }
   }
+
+  if (request.method === "PUT") {
+    try {
+      const taskData = request.body;
+      const updatedTask = await Task.findByIdAndUpdate(taskId, taskData);
+
+      return response.status(200).json(updatedTask);
+    } catch (error) {
+      console.error(`Can not edit task with id ${taskId}: ${error}`);
+      return response.status(400).json({ message: error.message });
+    }
+  }
+
   if (request.method === "DELETE") {
     try {
       await Task.findByIdAndDelete(taskId);
@@ -27,5 +40,6 @@ export default async function handler(request, response) {
         .json({ status: `Can't delete Task ${taskId}` });
     }
   }
+
   return response.status(405).json({ message: "Method not allowed." });
 }
