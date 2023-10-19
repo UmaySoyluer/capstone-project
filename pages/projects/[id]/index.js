@@ -54,9 +54,10 @@ const StyledArticle = styled.article`
   padding-inline: 1rem;
 `;
 
-const StyledButtonAddContainer = styled.div`
-  text-align: right;
-  padding: 1rem;
+const StyledTasksContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
 `;
 
 export default function ProjectDetailPage() {
@@ -88,6 +89,7 @@ export default function ProjectDetailPage() {
           <DeleteButton handleClick={handleDelete} />
         </StyledToolBar>
       </StyledButtonContainer>
+
       <Heading>{title}</Heading>
       <StyledDepartment>{department}</StyledDepartment>
       <StyledDescriptionList>
@@ -106,11 +108,10 @@ export default function ProjectDetailPage() {
         <dd>{description}</dd>
       </StyledArticle>
 
-      <TaskList id={id} tasks={project.tasks} />
-
-      <StyledButtonAddContainer>
+      <StyledTasksContainer>
+        <TaskList id={id} tasks={project.tasks} />
         <AddTaskLink url={`/projects/${id}/tasks/newTask`} />
-      </StyledButtonAddContainer>
+      </StyledTasksContainer>
     </>
   );
 }
