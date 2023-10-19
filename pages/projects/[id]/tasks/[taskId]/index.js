@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import useSWR from "swr";
 import styled from "styled-components";
+import { mutate } from "swr";
 
 import Error from "@/components/Error";
 import Heading from "@/components/Heading";
@@ -39,11 +40,12 @@ export default function TaskDetailPage() {
   if (error) return <Error message={error.message} />;
 
   const { title, description, tag, createdAt } = task;
+
   async function handleDelete() {
     await fetch(`/api/projects/${id}/tasks/${taskId}`, {
       method: "DELETE",
     });
-
+    mutate(`/projects/${id}`);
     router.push(`/projects/${id}`);
   }
   return (

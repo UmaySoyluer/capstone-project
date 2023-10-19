@@ -1,7 +1,6 @@
-import useSWR from "swr";
-import Error from "./Error";
 import Task from "./Task";
 import styled from "styled-components";
+import { useState } from "react";
 
 const StyledTaskList = styled.ul`
   width: 90%;
@@ -25,14 +24,35 @@ const StyledContainer = styled.div`
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 `;
 export default function TaskList({ id, tasks }) {
+  const defaultTasks = tasks?.filter((task) => task.tag === "Backlog");
+
+  const [selectedTasks, setSelectedTasks] = useState(defaultTasks);
+
+  function handleChange(event) {
+    const filteredTasks = tasks.filter(
+      (task) => task.tag === event.target.value
+    );
+    setSelectedTasks(filteredTasks);
+  }
+
   return (
     <>
+      <select id="tags" name="tags" onChange={(event) => handleChange(event)}>
+        <option value="Backlog">Backlog</option>
+        <option value="Sprint Backlog">Sprint Backlog</option>
+        <option value="In Progress">In Progress</option>
+        <option value="Code Review">Code Review</option>
+        <option value="Quality Assurance">Quality Assurance</option>
+        <option value="Done">Done</option>
+      </select>
       <StyledContainer>
         <StyledHeading>Tasks</StyledHeading>
-        {tasks ? (
+        {selectedTasks.length ? (
           <StyledTaskList>
-            {tasks?.length &&
-              tasks.map((task) => <Task key={task._id} id={id} task={task} />)}
+            {selectedTasks?.length &&
+              selectedTasks.map((task) => (
+                <Task key={task._id} id={id} task={task} />
+              ))}
           </StyledTaskList>
         ) : (
           <p>No tasks found.</p>
