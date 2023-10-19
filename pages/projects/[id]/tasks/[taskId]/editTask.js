@@ -35,13 +35,6 @@ export default function EditProjectPage() {
   if (error) return <Error />;
 
   return (
-    <>
-      <FormTask
-        id={id}
-        onSubmit={editTask}
-        formName="Edit a task"
-        value={task}
-      />
-    </>
+    <FormTask id={id} onSubmit={editTask} formName="Edit a task" value={task} />
   );
 }
