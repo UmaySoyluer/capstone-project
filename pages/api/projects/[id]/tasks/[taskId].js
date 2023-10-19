@@ -20,9 +20,9 @@ export default async function handler(request, response) {
   if (request.method === "PUT") {
     try {
       const taskData = request.body;
-      await Task.findByIdAndUpdate(taskId, taskData);
+      const updatedTask = await Task.findByIdAndUpdate(taskId, taskData);
 
-      return response.status(201).json({ message: "Task updated" });
+      return response.status(200).json(updatedTask);
     } catch (error) {
       console.error(`Can not edit task with id ${taskId}: ${error}`);
       return response.status(400).json({ message: error.message });
