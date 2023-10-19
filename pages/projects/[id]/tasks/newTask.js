@@ -17,7 +17,7 @@ export default function CreateTaskPage() {
     });
 
     if (response.ok) {
-      mutate();
+      mutate(`/api/projects/${id}`);
       router.push(`/projects/${id}`);
     }
   }
