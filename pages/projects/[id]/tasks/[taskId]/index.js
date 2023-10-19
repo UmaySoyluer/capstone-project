@@ -39,6 +39,8 @@ export default function TaskDetailPage() {
   if (error) return <Error message={error.message} />;
 
   const { title, description, tag, createdAt } = task;
+  const date = new Date(createdAt).toLocaleDateString();
+
   async function handleDelete() {
     await fetch(`/api/projects/${id}/tasks/${taskId}`, {
       method: "DELETE",
@@ -61,7 +63,7 @@ export default function TaskDetailPage() {
       </StyledArticle>
       <StyledArticle>
         <p>Active Tag : {tag}</p>
-        <p>Created at : {createdAt}</p>
+        <p>Created at : {date}</p>
       </StyledArticle>
     </>
   );
