@@ -7,14 +7,15 @@ export default function Task({ task, id }) {
   const { _id: taskId, title } = task;
 
   const StyledListItem = styled.li`
+    background-color: var(--color-brand-900);
+    color: var(--color-gray-50);
+    border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
     height: 3rem;
-    background-color: var(--color-brand-900);
-    border-radius: 10px;
-    color: var(--color-gray-50);
+    transition: 0.3s;
 
     &:hover {
       background-color: var(--color-brand-700);

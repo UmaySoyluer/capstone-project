@@ -23,6 +23,43 @@ const StyledDeleteButton = styled.button`
   border: none;
   cursor: pointer;
 `;
+const StyledToggleButton = styled.input`
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 40px;
+  height: 20px;
+  border-radius: 30px;
+  background-color: #d9d8dc;
+  position: absolute;
+  top: 0.7rem;
+  right: 1.2rem;
+  transition: all 0.5s ease-in;
+  cursor: pointer;
+  z-index: 1;
+
+  &:before {
+    content: "";
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    background: #f1f2f2;
+    position: absolute;
+    top: 50%;
+    left: 3px;
+    transform: translateY(-50%);
+    transition: all 0.5s ease-in;
+  }
+
+  &:checked:before {
+    background: #474748;
+    left: 20px;
+  }
+
+  &:checked {
+    background: #242424;
+  }
+`;
 
 export function BackLink({ href }) {
   return (
@@ -135,3 +172,5 @@ export function CancelLink({ url }) {
     </StyledCancelLink>
   );
 }
+
+export { StyledToggleButton };
