@@ -6,18 +6,21 @@ import { AddTaskLink } from "./Buttons";
 
 const StyledTaskList = styled.ul`
   margin-top: 2rem;
+  margin-inline: 1rem;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 1rem;
 `;
 
 const StyledContainer = styled.div`
   width: 100%;
-  margin-inline: 1rem;
   margin-top: 2rem;
 `;
 
 const StyledCreateTask = styled.li`
+  width: 100%;
+
   background-color: var(--color-brand-900);
   border-radius: 10px;
   color: var(--color-gray-50);
@@ -33,6 +36,7 @@ const StyledEmptyMessage = styled.p`
 `;
 
 const StyledListTitle = styled.select`
+  margin-inline: 1rem;
   font-size: 1.3rem;
   font-weight: bold;
   color: var(--color-brand-900);
