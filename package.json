@@ -33,5 +33,8 @@
   "description": "Next.js (incl. Styled Components and Jest)",
   "nf": {
     "template": "next"
+  },
+  "msw": {
+    "workerDirectory": "public"
   }
 }
