@@ -1,6 +1,7 @@
 import Task from "./Task";
 import styled from "styled-components";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import useLocalStorageState from "use-local-storage-state";
 import { AddTaskLink } from "./Buttons";
 
 const StyledTaskList = styled.ul`
@@ -51,18 +52,20 @@ const StyledDropdown = styled.option`
 `;
 
 export default function TaskList({ id, tasks }) {
-  const [selectedTasks, setSelectedTasks] = useState([]);
+  const [selectedTasks, setSelectedTasks] = useLocalStorageState("tasks", []);
+  const [selectedTag, setSelectedTag] = useLocalStorageState("tag", "Backlog");
 
   useEffect(() => {
-    const defaultTasks = tasks?.filter((task) => task.tag === "Backlog");
+    const defaultTasks = tasks?.filter((task) => task.tag === selectedTag);
     setSelectedTasks(defaultTasks);
-  }, [tasks]);
+  }, [tasks, setSelectedTasks, selectedTag]);
 
   function handleChange(event) {
     const filteredTasks = tasks.filter(
       (task) => task.tag === event.target.value
     );
     setSelectedTasks(filteredTasks);
+    setSelectedTag(event.target.value);
   }
 
   return (
@@ -71,6 +74,7 @@ export default function TaskList({ id, tasks }) {
         id="tags"
         name="tags"
         onChange={(event) => handleChange(event)}
+        value={selectedTag}
       >
         <StyledDropdown value="Backlog">Backlog</StyledDropdown>
         <StyledDropdown value="Sprint Backlog">Sprint Backlog</StyledDropdown>

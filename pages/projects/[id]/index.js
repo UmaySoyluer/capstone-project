@@ -14,6 +14,7 @@ import {
 import TaskList from "@/components/TaskList";
 import { StyledButtonContainer } from "@/styles/StyledButtonContainer";
 import { StyledToolBar } from "@/styles/StyledToolbar";
+import toast from "react-hot-toast";
 
 const StyledDepartment = styled.h3`
   font-size: 0.9rem;
@@ -60,6 +61,7 @@ export default function ProjectDetailPage() {
     });
 
     router.push("/");
+    toast.success("Project deleted!");
   }
 
   return (

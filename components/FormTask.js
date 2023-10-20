@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import { CancelLink, SubmitButton } from "./Buttons";
 import Heading from "./Heading";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import useLocalStorageState from "use-local-storage-state";
 import {
   StyledButtonContainer,
   StyledForm,
@@ -30,12 +31,12 @@ const StyledLegend = styled.legend`
 `;
 
 export default function FormTask({ formName, onSubmit, id, value }) {
-  const [tag, setTag] = useState();
+  const [tag, setTag] = useLocalStorageState("tag", "Backlog");
 
   useEffect(() => {
     if (value) setTag(value.tag);
-    if (!value) setTag("Backlog");
-  }, [value]);
+    if (!value) setTag(tag);
+  }, [value, setTag, tag]);
 
   function handleSubmit(event) {
     event.preventDefault();

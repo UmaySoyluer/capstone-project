@@ -9,6 +9,7 @@ import { BackLink, EditLink } from "@/components/Buttons";
 import { DeleteButton } from "@/components/Buttons";
 import { StyledButtonContainer } from "@/styles/StyledButtonContainer";
 import { StyledToolBar } from "@/styles/StyledToolbar";
+import toast from "react-hot-toast";
 
 const StyledSection = styled.section`
   margin-top: 1rem;
@@ -58,6 +59,7 @@ export default function TaskDetailPage() {
     });
     mutate(`api/projects/${id}`);
     router.push(`/projects/${id}`);
+    toast.success("Task deleted!");
   }
   return (
     <>

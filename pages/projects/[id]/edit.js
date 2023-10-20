@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import Form from "@/components/Form";
 import Heading from "@/components/Heading";
 import Loading from "@/components/Loading";
+import toast from "react-hot-toast";
 
 export default function EditProjectPage() {
   const router = useRouter();
@@ -24,6 +25,7 @@ export default function EditProjectPage() {
     if (response.ok) {
       mutate(`/api/projects/${id}`);
       router.push(`/projects/${id}`);
+      toast.success("Project edited!");
     }
   }
 
