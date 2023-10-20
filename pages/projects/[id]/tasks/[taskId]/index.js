@@ -53,6 +53,8 @@ export default function TaskDetailPage() {
 
   const { title, description, tag, createdAt } = task;
 
+  const date = new Date(createdAt).toLocaleDateString();
+
   async function handleDelete() {
     await fetch(`/api/projects/${id}/tasks/${taskId}`, {
       method: "DELETE",

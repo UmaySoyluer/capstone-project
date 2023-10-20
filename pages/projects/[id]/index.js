@@ -73,6 +73,7 @@ export default function ProjectDetailPage() {
           <DeleteButton handleClick={handleDelete} />
         </StyledToolBar>
       </StyledButtonContainer>
+
       <Heading>{title}</Heading>
       <StyledDepartment>{department}</StyledDepartment>
       <StyledDescriptionList>
