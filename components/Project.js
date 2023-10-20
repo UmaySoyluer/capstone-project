@@ -2,10 +2,10 @@ import Link from "next/link";
 import styled from "styled-components";
 
 export const StyledListItem = styled.li`
-  list-style-type: none;
-  width: 100%;
   background-color: var(--color-brand-900);
   color: var(--color-gray-50);
+  list-style-type: none;
+  width: 100%;
   border-radius: 10px;
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 `;
