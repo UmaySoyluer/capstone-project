@@ -2,13 +2,22 @@
   "env": {
     "jest": true
   },
-  "extends": ["next/core-web-vitals", "plugin:jest/recommended"],
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:jest/recommended",
+    "plugin:testing-library/react",
+    "plugin:jest-dom/recommended"
+  ],
   "rules": {
     "import/no-anonymous-default-export": [
       "error",
       {
         "allowObject": true
       }
+    ],
+    "testing-library/no-render-in-setup": [
+      "error",
+      { "allowTestingFrameworkSetupHook": "beforeEach" }
     ]
   },
   "plugins": ["jest"]

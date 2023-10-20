@@ -12,6 +12,9 @@ import {
   EditLink,
 } from "@/components/Buttons";
 import TaskList from "@/components/TaskList";
+import { StyledButtonContainer } from "@/styles/StyledButtonContainer";
+import { StyledToolBar } from "@/styles/StyledToolbar";
+import toast from "react-hot-toast";
 
 const StyledDepartment = styled.h3`
   font-size: 0.9rem;
@@ -35,28 +38,9 @@ const StyledDescriptionListTitle = styled.dt`
   color: var(--color-brand-900);
 `;
 
-export const StyledButtonContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding-inline: 1rem;
-  margin-top: 1.5rem;
-  margin-bottom: 1rem;
-`;
-
-export const StyledToolBar = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-`;
-
 const StyledArticle = styled.article`
   margin-top: 1.5rem;
   padding-inline: 1rem;
-`;
-
-const StyledButtonAddContainer = styled.div`
-  text-align: right;
-  padding: 1rem;
 `;
 
 export default function ProjectDetailPage() {
@@ -69,7 +53,7 @@ export default function ProjectDetailPage() {
   if (!isReady || isLoading) return <Loading />;
   if (error) return <Error message={error.message} />;
 
-  const { title, description, endDate, department, teamLead } = project;
+  const { title, description, endDate, department, teamLead, tasks } = project;
 
   async function handleDelete() {
     await fetch(`/api/projects/${id}`, {
@@ -77,6 +61,7 @@ export default function ProjectDetailPage() {
     });
 
     router.push("/");
+    toast.success("Project deleted!");
   }
 
   return (
@@ -88,6 +73,7 @@ export default function ProjectDetailPage() {
           <DeleteButton handleClick={handleDelete} />
         </StyledToolBar>
       </StyledButtonContainer>
+
       <Heading>{title}</Heading>
       <StyledDepartment>{department}</StyledDepartment>
       <StyledDescriptionList>
@@ -105,12 +91,7 @@ export default function ProjectDetailPage() {
         <StyledDescriptionListTitle>Description</StyledDescriptionListTitle>
         <dd>{description}</dd>
       </StyledArticle>
-
-      <TaskList id={id} tasks={project.tasks} />
-
-      <StyledButtonAddContainer>
-        <AddTaskLink url={`/projects/${id}/tasks/newTask`} />
-      </StyledButtonAddContainer>
+      <TaskList id={id} tasks={tasks} />
     </>
   );
 }

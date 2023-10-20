@@ -9,20 +9,32 @@ export default function Task({ task, id }) {
   const StyledListItem = styled.li`
     background-color: var(--color-brand-900);
     color: var(--color-gray-50);
-    border-radius: 0.3rem;
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-    text-align: center;
-    padding: 0.3rem;
-    margin: 0.5rem;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 3rem;
+    transition: 0.3s;
 
     &:hover {
-      border: 2px solid #3b82f6;
+      background-color: var(--color-brand-700);
     }
+  `;
+
+  const StyledListItemLink = styled(Link)`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 3rem;
   `;
 
   return (
     <StyledListItem>
-      <Link href={`/projects/${id}/tasks/${taskId}`}>{title}</Link>
+      <StyledListItemLink href={`/projects/${id}/tasks/${taskId}`}>
+        {title}
+      </StyledListItemLink>
     </StyledListItem>
   );
 }
