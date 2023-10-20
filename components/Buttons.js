@@ -2,12 +2,23 @@ import Link from "next/link";
 import {
   HiArrowLeft,
   HiOutlineTrash,
-  HiPencil,
-  HiPlusCircle,
+  HiOutlinePaintBrush,
+  HiPlus,
+  HiCheck,
+  HiOutlineXMark,
 } from "react-icons/hi2";
 import styled from "styled-components";
 
+const StyledBackLink = styled(Link)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 const StyledDeleteButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background: transparent;
   border: none;
   cursor: pointer;
@@ -15,9 +26,9 @@ const StyledDeleteButton = styled.button`
 
 export function BackLink({ href }) {
   return (
-    <Link href={`${href}`}>
+    <StyledBackLink href={`${href}`}>
       <HiArrowLeft title="Icon for back to home" color="#1e3a8a" size={26} />
-    </Link>
+    </StyledBackLink>
   );
 }
 
@@ -29,19 +40,41 @@ export function DeleteButton({ handleClick }) {
   );
 }
 
+// Projects
+
+const StyledEditProjectLink = styled(Link)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 export function EditLink({ url }) {
   return (
-    <Link href={url}>
-      <HiPencil size={24} color="#1e3a8a" title="Pencil icon for edit" />
-    </Link>
+    <StyledEditProjectLink href={url}>
+      <HiOutlinePaintBrush
+        size={26}
+        color="#1e3a8a"
+        title="Pencil icon for edit"
+      />
+    </StyledEditProjectLink>
   );
 }
 
+// Tasks
+
+const StyledAddTaskLink = styled(Link)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 3rem;
+`;
+
 export function AddTaskLink({ url }) {
   return (
-    <Link href={url}>
-      <HiPlusCircle size={30} title="add task" />
-    </Link>
+    <StyledAddTaskLink href={url}>
+      <HiPlus size={26} title="add task" />
+    </StyledAddTaskLink>
   );
 }
 
@@ -56,6 +89,10 @@ const StyledSubmitButton = styled.button`
   padding-block: 0.3rem;
   width: 55%;
   transition: 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 
   &:hover {
     background-color: var(--color-brand-700);
@@ -70,8 +107,11 @@ const StyledCancelLink = styled(Link)`
   padding-inline: 1rem;
   padding-block: 0.3rem;
   width: 40%;
-  text-align: center;
   transition: 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 
   &:hover {
     background-color: var(--color-gray-200);
@@ -81,11 +121,17 @@ const StyledCancelLink = styled(Link)`
 export function SubmitButton({ handleClick }) {
   return (
     <StyledSubmitButton type="submit" onClick={handleClick}>
-      Submit
+      <HiCheck size={19} title="Icon for submit" />
+      <span>Submit</span>
     </StyledSubmitButton>
   );
 }
 
 export function CancelLink({ url }) {
-  return <StyledCancelLink href={url}>Cancel</StyledCancelLink>;
+  return (
+    <StyledCancelLink href={url}>
+      <HiOutlineXMark size={19} title="Icon for cancel" />
+      Cancel
+    </StyledCancelLink>
+  );
 }

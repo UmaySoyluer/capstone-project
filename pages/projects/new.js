@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 
 import Form from "@/components/Form";
 import Heading from "@/components/Heading";
+import toast from "react-hot-toast";
 
 export default function CreateProjectPage() {
   const router = useRouter();
@@ -19,6 +20,7 @@ export default function CreateProjectPage() {
     if (response.ok) {
       mutate();
       router.push("/");
+      toast.success("New project created!");
     }
   }
   return (

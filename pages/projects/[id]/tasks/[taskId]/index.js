@@ -7,7 +7,9 @@ import Error from "@/components/Error";
 import Heading from "@/components/Heading";
 import { BackLink, EditLink } from "@/components/Buttons";
 import { DeleteButton } from "@/components/Buttons";
-import { StyledButtonContainer, StyledToolBar } from "../..";
+import { StyledButtonContainer } from "@/styles/StyledButtonContainer";
+import { StyledToolBar } from "@/styles/StyledToolbar";
+import toast from "react-hot-toast";
 
 const StyledSection = styled.section`
   margin-top: 1rem;
@@ -15,10 +17,24 @@ const StyledSection = styled.section`
   min-height: 5rem;
 `;
 
+const StyledDescriptionList = styled.dl`
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding-inline: 1rem;
+`;
+
+const StyledDescriptionListTitle = styled.dt`
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: var(--color-brand-900);
+`;
+
 const StyledArticle = styled.article`
-  margin: 1.5rem auto;
-  width: 70%;
-  min-height: 10rem;
+  margin-top: 1.5rem;
+  padding-inline: 1rem;
 `;
 
 export default function TaskDetailPage() {
@@ -43,28 +59,35 @@ export default function TaskDetailPage() {
     await fetch(`/api/projects/${id}/tasks/${taskId}`, {
       method: "DELETE",
     });
-    mutate(`/projects/${id}`);
+    mutate(`api/projects/${id}`);
     router.push(`/projects/${id}`);
+    toast.success("Task deleted!");
   }
   return (
     <>
       <StyledButtonContainer>
         <BackLink href={`/projects/${id}`} />
         <StyledToolBar>
-          <DeleteButton handleClick={handleDelete} />
           <EditLink url={`/projects/${id}/tasks/${taskId}/editTask`} />
+          <DeleteButton handleClick={handleDelete} />
         </StyledToolBar>
       </StyledButtonContainer>
-      <Heading>Task : {title}</Heading>
+
+      <Heading>{title}</Heading>
+      <StyledDescriptionList>
+        <div>
+          <StyledDescriptionListTitle>Tag:</StyledDescriptionListTitle>
+          <dd>{tag}</dd>
+        </div>
+        <div>
+          <StyledDescriptionListTitle>Created at:</StyledDescriptionListTitle>
+          <dd>{createdAt}</dd>
+        </div>
+      </StyledDescriptionList>
+
       <StyledArticle>
-        <h4>Description</h4>
-        <StyledSection>
-          <p>{description}</p>
-        </StyledSection>
-      </StyledArticle>
-      <StyledArticle>
-        <p>Active Tag : {tag}</p>
-        <p>Created at : {date}</p>
+        <StyledDescriptionListTitle>Task:</StyledDescriptionListTitle>
+        <dd>{description}</dd>
       </StyledArticle>
     </>
   );

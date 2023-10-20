@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import FormTask from "@/components/FormTask";
 import Error from "@/components/Error";
 import Loading from "@/components/Loading";
+import toast from "react-hot-toast";
 
 export default function EditProjectPage() {
   const router = useRouter();
@@ -28,6 +29,7 @@ export default function EditProjectPage() {
     if (response.ok) {
       mutate(`/api/projects/${id}/tasks/${taskId}`);
       router.push(`/projects/${id}/tasks/${taskId}`);
+      toast.success("Task edited!");
     }
   }
 
