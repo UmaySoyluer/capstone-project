@@ -1,9 +1,16 @@
 import { render } from "@testing-library/react";
-import { OrderDetailsProvider } from "../contexts/OrderDetails";
+import { SWRConfig } from "swr";
+import fetcher from "./lib/fetcher";
 
-const renderWithContext = (ui, options) =>
-  render(ui, { wrapper: OrderDetailsProvider, ...options });
+const AllTheProviders = ({ children }) => {
+  return (
+    <SWRConfig
+      value={{ dedupingInterval: 0, provider: () => new Map(), fetcher }}
+    >
+      {children}
+    </SWRConfig>
+  );
+};
 
-export * from "@testing-library/react";
-
-export { renderWithContext as render };
+export const customRender = (ui, options) =>
+  render(ui, { wrapper: AllTheProviders, ...options });

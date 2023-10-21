@@ -1,9 +1,12 @@
-import { render, screen } from "@testing-library/react";
+import { screen, waitForElementToBeRemoved } from "@testing-library/react";
 import ProjectsOverviewPage from "@/pages/index";
+import { customRender } from "@/testing-library-utils";
 
 describe("Home page", () => {
-  beforeEach(() => {
-    render(<ProjectsOverviewPage />);
+  beforeEach(async () => {
+    customRender(<ProjectsOverviewPage />);
+
+    await waitForElementToBeRemoved(() => screen.getByTestId("spinnerId"));
   });
 
   it("renders a heading", () => {
@@ -14,9 +17,11 @@ describe("Home page", () => {
     expect(heading).toBeInTheDocument();
   });
 
-  // it("renders a list of projects", async () => {
-  //   const projectList = await screen.findAllByRole("listitem");
+  it("renders a list of projects", () => {
+    const superProject = screen.getByText(/super project/i);
+    const megaProject = screen.getByText(/mega project/i);
 
-  //   expect(projectList).toBeGreaterThan(0);
-  // });
+    expect(superProject).toBeInTheDocument();
+    expect(megaProject).toBeInTheDocument();
+  });
 });

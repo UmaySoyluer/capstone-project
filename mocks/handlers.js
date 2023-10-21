@@ -1,24 +1,21 @@
-import { rest } from "msw";
+import { rest, HttpResponse } from "msw";
 
 export const handlers = [
-  rest.get("http://localhost:3000/", (req, res, ctx) => {
+  rest.get("/api/projects", (req, res, ctx) => {
     return res(
+      ctx.status(200),
+      ctx.delay(100),
       ctx.json([
-        { name: "Chocolate", imagePath: "/images/chocolate.png" },
-        { name: "Vanilla", imagePath: "/images/vanilla.png" },
+        { _id: "1", title: "Super Project" },
+        { _id: "2", title: "Mega Project" },
       ])
     );
   }),
-  rest.get("http://localhost:3000/projects/1", (req, res, ctx) => {
-    return res(
-      ctx.json([
-        { name: "Cherries", imagePath: "/images/cherries.png" },
-        { name: "M&Ms", imagePath: "/images/m-and-ms.png" },
-        { name: "Hot hudge", imagePath: "/images/hot-hudge.png" },
-      ])
-    );
-  }),
-  rest.post("http://localhost:3000/order", (req, res, ctx) => {
-    return res(ctx.json({ orderNumber: 9841454971 }));
-  }),
+  //   rest.get("/api/projects/1", (req, res, ctx) => {
+  //     return res(ctx.delay(100), ctx.json([`Super Project`, `Mega Project`]));
+  //   }),
+
+  //   rest.get("/api/projects/2", (req, res, ctx) => {
+  //     return res(ctx.delay(100), ctx.json([`Media Project`, `Normal Project`]));
+  //   }),
 ];
