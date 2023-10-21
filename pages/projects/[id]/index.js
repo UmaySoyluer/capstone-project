@@ -15,6 +15,7 @@ import TaskList from "@/components/TaskList";
 import { StyledButtonContainer } from "@/styles/StyledButtonContainer";
 import { StyledToolBar } from "@/styles/StyledToolbar";
 import toast from "react-hot-toast";
+import Swal from "sweetalert2";
 
 const StyledDepartment = styled.h3`
   font-size: 0.9rem;
@@ -55,13 +56,26 @@ export default function ProjectDetailPage() {
 
   const { title, description, endDate, department, teamLead, tasks } = project;
 
-  async function handleDelete() {
-    await fetch(`/api/projects/${id}`, {
-      method: "DELETE",
+  function handleDelete() {
+    Swal.fire({
+      icon: "question",
+      iconColor: "#d1cffd",
+      title: "Are you sure?",
+      text: "Do you really want to delete this project? ",
+      type: "question",
+      showCancelButton: true,
+      confirmButtonColor: "#d1cffd",
+      confirmButtonText: "Delete",
+      closeOnConfirm: true,
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        await fetch(`/api/projects/${id}`, {
+          method: "DELETE",
+        });
+        router.push("/");
+        toast.success("Project deleted!");
+      }
     });
-
-    router.push("/");
-    toast.success("Project deleted!");
   }
 
   return (
