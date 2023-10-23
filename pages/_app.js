@@ -10,7 +10,9 @@ export default function App({ Component, pageProps }) {
       <ThemeProvider>
         <GlobalStyle />
         <Component {...pageProps} />
-        <Toaster toastOptions={{ duration: 2500, style: { color: "#1e3a8a" } }} />
+        <Toaster
+          toastOptions={{ duration: 2500, style: { color: "#1e3a8a" } }}
+        />
       </ThemeProvider>
     </SWRConfig>
   );
