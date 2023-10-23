@@ -51,7 +51,7 @@ export default function TaskDetailPage() {
   if (!isReady || isLoading) return <h2>Loading..</h2>;
   if (error) return <Error message={error.message} />;
 
-  const { title, description, tag, createdAt } = task;
+  const { title, description, tag, createdAt, priority } = task;
 
   const date = new Date(createdAt).toLocaleDateString();
 
@@ -82,6 +82,10 @@ export default function TaskDetailPage() {
         <div>
           <StyledDescriptionListTitle>Created at:</StyledDescriptionListTitle>
           <dd>{createdAt}</dd>
+        </div>
+        <div>
+          <StyledDescriptionListTitle>Priority :</StyledDescriptionListTitle>
+          <dd>{priority}</dd>
         </div>
       </StyledDescriptionList>
 

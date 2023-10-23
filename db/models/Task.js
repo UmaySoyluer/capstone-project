@@ -18,6 +18,9 @@ const taskSchema = new Schema(
     createdAt: {
       type: Date,
     },
+    priority: {
+      type: Array,
+    },
   },
   { timestamps: true }
 );

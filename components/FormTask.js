@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { CancelLink, SubmitButton } from "./Buttons";
 import Heading from "./Heading";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import useLocalStorageState from "use-local-storage-state";
 import {
   StyledButtonContainer,
@@ -30,8 +30,55 @@ const StyledLegend = styled.legend`
   text-transform: capitalize;
 `;
 
+const StyledPriorityContainer = styled.div`
+  margin-top: 0.8rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+`;
+
+const StyledPriorityTag = styled.div`
+  color: #ffff;
+  font-size: 0.9rem;
+  padding: 1px 8px;
+  text-decoration: none;
+  text-align: center;
+  margin: 0;
+  border-radius: 14px;
+  width: 6rem;
+`;
+
+const StyledPriorityButtons = styled.input`
+  opacity: 0;
+  position: fixed;
+  width: 0;
+`;
+
+const StyledPriorityLabel = styled.label`
+  display: inline-block;
+  width: 4rem;
+  padding: 0.4rem;
+  font-size: 0.8rem;
+  border-radius: 0.9rem;
+  background: ${(props) => {
+    if (props.htmlFor === "High") {
+      return `
+ #F87168;`;
+    } else if (props.htmlFor === "Neutral") {
+      return `
+  #4ACE97;`;
+    } else {
+      return `#569DFF;`;
+    }
+  }};
+  &:hover {
+    background: lightgray;
+  }
+`;
+
 export default function FormTask({ formName, onSubmit, id, value }) {
   const [tag, setTag] = useLocalStorageState("tag", "Backlog");
+  const [priority, setPriority] = useLocalStorageState("priority", "Neutral");
 
   useEffect(() => {
     if (value) setTag(value.tag);
@@ -49,6 +96,10 @@ export default function FormTask({ formName, onSubmit, id, value }) {
     setTag(event.target.value);
   }
 
+  function handleChangePriority(event) {
+    setPriority(event.target.value);
+  }
+
   const tagTypes = [
     "Backlog",
     "Sprint Backlog",
@@ -57,6 +108,8 @@ export default function FormTask({ formName, onSubmit, id, value }) {
     "Quality Assurance",
     "Done",
   ];
+
+  const priorityTypes = ["High", "Neutral", "Low"];
 
   return (
     <>
@@ -101,6 +154,28 @@ export default function FormTask({ formName, onSubmit, id, value }) {
             </div>
           ))}
         </StyledRadioContainer>
+
+        <StyledLegend>Priority :</StyledLegend>
+
+        <StyledPriorityContainer>
+          {priorityTypes.map((priorityType) => (
+            <StyledPriorityTag key={priorityType}>
+              <StyledPriorityButtons
+                type="radio"
+                id={priorityType}
+                name="priority"
+                value={priorityType}
+                onChange={handleChangePriority}
+                checked={priority === priorityType}
+                required
+              />
+
+              <StyledPriorityLabel htmlFor={priorityType}>
+                {priorityType}
+              </StyledPriorityLabel>
+            </StyledPriorityTag>
+          ))}
+        </StyledPriorityContainer>
 
         <StyledButtonContainer>
           <SubmitButton type="submit">Submit</SubmitButton>
