@@ -1,4 +1,4 @@
-import { rest, HttpResponse } from "msw";
+import { rest } from "msw";
 
 export const handlers = [
   rest.get("/api/projects", (req, res, ctx) => {
@@ -24,8 +24,4 @@ export const handlers = [
       })
     );
   }),
-
-  //   rest.get("/api/projects/2", (req, res, ctx) => {
-  //     return res(ctx.delay(100), ctx.json([`Media Project`, `Normal Project`]));
-  //   }),
 ];
