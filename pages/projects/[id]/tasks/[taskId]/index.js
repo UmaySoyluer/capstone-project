@@ -72,7 +72,6 @@ export default function TaskDetailPage() {
         await fetch(`/api/projects/${id}/tasks/${taskId}`, {
           method: "DELETE",
         });
-        mutate(`api/projects/${id}`);
         router.push(`/projects/${id}`);
         toast.success("Task deleted!");
       }
