@@ -11,9 +11,19 @@ export const handlers = [
       ])
     );
   }),
-  //   rest.get("/api/projects/1", (req, res, ctx) => {
-  //     return res(ctx.delay(100), ctx.json([`Super Project`, `Mega Project`]));
-  //   }),
+  rest.get("/api/projects/1", (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.delay(100),
+      ctx.json({
+        title: "Super Project",
+        description: "Lorem ipsum dolor sit amet",
+        endDate: "15.05.2025",
+        department: "RnD",
+        teamLead: "Mr X",
+      })
+    );
+  }),
 
   //   rest.get("/api/projects/2", (req, res, ctx) => {
   //     return res(ctx.delay(100), ctx.json([`Media Project`, `Normal Project`]));
