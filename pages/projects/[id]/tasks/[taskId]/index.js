@@ -96,7 +96,7 @@ export default function TaskDetailPage() {
         </div>
         <div>
           <StyledDescriptionListTitle>Created at:</StyledDescriptionListTitle>
-          <dd>{createdAt}</dd>
+          <dd>{date}</dd>
         </div>
       </StyledDescriptionList>
 
