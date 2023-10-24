@@ -4,6 +4,11 @@ import { useEffect } from "react";
 import useLocalStorageState from "use-local-storage-state";
 import { AddTaskLink } from "./Buttons";
 
+const StyledContainer = styled.div`
+  width: 100%;
+  margin-top: 2rem;
+`;
+
 const StyledTaskList = styled.ul`
   margin-top: 2rem;
   margin-inline: 1rem;
@@ -11,11 +16,6 @@ const StyledTaskList = styled.ul`
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-`;
-
-const StyledContainer = styled.div`
-  width: 100%;
-  margin-top: 2rem;
 `;
 
 const StyledCreateTask = styled.li`

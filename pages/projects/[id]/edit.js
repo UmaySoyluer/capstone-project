@@ -1,10 +1,10 @@
 import useSWR, { mutate } from "swr";
 import { useRouter } from "next/router";
+import toast from "react-hot-toast";
 
+import Loading from "@/components/Loading";
 import Form from "@/components/Form";
 import Heading from "@/components/Heading";
-import Loading from "@/components/Loading";
-import toast from "react-hot-toast";
 
 export default function EditProjectPage() {
   const router = useRouter();

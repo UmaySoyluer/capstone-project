@@ -1,7 +1,8 @@
-import ProjectList from "@/components/ProjectList";
 import styled from "styled-components";
+import ProjectList from "@/components/ProjectList";
 import { StyledToggleButton } from "@/components/Buttons";
 import { useTheme } from "next-themes";
+
 
 const StyledMainHeadline = styled.h1`
   margin-block: 1rem;

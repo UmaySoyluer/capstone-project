@@ -102,6 +102,7 @@ export default function TaskDetailPage() {
         <div>
           <StyledDescriptionListTitle>Created at:</StyledDescriptionListTitle>
           <dd>{date}</dd>
+
         </div>
         <div>
           <StyledDescriptionListTitle>Priority :</StyledDescriptionListTitle>
@@ -111,6 +112,7 @@ export default function TaskDetailPage() {
               {priority}
             </StyledPriorityLabel>
           </StyledPriorityTag>
+
         </div>
       </StyledDescriptionList>
 

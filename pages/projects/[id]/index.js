@@ -1,50 +1,24 @@
 import { useRouter } from "next/router";
 import useSWR from "swr";
-import styled from "styled-components";
 
 import Error from "@/components/Error";
-import Heading from "@/components/Heading";
 import Loading from "@/components/Loading";
-import {
-  AddTaskLink,
-  BackLink,
-  DeleteButton,
-  EditLink,
-} from "@/components/Buttons";
+
 import TaskList from "@/components/TaskList";
-import { StyledButtonContainer } from "@/styles/StyledButtonContainer";
-import { StyledToolBar } from "@/styles/StyledToolbar";
 import toast from "react-hot-toast";
+
+import useWindowDimensions from "@/hooks/useWindowDimensions";
+import TaskListDesktop from "@/components/desktop/TaskListDesktop";
+import ProjectDetailsDesktop from "@/components/desktop/ProjectDetailsDesktop";
+import ProjectDetails from "@/components/ProjectDetails";
+import ButtonBar from "@/components/ButtonBar";
+import NavigationDesktop from "@/components/desktop/NavigationDesktop";
+
 import Swal from "sweetalert2";
 
-const StyledDepartment = styled.h3`
-  font-size: 0.9rem;
-  margin-inline: 1rem;
-  text-transform: uppercase;
-  color: var(--color-brand-900);
-`;
-
-const StyledDescriptionList = styled.dl`
-  margin-top: 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  padding-inline: 1rem;
-`;
-
-const StyledDescriptionListTitle = styled.dt`
-  font-size: 0.9rem;
-  font-weight: bold;
-  color: var(--color-brand-900);
-`;
-
-const StyledArticle = styled.article`
-  margin-top: 1.5rem;
-  padding-inline: 1rem;
-`;
-
 export default function ProjectDetailPage() {
+  const { width } = useWindowDimensions();
+
   const router = useRouter();
   const { isReady } = router;
   const { id } = router.query;
@@ -54,7 +28,7 @@ export default function ProjectDetailPage() {
   if (!isReady || isLoading) return <Loading />;
   if (error) return <Error message={error.message} />;
 
-  const { title, description, endDate, department, teamLead, tasks } = project;
+  const { tasks } = project;
 
   function handleDelete() {
     Swal.fire({
@@ -80,32 +54,20 @@ export default function ProjectDetailPage() {
 
   return (
     <>
-      <StyledButtonContainer>
-        <BackLink href={"/"} />
-        <StyledToolBar>
-          <EditLink url={`/projects/${id}/edit`} />
-          <DeleteButton handleClick={handleDelete} />
-        </StyledToolBar>
-      </StyledButtonContainer>
-
-      <Heading>{title}</Heading>
-      <StyledDepartment>{department}</StyledDepartment>
-      <StyledDescriptionList>
-        <div>
-          <StyledDescriptionListTitle>Team lead:</StyledDescriptionListTitle>
-          <dd>{teamLead}</dd>
-        </div>
-
-        <div>
-          <StyledDescriptionListTitle>Due date:</StyledDescriptionListTitle>
-          <dd>{endDate}</dd>
-        </div>
-      </StyledDescriptionList>
-      <StyledArticle>
-        <StyledDescriptionListTitle>Description</StyledDescriptionListTitle>
-        <dd>{description}</dd>
-      </StyledArticle>
-      <TaskList id={id} tasks={tasks} />
+      {width <= 810 && (
+        <>
+          <ButtonBar handleDelete={handleDelete} id={id} />
+          <ProjectDetails project={project} />
+          <TaskList id={id} tasks={tasks} />
+        </>
+      )}
+      {width > 810 && (
+        <>
+          <NavigationDesktop onDelete={handleDelete} />
+          <ProjectDetailsDesktop project={project} />
+          <TaskListDesktop id={id} tasks={tasks} />
+        </>
+      )}
     </>
   );
 }

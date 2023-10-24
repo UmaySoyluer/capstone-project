@@ -60,8 +60,6 @@ export default createGlobalStyle`
   }
 
   body {
-    width: 375px;
-    margin: auto;
     min-height: 100vh;
     line-height: 1.5;
     font-family: roboto, sans-serif;

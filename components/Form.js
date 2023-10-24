@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { useRouter } from "next/router";
 
-import { CancelLink, SubmitButton } from "./Buttons";
+import { CancelLink, ModalCancel, SubmitButton } from "./Buttons";
+import Heading from "./Heading";
 
 export const StyledForm = styled.form`
   display: flex;
@@ -26,8 +26,7 @@ export const StyledInput = styled.input`
   border: 1px solid var(--color-gray-300);
 
   &:focus {
-    border: none;
-    outline: 2px solid var(--color-brand-900);
+    border: 1px solid var(--color-brand-900);
   }
 `;
 
@@ -39,8 +38,7 @@ export const StyledTextArea = styled.textarea`
   border: 1px solid var(--color-gray-300);
 
   &:focus {
-    border: none;
-    outline: 2px solid var(--color-brand-900);
+    border: 1px solid var(--color-brand-900);
   }
 `;
 
@@ -48,12 +46,11 @@ export const StyledSelect = styled.select`
   padding-inline: 0.5rem;
   padding-block: 0.5rem;
   border-radius: 10px;
-  background: transparent;
+  background: white;
   border: 1px solid var(--color-gray-300);
 
   &:focus {
-    border: none;
-    outline: 2px solid var(--color-brand-900);
+    border: 1px solid var(--color-brand-900);
   }
 `;
 
@@ -70,16 +67,22 @@ export const StyledButtonContainer = styled.div`
   flex-direction: row-reverse;
 `;
 
-export default function Form({ formName, onSubmit, value }) {
+export default function Form({ formName, onSubmit, value, onClose }) {
   function handleSubmit(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
     const project = Object.fromEntries(formData);
+
+    if (onClose) {
+      onClose();
+    }
+
     onSubmit(project);
   }
 
   return (
     <>
+      <Heading>{formName}</Heading>
       <StyledForm onSubmit={handleSubmit}>
         <StyledLabel htmlFor="title">Project name:</StyledLabel>
 
@@ -139,8 +142,9 @@ export default function Form({ formName, onSubmit, value }) {
 
         <StyledButtonContainer>
           <SubmitButton type="submit">Submit</SubmitButton>
-          {value && <CancelLink url={`/projects/${value._id}`} />}
+          {value && !onClose && <CancelLink url={`/projects/${value._id}`} />}
           {!value && <CancelLink url={"/"} />}
+          {onClose && <ModalCancel onClick={onClose}>Close</ModalCancel>}
         </StyledButtonContainer>
       </StyledForm>
     </>

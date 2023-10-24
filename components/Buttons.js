@@ -173,4 +173,26 @@ export function CancelLink({ url }) {
   );
 }
 
+// Modal
+
+export const ModalCancel = styled.button`
+  background-color: var(--color-gray-100);
+  color: var(--color-gray-900);
+  border: 1px solid var(--color-gray-500);
+  border-radius: 10px;
+  padding-inline: 1rem;
+  padding-block: 0.3rem;
+  width: 40%;
+  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+
+  &:hover {
+    background-color: var(--color-gray-200);
+  }
+`;
+
 export { StyledToggleButton };
+
