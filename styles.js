@@ -27,7 +27,30 @@ export default createGlobalStyle`
   --color-brand-900: #1e3a8a;
   --color-brand-950: #172554;
 }
-
+[data-theme="dark"] {
+  --color-gray-50: #030712;
+  --color-gray-100: #111827;
+  --color-gray-200: #1F2937;
+  --color-gray-300: #374151;
+  --color-gray-400: #4B5563;
+  --color-gray-500: #6B7280;
+  --color-gray-600: #9CA3AF;
+  --color-gray-700: #D1D5DB;
+  --color-gray-800: #E5E7EB;
+  --color-gray-900: #F3F4F6;
+  --color-gray-950: #F9FAFB;
+  --color-brand-50: #172554;
+  --color-brand-100: #1E3A8A;
+  --color-brand-200: #1E40AF;
+  --color-brand-300: #1D4ED8;
+  --color-brand-400: #2563EB;
+  --color-brand-500: #3B82F6;
+  --color-brand-600: #60A5FA;
+  --color-brand-700: #93C5FD;
+  --color-brand-800: #BFDBFE;
+  --color-brand-900: #DBEAFE;
+  --color-brand-950: #EFF6FF;
+}
   *,
   *::before,
   *::after {
@@ -37,14 +60,14 @@ export default createGlobalStyle`
   }
 
   body {
-    transition: color 0.3s, background-color 0.3s;
+    width: 375px;
+    margin: auto;
     min-height: 100vh;
     line-height: 1.5;
     font-family: roboto, sans-serif;
     background-color: var(--color-gray-50);
     color: var(--color-gray-900);
-    /* width: 375px;
-    margin: auto; */
+    transition: color 0.3s, background-color 0.3s;
   }
 
   input,
