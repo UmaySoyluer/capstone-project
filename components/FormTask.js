@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { CancelLink, SubmitButton } from "./Buttons";
+import { CancelLink, ModalCancel, SubmitButton } from "./Buttons";
 import Heading from "./Heading";
 import { useEffect } from "react";
 import useLocalStorageState from "use-local-storage-state";
@@ -30,18 +30,18 @@ const StyledLegend = styled.legend`
   text-transform: capitalize;
 `;
 
-export default function FormTask({ formName, onSubmit, id, value }) {
+export default function FormTask({ formName, onSubmit, id, value, onClose }) {
   const [tag, setTag] = useLocalStorageState("tag", "Backlog");
-
-  useEffect(() => {
-    if (value) setTag(value.tag);
-    if (!value) setTag(tag);
-  }, [value, setTag, tag]);
 
   function handleSubmit(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
     const project = Object.fromEntries(formData);
+
+    if (onClose) {
+      onClose();
+    }
+
     onSubmit(project);
   }
 
@@ -104,8 +104,11 @@ export default function FormTask({ formName, onSubmit, id, value }) {
 
         <StyledButtonContainer>
           <SubmitButton type="submit">Submit</SubmitButton>
-          {value && <CancelLink url={`/projects/${id}/tasks/${value._id}`} />}
-          {!value && <CancelLink url={`/projects/${id}`} />}
+          {value && !onClose && (
+            <CancelLink url={`/projects/${id}/tasks/${value._id}`} />
+          )}
+          {!value && !onClose && <CancelLink url={`/projects/${id}`} />}
+          {onClose && <ModalCancel onClick={onClose}>Close</ModalCancel>}
         </StyledButtonContainer>
       </StyledForm>
     </>
