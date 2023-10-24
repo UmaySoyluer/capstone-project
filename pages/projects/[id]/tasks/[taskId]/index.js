@@ -9,6 +9,11 @@ import { BackLink, EditLink } from "@/components/Buttons";
 import { DeleteButton } from "@/components/Buttons";
 import { StyledButtonContainer } from "@/styles/StyledButtonContainer";
 import { StyledToolBar } from "@/styles/StyledToolbar";
+import {
+  StyledPriorityLabel,
+  StyledPriorityButtons,
+  StyledPriorityTag,
+} from "@/components/FormTask";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 
@@ -52,7 +57,7 @@ export default function TaskDetailPage() {
   if (!isReady || isLoading) return <h2>Loading..</h2>;
   if (error) return <Error message={error.message} />;
 
-  const { title, description, tag, createdAt } = task;
+  const { title, description, tag, createdAt, priority } = task;
 
   const date = new Date(createdAt).toLocaleDateString();
 
@@ -97,6 +102,17 @@ export default function TaskDetailPage() {
         <div>
           <StyledDescriptionListTitle>Created at:</StyledDescriptionListTitle>
           <dd>{date}</dd>
+
+        </div>
+        <div>
+          <StyledDescriptionListTitle>Priority :</StyledDescriptionListTitle>
+          <StyledPriorityTag>
+            <StyledPriorityButtons />
+            <StyledPriorityLabel htmlFor={priority[0]}>
+              {priority}
+            </StyledPriorityLabel>
+          </StyledPriorityTag>
+
         </div>
       </StyledDescriptionList>
 
