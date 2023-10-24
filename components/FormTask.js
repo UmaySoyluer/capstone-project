@@ -60,6 +60,7 @@ const StyledPriorityLabel = styled.label`
   padding: 0.4rem;
   font-size: 0.8rem;
   border-radius: 0.9rem;
+
   background: ${(props) => {
     if (props.htmlFor === "High") {
       return `
@@ -71,8 +72,9 @@ const StyledPriorityLabel = styled.label`
       return `#569DFF;`;
     }
   }};
+
   &:hover {
-    background: lightgray;
+    background: var(--color-gray-200);
   }
 `;
 
@@ -186,3 +188,4 @@ export default function FormTask({ formName, onSubmit, id, value }) {
     </>
   );
 }
+export { StyledPriorityTag, StyledPriorityButtons, StyledPriorityLabel };

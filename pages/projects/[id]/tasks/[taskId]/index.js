@@ -9,6 +9,11 @@ import { BackLink, EditLink } from "@/components/Buttons";
 import { DeleteButton } from "@/components/Buttons";
 import { StyledButtonContainer } from "@/styles/StyledButtonContainer";
 import { StyledToolBar } from "@/styles/StyledToolbar";
+import {
+  StyledPriorityLabel,
+  StyledPriorityButtons,
+  StyledPriorityTag,
+} from "@/components/FormTask";
 import toast from "react-hot-toast";
 
 const StyledSection = styled.section`
@@ -63,6 +68,7 @@ export default function TaskDetailPage() {
     router.push(`/projects/${id}`);
     toast.success("Task deleted!");
   }
+
   return (
     <>
       <StyledButtonContainer>
@@ -85,7 +91,12 @@ export default function TaskDetailPage() {
         </div>
         <div>
           <StyledDescriptionListTitle>Priority :</StyledDescriptionListTitle>
-          <dd>{priority}</dd>
+          <StyledPriorityTag>
+            <StyledPriorityButtons />
+            <StyledPriorityLabel htmlFor={priority[0]}>
+              {priority}
+            </StyledPriorityLabel>
+          </StyledPriorityTag>
         </div>
       </StyledDescriptionList>
 
