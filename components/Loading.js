@@ -27,7 +27,7 @@ const StyledContainer = styled.div`
 export default function Loading() {
   return (
     <StyledContainer>
-      <Spinner />
+      <Spinner data-testid="spinnerId" />
     </StyledContainer>
   );
 }
