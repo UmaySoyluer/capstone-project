@@ -82,11 +82,6 @@ export default function FormTask({ formName, onSubmit, id, value }) {
   const [tag, setTag] = useLocalStorageState("tag", "Backlog");
   const [priority, setPriority] = useLocalStorageState("priority", "Neutral");
 
-  useEffect(() => {
-    if (value) setTag(value.tag);
-    if (!value) setTag(tag);
-  }, [value, setTag, tag]);
-
   function handleSubmit(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
