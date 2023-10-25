@@ -40,12 +40,12 @@ const StyledPriorityContainer = styled.div`
 const StyledPriorityTag = styled.div`
   color: #ffff;
   font-size: 0.9rem;
-  padding: 1px 8px;
   text-decoration: none;
   text-align: center;
-  margin: 0;
+  margin-top: 3px;
+  margin-right: 5px;
   border-radius: 14px;
-  width: 6rem;
+  width: 4rem;
 `;
 
 const StyledPriorityButtons = styled.input`
@@ -57,30 +57,27 @@ const StyledPriorityButtons = styled.input`
 const StyledPriorityLabel = styled.label`
   display: inline-block;
   width: 4rem;
-  padding: 0.4rem;
   font-size: 0.8rem;
   border-radius: 0.9rem;
+  padding: 0.3rem;
+  background-color: var(--color-gray-200);
 
   background: ${(props) => {
-    if (props.htmlFor === "High") {
+    if (props.checked && props.htmlFor === "High") {
       return `
  #F87168;`;
-    } else if (props.htmlFor === "Neutral") {
+    } else if (props.checked && props.htmlFor === "Neutral") {
       return `
   #4ACE97;`;
-    } else {
+    } else if (props.checked && props.htmlFor === "Low") {
       return `#569DFF;`;
     }
   }};
-
-  &:hover {
-    background: var(--color-gray-200);
-  }
 `;
 
 export default function FormTask({ formName, onSubmit, id, value }) {
   const [tag, setTag] = useLocalStorageState("tag", "Backlog");
-  const [priority, setPriority] = useLocalStorageState("priority", "Neutral");
+  const [priority, setPriority] = useState("priority", "Neutral");
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -167,7 +164,10 @@ export default function FormTask({ formName, onSubmit, id, value }) {
                 required
               />
 
-              <StyledPriorityLabel htmlFor={priorityType}>
+              <StyledPriorityLabel
+                htmlFor={priorityType}
+                checked={priority === priorityType}
+              >
                 {priorityType}
               </StyledPriorityLabel>
             </StyledPriorityTag>
