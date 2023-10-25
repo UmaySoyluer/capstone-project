@@ -6,7 +6,7 @@ export default function ButtonBar({ handleDelete, id }) {
   return (
     <div>
       <StyledButtonContainer>
-        <BackLink href={"/"} />
+        <BackLink href={"/ProjectsOverview"} />
         <StyledToolBar>
           <EditLink url={`/projects/${id}/edit`} />
           <DeleteButton handleClick={handleDelete} />

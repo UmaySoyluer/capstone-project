@@ -1,5 +1,5 @@
 import { screen, waitForElementToBeRemoved } from "@testing-library/react";
-import ProjectsOverviewPage from "@/pages/index";
+import ProjectsOverviewPage from "@/pages/ProjectsOverview";
 import { customRender } from "@/testing-library-utils";
 
 describe("Home page", () => {
