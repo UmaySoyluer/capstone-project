@@ -1,12 +1,133 @@
-import Link from "next/link";
+import styled from "styled-components";
 
 import Heading from "@/components/Heading";
+import { CallToActionLink } from "@/components/Buttons";
+import useWindowDimensions from "@/hooks/useWindowDimensions";
+
+const StyledContainer = styled.div`
+  margin: 1rem 2rem;
+  text-align: center;
+  border-radius: 10px;
+`;
+
+const StyledLandscapeContainer = styled.div`
+  margin: 0 20rem;
+  text-align: center;
+  background-color: var(--color-gray-100);
+  border-radius: 10px;
+`;
+
+const StyledParagraph = styled.p`
+  padding: 1rem 1rem;
+  width: 100%;
+  text-align: left;
+`;
+
+const StyledList = styled.ul`
+  padding: 1rem 1rem;
+  width: 100%;
+  list-style-type: none;
+  text-align: left;
+`;
 
 export default function HomePage() {
+  const { width } = useWindowDimensions();
+  if (width <= 810) {
+    return (
+      <StyledContainer>
+        <Heading>About the Application</Heading>
+
+        <StyledParagraph>
+          Welcome to the Future of Productivity: Kanban Boards Unleashed! Unlock
+          the Power of Kanban for Ultimate Efficiency.
+        </StyledParagraph>
+        <StyledParagraph>
+          Are you tired of juggling multiple tasks and projects without a clear
+          roadmap to success? Say goodbye to chaos and hello to the organized
+          world of Kanban boards!
+        </StyledParagraph>
+        <CallToActionLink href={"/ProjectsOverview"}>
+          <span>🚀 Start Now!</span>
+        </CallToActionLink>
+
+        <StyledParagraph>
+          Behind every great project is a dedicated team of developers, and our
+          Kanban platform is no exception. Meet the faces behind the innovation:
+        </StyledParagraph>
+        <CallToActionLink href={"/ProjectsOverview"}>
+          <span>🤗 Boost Dev!</span>
+        </CallToActionLink>
+
+        <StyledParagraph>
+          Whether you're an individual, a small team, or a large corporation,
+          Kanban is your key to streamlined productivity. Access your Kanban
+          boards from anywhere, and wave goodbye to missed deadlines. Security,
+          efficiency, and success - it's all within reach.
+        </StyledParagraph>
+        <CallToActionLink href={"/ProjectsOverview"}>
+          <span>🌟 Transform Now!</span>
+        </CallToActionLink>
+      </StyledContainer>
+    );
+  }
+
   return (
-    <>
+    <StyledLandscapeContainer>
       <Heading>About the Application</Heading>
-      <Link href={"/ProjectsOverview"}>Project Overview</Link>
-    </>
+      <StyledParagraph>
+        Welcome to Kanbanify: Streamline Your Workflow with Kanban Boards Unlock
+        the Power of Visual Project Management Are you tired of juggling
+        multiple tasks, deadlines, and team members, struggling to keep your
+        projects on track? Look no further. Kanbanify is your solution to
+        streamline your workflow, boost productivity, and achieve seamless
+        project management.
+      </StyledParagraph>
+      <CallToActionLink href={"/ProjectsOverview"}>
+        <span>🚀 Start Now!</span>
+      </CallToActionLink>
+
+      <StyledList>
+        <li>
+          <strong>Simplicity:</strong> Kanbanify simplifies complex project
+          management into an elegant and intuitive visual board. No more
+          confusing spreadsheets or endless email threads.{" "}
+        </li>
+        <li>
+          <strong>Collaboration:</strong>
+          Collaborate effortlessly with your team, no matter where they are.
+          Keep everyone on the same page and ensure transparency at every step.
+        </li>
+        <li>
+          <strong>Efficiency:</strong> Improve efficiency by visualizing your
+          workflow, identifying bottlenecks, and reducing waste. Kanbanify helps
+          you get things done, faster and with fewer resources.
+        </li>
+        <li>
+          <strong>Customization:</strong>
+          Tailor your Kanban boards to your unique needs. From simple to complex
+          projects, Kanbanify is adaptable to fit any workflow.
+        </li>
+      </StyledList>
+      <CallToActionLink href={"/ProjectsOverview"}>
+        <span>🤗 Boost Dev!</span>
+      </CallToActionLink>
+
+      <StyledParagraph>
+        Mobile-Friendly Excellence Worried about managing projects on the go?
+        With Kanbanify, you can relax. Our application is optimized for mobile
+        devices, ensuring you have full control over your projects wherever you
+        are. Experience the same seamless workflow and user-friendly interface
+        on your smartphone or tablet. A Unique Solution to Your Problem Tired of
+        compromising between a simple agile-board and a mobile-friendly
+        solution? Kanbanify has you covered. We've solved the problem of finding
+        a product that offers flexible layouts that not only work perfectly but
+        also look fantastic on mobile devices. Say goodbye to clunky,
+        hard-to-use mobile apps and embrace a truly agile, visually pleasing
+        solution.
+      </StyledParagraph>
+      <CallToActionLink href={"/ProjectsOverview"}>
+        <span>🌟 Transform Now!</span>
+      </CallToActionLink>
+    </StyledLandscapeContainer>
   );
 }
