@@ -7,20 +7,18 @@ import useWindowDimensions from "@/hooks/useWindowDimensions";
 const StyledContainer = styled.div`
   margin: 1rem 2rem;
   text-align: center;
-  border-radius: 10px;
 `;
 
 const StyledLandscapeContainer = styled.div`
   margin: 0 20rem;
   text-align: center;
-  background-color: var(--color-gray-100);
-  border-radius: 10px;
 `;
 
 const StyledParagraph = styled.p`
   padding: 1rem 1rem;
   width: 100%;
   text-align: left;
+  font-size: 1.2rem;
 `;
 
 const StyledList = styled.ul`
@@ -28,6 +26,7 @@ const StyledList = styled.ul`
   width: 100%;
   list-style-type: none;
   text-align: left;
+  font-size: 1.2rem;
 `;
 
 export default function HomePage() {
@@ -108,9 +107,15 @@ export default function HomePage() {
           projects, Kanbanify is adaptable to fit any workflow.
         </li>
       </StyledList>
+
       <CallToActionLink href={"/ProjectsOverview"}>
         <span>🤗 Boost Dev!</span>
       </CallToActionLink>
+
+      <StyledParagraph>
+        Behind every great project is a dedicated team of developers, and our
+        Kanban platform is no exception. Meet the faces behind the innovation:
+      </StyledParagraph>
 
       <StyledParagraph>
         Mobile-Friendly Excellence Worried about managing projects on the go?
