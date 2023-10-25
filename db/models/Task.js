@@ -20,6 +20,7 @@ const taskSchema = new Schema(
     },
     priority: {
       type: Array,
+      required: true,
     },
   },
   { timestamps: true }
