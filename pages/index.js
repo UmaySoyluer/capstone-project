@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Heading from "@/components/Heading";
 import { CallToActionLink } from "@/components/Buttons";
 import useWindowDimensions from "@/hooks/useWindowDimensions";
-import { DesktopCarousel, MobileCarousel } from "@/components/Carousel";
+import { Carousel } from "@/components/Carousel";
 
 const StyledContainer = styled.div`
   margin: 1rem 2rem;
@@ -62,7 +62,7 @@ export default function HomePage() {
           Kanban platform ProFlow is no exception. Meet the faces behind the
           innovation:
         </StyledParagraph>
-        <MobileCarousel />
+        <Carousel />
         <CallToActionLink href={"/ProjectsOverview"}>
           <span>🤗 Boost Dev!</span>
         </CallToActionLink>
@@ -128,7 +128,7 @@ export default function HomePage() {
         innovation:
       </StyledParagraph>
 
-      <DesktopCarousel />
+      <Carousel />
 
       <StyledList>
         <li>
