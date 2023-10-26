@@ -14,6 +14,7 @@ const Slide = styled.div`
   background-color: var(--color-brand-500);
   display: grid;
   place-items: center;
+  color: var(--color-gray-50);
 `;
 
 const photos = [
