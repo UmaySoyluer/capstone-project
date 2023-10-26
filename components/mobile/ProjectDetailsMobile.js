@@ -1,9 +1,13 @@
 import styled from "styled-components";
 import Heading from "@/components/Heading";
 
+const StyledDetailsMobile = styled.div`
+  margin-top: 5rem;
+  padding-inline: 2.5rem;
+`;
+
 const StyledDepartment = styled.h3`
   font-size: 0.9rem;
-  margin-inline: 1rem;
   text-transform: uppercase;
   color: var(--color-brand-900);
 `;
@@ -14,7 +18,6 @@ const StyledDescriptionList = styled.dl`
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  padding-inline: 1rem;
 `;
 
 const StyledDescriptionListTitle = styled.dt`
@@ -25,13 +28,12 @@ const StyledDescriptionListTitle = styled.dt`
 
 const StyledArticle = styled.article`
   margin-top: 1.5rem;
-  padding-inline: 1rem;
 `;
 
-export default function ProjectDetails({ project }) {
+export default function ProjectDetailsMobile({ project }) {
   const { title, description, endDate, department, teamLead } = project;
   return (
-    <>
+    <StyledDetailsMobile>
       <Heading>{title}</Heading>
       <StyledDepartment>{department}</StyledDepartment>
       <StyledDescriptionList>
@@ -49,6 +51,6 @@ export default function ProjectDetails({ project }) {
         <StyledDescriptionListTitle>Description</StyledDescriptionListTitle>
         <dd>{description}</dd>
       </StyledArticle>
-    </>
+    </StyledDetailsMobile>
   );
 }

@@ -5,6 +5,7 @@ import FormTask from "@/components/FormTask";
 import Error from "@/components/Error";
 import Loading from "@/components/Loading";
 import toast from "react-hot-toast";
+import { StyledFormContainer } from "@/styles/StyledFormContainer";
 
 export default function EditProjectPage() {
   const router = useRouter();
@@ -37,6 +38,8 @@ export default function EditProjectPage() {
   if (error) return <Error />;
 
   return (
-    <FormTask id={id} onSubmit={editTask} formName="Edit a task" value={task} />
+    <StyledFormContainer>
+      <FormTask id={id} onSubmit={editTask} formName="Edit task" value={task} />
+    </StyledFormContainer>
   );
 }

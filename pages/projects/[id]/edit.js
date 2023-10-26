@@ -3,8 +3,8 @@ import { useRouter } from "next/router";
 import toast from "react-hot-toast";
 
 import Loading from "@/components/Loading";
-import Form from "@/components/Form";
-import Heading from "@/components/Heading";
+import FormProject from "@/components/FormProject";
+import { StyledFormContainer } from "@/styles/StyledFormContainer";
 
 export default function EditProjectPage() {
   const router = useRouter();
@@ -33,9 +33,12 @@ export default function EditProjectPage() {
   if (error) return <p>Something went wrong...</p>;
 
   return (
-    <>
-      <Heading>Edit Post</Heading>
-      <Form onSubmit={editProject} formName="edit-project" value={project} />
-    </>
+    <StyledFormContainer>
+      <FormProject
+        onSubmit={editProject}
+        formName="Edit Project"
+        value={project}
+      />
+    </StyledFormContainer>
   );
 }

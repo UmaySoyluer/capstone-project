@@ -60,7 +60,7 @@ export default function TaskFormModal({ onClose, list }) {
           id={id}
           onClose={onClose}
           onSubmit={createTask}
-          formName="New task"
+          formName="Add new task"
         />
       </StyledFormContainer>
     </StyledModal>
