@@ -2,7 +2,7 @@ import { screen, waitForElementToBeRemoved } from "@testing-library/react";
 import ProjectsOverviewPage from "@/pages/ProjectsOverview";
 import { customRender } from "@/testing-library-utils";
 
-describe("Home page", () => {
+describe("ProjectsOverviewPage page", () => {
   beforeEach(async () => {
     customRender(<ProjectsOverviewPage />);
 
