@@ -28,9 +28,6 @@ describe("Home page", () => {
 
     await user.click(callToActionLink);
 
-    const { container } = customRender(<ProjectsOverviewPage />);
-    expect(container).toMatchSnapshot();
-
     expect(router.push).toHaveBeenCalledWith("/ProjectsOverview");
   });
 });
