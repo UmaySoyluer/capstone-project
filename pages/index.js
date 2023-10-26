@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Heading from "@/components/Heading";
 import { CallToActionLink } from "@/components/Buttons";
 import useWindowDimensions from "@/hooks/useWindowDimensions";
-import { Carousel } from "@/components/Carousel";
+import { DesktopCarousel, MobileCarousel } from "@/components/Carousel";
 
 const StyledContainer = styled.div`
   margin: 1rem 2rem;
@@ -30,6 +30,12 @@ const StyledList = styled.ul`
   font-size: 1.2rem;
 `;
 
+const StyledBrandName = styled.span`
+  color: var(--color-brand-700);
+  font-weight: bold;
+  font-size: 1.4rem;
+`;
+
 export default function HomePage() {
   const { width } = useWindowDimensions();
   if (width <= 810) {
@@ -38,7 +44,8 @@ export default function HomePage() {
         <Heading>About the Application</Heading>
 
         <StyledParagraph>
-          Welcome to the Future of Productivity: ProFlow! Unlock the Power of
+          Welcome to the Future of Productivity:
+          <StyledBrandName> ProFlow</StyledBrandName>! Unlock the Power of
           Kanban for Ultimate Efficiency.
         </StyledParagraph>
         <StyledParagraph>
@@ -55,7 +62,7 @@ export default function HomePage() {
           Kanban platform ProFlow is no exception. Meet the faces behind the
           innovation:
         </StyledParagraph>
-        <Carousel />
+        <MobileCarousel />
         <CallToActionLink href={"/ProjectsOverview"}>
           <span>🤗 Boost Dev!</span>
         </CallToActionLink>
@@ -67,7 +74,7 @@ export default function HomePage() {
           efficiency, and success - it's all within reach.
         </StyledParagraph>
         <CallToActionLink href={"/ProjectsOverview"}>
-          <span>🌟 Transform Now!</span>
+          <span>🌟 Try ProFlow Now!</span>
         </CallToActionLink>
       </StyledContainer>
     );
@@ -77,12 +84,12 @@ export default function HomePage() {
     <StyledLandscapeContainer>
       <Heading>About the Application</Heading>
       <StyledParagraph>
-        Welcome to ProFlow: Streamline Your Workflow with Kanban Boards. Unlock
-        the Power of Visual Project Management. Are you tired of juggling
-        multiple tasks, deadlines, and team members, struggling to keep your
-        projects on track? Look no further. ProFlow is your solution to
-        streamline your workflow, boost productivity, and achieve seamless
-        project management.
+        Welcome to <StyledBrandName>ProFlow</StyledBrandName>: Streamline Your
+        Workflow with Kanban Boards. Unlock the Power of Visual Project
+        Management. Are you tired of juggling multiple tasks, deadlines, and
+        team members, struggling to keep your projects on track? Look no
+        further. ProFlow is your solution to streamline your workflow, boost
+        productivity, and achieve seamless project management.
       </StyledParagraph>
       <CallToActionLink href={"/ProjectsOverview"}>
         <span>🚀 Start Now!</span>
@@ -121,7 +128,7 @@ export default function HomePage() {
         innovation:
       </StyledParagraph>
 
-      <Carousel />
+      <DesktopCarousel />
 
       <StyledList>
         <li>

@@ -40,8 +40,8 @@ const photos = [
   },
 ];
 
-export function Carousel() {
-  const [sliderRef] = useKeenSlider(
+export function DesktopCarousel() {
+  const [desktopSliderRef] = useKeenSlider(
     {
       loop: true,
       mode: "free-snap",
@@ -83,7 +83,61 @@ export function Carousel() {
   );
 
   return (
-    <SliderContainer ref={sliderRef} className="keen-slider">
+    <SliderContainer ref={desktopSliderRef} className="keen-slider">
+      {photos.map(({ title, src, github }) => (
+        <Slide key={title} className="keen-slider__slide">
+          <Link href={github} target="_blank">
+            <Slide>
+              <Image src={src} alt={title} width={200} height={200} />
+              {title}
+            </Slide>
+          </Link>
+        </Slide>
+      ))}
+    </SliderContainer>
+  );
+}
+
+export function MobileCarousel() {
+  const [mobileSliderRef] = useKeenSlider(
+    {
+      loop: true,
+      mode: "free-snap",
+    },
+    [
+      (slider) => {
+        let timeout;
+        let mouseOver = false;
+        function clearNextTimeout() {
+          clearTimeout(timeout);
+        }
+        function nextTimeout() {
+          clearTimeout(timeout);
+          if (mouseOver) return;
+          timeout = setTimeout(() => {
+            slider.next();
+          }, 2000);
+        }
+        slider.on("created", () => {
+          slider.container.addEventListener("mouseover", () => {
+            mouseOver = true;
+            clearNextTimeout();
+          });
+          slider.container.addEventListener("mouseout", () => {
+            mouseOver = false;
+            nextTimeout();
+          });
+          nextTimeout();
+        });
+        slider.on("dragStarted", clearNextTimeout);
+        slider.on("animationEnded", nextTimeout);
+        slider.on("updated", nextTimeout);
+      },
+    ]
+  );
+
+  return (
+    <SliderContainer ref={mobileSliderRef} className="keen-slider">
       {photos.map(({ title, src, github }) => (
         <Slide key={title} className="keen-slider__slide">
           <Link href={github} target="_blank">
