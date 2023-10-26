@@ -1,6 +1,6 @@
-import { screen, waitForElementToBeRemoved } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { useRouter } from "next/router";
+import mockRouter from "next-router-mock";
 
 import { customRender } from "@/testing-library-utils";
 import HomePage from "@/pages/index";
@@ -28,6 +28,6 @@ describe("Home page", () => {
 
     await user.click(callToActionLink);
 
-    expect(router.push).toHaveBeenCalledWith("/ProjectsOverview");
+    expect(mockRouter.asPath).toEqual("/ProjectsOverview");
   });
 });
