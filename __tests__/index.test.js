@@ -4,7 +4,6 @@ import mockRouter from "next-router-mock";
 
 import { customRender } from "@/testing-library-utils";
 import HomePage from "@/pages/index";
-import ProjectsOverviewPage from "@/pages/ProjectsOverview";
 
 describe("Home page", () => {
   const user = userEvent.setup();
