@@ -10,7 +10,6 @@ import { DeleteButton } from "@/components/Buttons";
 import { StyledButtonContainer } from "@/styles/StyledButtonContainer";
 import { StyledToolBar } from "@/styles/StyledToolbar";
 import {
-  StyledPriorityLabel,
   StyledPriorityButtons,
   StyledPriorityTag,
 } from "@/components/FormTask";
@@ -38,6 +37,27 @@ const StyledDescriptionListTitle = styled.dt`
 
 const StyledArticle = styled.article`
   margin-top: 1.5rem;
+`;
+
+const StyledPriorityLabel = styled.label`
+  display: inline-block;
+  width: 4rem;
+  padding: 0.3rem;
+  margin-left: 0px;
+  font-size: 0.8rem;
+  border-radius: 0.9rem;
+
+  background: ${(props) => {
+    if (props.htmlFor === "High") {
+      return `
+ #F87168;`;
+    } else if (props.htmlFor === "Neutral") {
+      return `
+  #4ACE97;`;
+    } else {
+      return `#569DFF;`;
+    }
+  }};
 `;
 
 export default function TaskDetailPage() {
