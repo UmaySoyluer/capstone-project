@@ -7,7 +7,7 @@ import { AddTaskLink } from "../Buttons";
 const StyledContainer = styled.div`
   width: 100%;
   margin-top: 2rem;
-  margin-bottom: 5rem;
+  margin-bottom: 10vh;
   padding-inline: 2.5rem;
 `;
 

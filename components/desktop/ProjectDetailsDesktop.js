@@ -14,7 +14,7 @@ const StyledContainer = styled.div`
   align-items: center;
   border-radius: 10px;
   margin: 0.5rem 1.5rem;
-  padding: 1rem 1rem;
+  padding: 1rem 2rem;
   background-color: var(--color-gray-100);
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1), 0 2px 2px rgba(0, 0, 0, 0.1);
 `;

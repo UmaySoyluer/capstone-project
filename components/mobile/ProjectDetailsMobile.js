@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Heading from "@/components/Heading";
 
 const StyledDetailsMobile = styled.div`
-  margin-top: 5rem;
+  margin-top: 10vh;
   padding-inline: 2.5rem;
 `;
 
