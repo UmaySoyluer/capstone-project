@@ -67,7 +67,7 @@ export default function NavigationMobile() {
             </StyledNavigationLink>
           </StyledListItem>
           <StyledListItem>
-            <StyledNavigationLink href={"/"}>
+            <StyledNavigationLink href={"/ProjectsOverview"}>
               <RxDashboard
                 size={26}
                 style={{ color: "var(--color-brand-900)" }}
