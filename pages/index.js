@@ -38,7 +38,8 @@ const StyledBrandName = styled.span`
 
 export default function HomePage() {
   const { width } = useWindowDimensions();
-  if (width <= 810) {
+
+  if (width <= 1280) {
     return (
       <StyledContainer>
         <Heading>About the Application</Heading>
