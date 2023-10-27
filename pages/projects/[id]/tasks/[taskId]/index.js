@@ -22,7 +22,7 @@ const StyledSection = styled.section`
 `;
 
 const StyledDescriptionList = styled.dl`
-  margin-top: 2rem;
+  margin-block: 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -37,14 +37,14 @@ const StyledDescriptionListTitle = styled.dt`
 
 const StyledArticle = styled.article`
   margin-top: 1.5rem;
+  word-wrap: break-word;
 `;
 
 const StyledPriorityLabel = styled.label`
   display: inline-block;
   width: 4rem;
   padding: 0.3rem;
-  margin-left: 0px;
-  font-size: 0.8rem;
+  font-size: 1rem;
   border-radius: 0.9rem;
 
   background: ${(props) => {
@@ -121,16 +121,17 @@ export default function TaskDetailPage() {
             <StyledDescriptionListTitle>Created at:</StyledDescriptionListTitle>
             <dd>{date}</dd>
           </div>
-          <div>
-            <StyledDescriptionListTitle>Priority :</StyledDescriptionListTitle>
-            <StyledPriorityTag>
-              <StyledPriorityButtons />
-              <StyledPriorityLabel htmlFor={priority[0]}>
-                {priority}
-              </StyledPriorityLabel>
-            </StyledPriorityTag>
-          </div>
         </StyledDescriptionList>
+
+        <div>
+          <StyledDescriptionListTitle>Priority :</StyledDescriptionListTitle>
+          <StyledPriorityTag>
+            <StyledPriorityButtons />
+            <StyledPriorityLabel htmlFor={priority[0]}>
+              {priority}
+            </StyledPriorityLabel>
+          </StyledPriorityTag>
+        </div>
 
         <StyledArticle>
           <StyledDescriptionListTitle>Task:</StyledDescriptionListTitle>

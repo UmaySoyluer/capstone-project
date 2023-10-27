@@ -26,12 +26,8 @@ const StyledDescriptionListTitle = styled.dt`
   color: var(--color-brand-900);
 `;
 
-const StyledArticle = styled.article`
-  margin-top: 1.5rem;
-`;
-
 export default function ProjectDetailsMobile({ project }) {
-  const { title, description, endDate, department, teamLead } = project;
+  const { title, endDate, department, teamLead } = project;
   return (
     <StyledDetailsMobile>
       <Heading>{title}</Heading>
@@ -47,10 +43,6 @@ export default function ProjectDetailsMobile({ project }) {
           <dd>{endDate}</dd>
         </div>
       </StyledDescriptionList>
-      <StyledArticle>
-        <StyledDescriptionListTitle>Description</StyledDescriptionListTitle>
-        <dd>{description}</dd>
-      </StyledArticle>
     </StyledDetailsMobile>
   );
 }

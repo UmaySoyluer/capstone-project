@@ -31,10 +31,10 @@ const StyledLegend = styled.legend`
 `;
 
 const StyledPriorityContainer = styled.div`
-  margin-top: 0.8rem;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
+  margin-bottom: 2rem;
 `;
 
 const StyledPriorityTag = styled.div`
@@ -42,7 +42,7 @@ const StyledPriorityTag = styled.div`
   font-size: 0.9rem;
   text-decoration: none;
   text-align: center;
-  margin-top: 3px;
+  margin-top: 0.5rem;
   margin-right: 5px;
   border-radius: 14px;
   width: 4rem;
@@ -57,7 +57,7 @@ const StyledPriorityButtons = styled.input`
 const StyledPriorityLabel = styled.label`
   display: inline-block;
   width: 4rem;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   border-radius: 0.9rem;
   padding: 0.3rem;
   background-color: var(--color-gray-200);
