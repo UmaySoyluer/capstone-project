@@ -1,27 +1,32 @@
-import { screen, waitForElementToBeRemoved } from "@testing-library/react";
-import ProjectsOverviewPage from "@/pages/index";
+import { screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import mockRouter from "next-router-mock";
+
 import { customRender } from "@/testing-library-utils";
+import HomePage from "@/pages/index";
 
 describe("Home page", () => {
-  beforeEach(async () => {
-    customRender(<ProjectsOverviewPage />);
+  const user = userEvent.setup();
 
-    await waitForElementToBeRemoved(() => screen.getByTestId("spinnerId"));
+  beforeEach(async () => {
+    customRender(<HomePage />);
   });
 
   it("renders a heading", () => {
     const heading = screen.getByRole("heading", {
-      name: /project overview/i,
+      name: /about the application/i,
     });
 
     expect(heading).toBeInTheDocument();
   });
 
-  it("renders a list of projects", () => {
-    const superProject = screen.getByText(/super project/i);
-    const megaProject = screen.getByText(/mega project/i);
+  it("renders ProjectsOverview page when link clicked", async () => {
+    const callToActionLink = screen.getByRole("link", {
+      name: /start now/i,
+    });
 
-    expect(superProject).toBeInTheDocument();
-    expect(megaProject).toBeInTheDocument();
+    await user.click(callToActionLink);
+
+    expect(mockRouter.asPath).toEqual("/ProjectsOverview");
   });
 });
