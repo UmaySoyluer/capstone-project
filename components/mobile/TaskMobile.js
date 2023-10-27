@@ -25,7 +25,7 @@ const StyledListItemLink = styled(Link)`
   height: 3rem;
 `;
 
-export default function Task({ task, id }) {
+export default function TaskMobile({ task, id }) {
   if (!task) return;
 
   const { _id: taskId, title } = task;

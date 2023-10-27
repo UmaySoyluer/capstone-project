@@ -1,28 +1,35 @@
 import styled from "styled-components";
 import Heading from "@/components/Heading";
+import { StyledToolButton } from "../Buttons";
+import { HiOutlinePaintBrush, HiOutlineTrash } from "react-icons/hi2";
+import { useState } from "react";
+import useWindowDimensions from "@/hooks/useWindowDimensions";
+import ProjectFormModal from "../modals/ProjectFormModal";
 
 const StyledContainer = styled.div`
-  height: 20vh;
-  display: grid;
-  grid-template-columns: auto auto auto auto;
-  column-gap: 1rem;
-  justify-items: start;
-  border: 1px solid var(--color-gray-300);
+  height: 7vh;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   border-radius: 10px;
-  margin-inline: 1.5rem;
+  margin: 0.5rem 1.5rem;
+  padding: 1rem 2rem;
   background-color: var(--color-gray-100);
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1), 0 2px 2px rgba(0, 0, 0, 0.1);
+`;
+
+const StyledDetails = styled.div`
+  display: grid;
+  gap: 1rem;
+  width: 70%;
+  grid-template-columns: repeat(3, 1fr);
 `;
 
 const StyledDepartment = styled.h3`
   font-size: 0.9rem;
-  margin-inline: 1rem;
   text-transform: uppercase;
   color: var(--color-brand-900);
-`;
-
-const StyledDescriptionList = styled.dl`
-  margin-top: 1rem;
-  padding-inline: 1rem;
 `;
 
 const StyledDescriptionListTitle = styled.dt`
@@ -32,39 +39,78 @@ const StyledDescriptionListTitle = styled.dt`
 `;
 
 const StyledArticle = styled.article`
-  grid-column: 1 / span 4;
-  padding-inline: 1rem;
+  grid-column: -1 / 1;
+  overflow: auto;
 `;
 
-export default function ProjectDetailsDesktop({ project }) {
+const StyledTools = styled.div`
+  display: flex;
+  align-self: flex-start;
+  gap: 0.5rem;
+`;
+
+export default function ProjectDetailsDesktop({ project, onDelete }) {
+  const { width } = useWindowDimensions();
+  const [showModal, setShowModal] = useState(false);
+
+  if (width <= 810) return setShowModal(false);
+
+  function openModal() {
+    setShowModal(true);
+  }
+
+  function closeModal() {
+    setShowModal(false);
+  }
+
   const { title, description, endDate, department, teamLead } = project;
   return (
-    <StyledContainer>
-      <div>
-        <Heading>{title}</Heading>
-        <StyledDepartment>{department}</StyledDepartment>
-      </div>
-      <div>
-        <StyledDescriptionList>
-          <div></div>
+    <>
+      <StyledContainer>
+        <StyledDetails>
           <div>
+            <Heading>{title}</Heading>
+            <StyledDepartment>{department}</StyledDepartment>
+          </div>
+
+          <dl>
             <StyledDescriptionListTitle>Team lead:</StyledDescriptionListTitle>
             <dd>{teamLead}</dd>
-          </div>
-        </StyledDescriptionList>
-      </div>
-      <div>
-        <StyledDescriptionList>
-          <div>
+          </dl>
+
+          <dl>
             <StyledDescriptionListTitle>Due date:</StyledDescriptionListTitle>
             <dd>{endDate}</dd>
-          </div>
-        </StyledDescriptionList>
-      </div>
-      <StyledArticle>
-        <StyledDescriptionListTitle>Description:</StyledDescriptionListTitle>
-        <dd>{description}</dd>
-      </StyledArticle>
-    </StyledContainer>
+          </dl>
+
+          {/* <StyledArticle>
+            <dl>
+              <StyledDescriptionListTitle>
+                Description:
+              </StyledDescriptionListTitle>
+
+              <dd>{description}</dd>
+            </dl>
+          </StyledArticle> */}
+        </StyledDetails>
+
+        <StyledTools>
+          <StyledToolButton variant="edit" onClick={openModal} type="button">
+            <HiOutlinePaintBrush
+              size={20}
+              style={{ color: "var(--color-gray-50)" }}
+              title="Icon icon for edit"
+            />
+            Edit
+          </StyledToolButton>
+          <StyledToolButton variant="delete" onClick={onDelete} type="button">
+            <HiOutlineTrash size={20} color="#f9fafb" title="Icon for delete" />
+            Delete
+          </StyledToolButton>
+        </StyledTools>
+      </StyledContainer>
+
+      {showModal && <ProjectFormModal onClose={closeModal} />}
+    </>
   );
 }

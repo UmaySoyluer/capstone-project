@@ -5,13 +5,13 @@ import TaskDesktop from "./TaskDesktop";
 import { useState } from "react";
 import TaskFormModal from "../modals/TaskFormModal";
 import useWindowDimensions from "@/hooks/useWindowDimensions";
+import { HiPlus } from "react-icons/hi2";
 
 const StyledContainer = styled.div`
   padding-block: 1rem;
   padding-inline: 1.5rem;
   width: 100%;
-  height: 70vh;
-
+  flex-grow: 1;
   display: flex;
   overflow: auto;
   gap: 1rem;
@@ -24,41 +24,47 @@ const StyledWrapper = styled.div`
   border-radius: 10px;
   padding-block: 0.5rem;
   background-color: var(--color-gray-100);
-  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2), 0 5px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1), 0 2px 2px rgba(0, 0, 0, 0.1);
 `;
 
 const StyledTaskList = styled.ul`
-  min-width: 400px;
-  height: 60vh;
+  min-width: 350px;
   margin-top: 2rem;
   display: flex;
+  height: 100%;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-  overflow: auto;
+  overflow: scroll;
 `;
 
 const StyledListTitle = styled.p`
   font-size: 1.3rem;
   font-weight: bold;
   color: var(--color-brand-900);
+  align-self: flex-start;
+  padding-left: 2rem;
+  padding-top: 0.5rem;
 `;
 
 const StyledCreate = styled.button`
-  width: 90%;
-  height: 3rem;
+  padding: 0.3rem 3rem;
   margin-top: 1rem;
-  background-color: var(--color-gray-100);
-  border: 1px solid var(--color-gray-500);
   border-radius: 10px;
+  border: none;
+  background-color: transparent;
   color: var(--color-gray-900);
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 0.5rem;
   transition: 0.3s;
+  width: 80%;
 
-  &:hover {
+  &:hover,
+  &:focus {
     background-color: var(--color-gray-200);
+    outline: none;
   }
 `;
 
@@ -90,14 +96,13 @@ export default function TaskListDesktop({ tasks }) {
                   .filter((task) => list === task.tag)
                   .map((task) => <TaskDesktop key={task._id} task={task} />)
               ) : (
-                <>
-                  <p>No tasks found...</p>
-                </>
+                <p>No tasks found...</p>
               )}
             </StyledTaskList>
 
             <StyledCreate type="button" onClick={() => openModal(list)}>
-              Add task
+              <HiPlus size={19} />
+              <p>Add task</p>
             </StyledCreate>
           </StyledWrapper>
         ))}

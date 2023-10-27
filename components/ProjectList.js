@@ -34,7 +34,11 @@ export default function ProjectList() {
           <StyledListItem>
             <Link href={"/projects/new"}>
               <StyledArticle>
-                <HiPlus size={32} color="#f9fafb" title="create new project" />
+                <HiPlus
+                  size={32}
+                  style={{ color: "var(--color-gray-50)" }}
+                  title="create new project"
+                />
               </StyledArticle>
             </Link>
           </StyledListItem>

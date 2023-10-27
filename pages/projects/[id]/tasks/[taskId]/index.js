@@ -10,7 +10,6 @@ import { DeleteButton } from "@/components/Buttons";
 import { StyledButtonContainer } from "@/styles/StyledButtonContainer";
 import { StyledToolBar } from "@/styles/StyledToolbar";
 import {
-  StyledPriorityLabel,
   StyledPriorityButtons,
   StyledPriorityTag,
 } from "@/components/FormTask";
@@ -18,9 +17,8 @@ import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 
 const StyledSection = styled.section`
-  margin-top: 1rem;
-  border: 1px solid black;
-  min-height: 5rem;
+  margin-top: 10vh;
+  padding-inline: 2.5rem;
 `;
 
 const StyledDescriptionList = styled.dl`
@@ -29,7 +27,6 @@ const StyledDescriptionList = styled.dl`
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  padding-inline: 1rem;
 `;
 
 const StyledDescriptionListTitle = styled.dt`
@@ -40,7 +37,27 @@ const StyledDescriptionListTitle = styled.dt`
 
 const StyledArticle = styled.article`
   margin-top: 1.5rem;
-  padding-inline: 1rem;
+`;
+
+const StyledPriorityLabel = styled.label`
+  display: inline-block;
+  width: 4rem;
+  padding: 0.3rem;
+  margin-left: 0px;
+  font-size: 0.8rem;
+  border-radius: 0.9rem;
+
+  background: ${(props) => {
+    if (props.htmlFor === "High") {
+      return `
+ #F87168;`;
+    } else if (props.htmlFor === "Neutral") {
+      return `
+  #4ACE97;`;
+    } else {
+      return `#569DFF;`;
+    }
+  }};
 `;
 
 export default function TaskDetailPage() {
@@ -93,33 +110,33 @@ export default function TaskDetailPage() {
         </StyledToolBar>
       </StyledButtonContainer>
 
-      <Heading>{title}</Heading>
-      <StyledDescriptionList>
-        <div>
-          <StyledDescriptionListTitle>Tag:</StyledDescriptionListTitle>
-          <dd>{tag}</dd>
-        </div>
-        <div>
-          <StyledDescriptionListTitle>Created at:</StyledDescriptionListTitle>
-          <dd>{date}</dd>
+      <StyledSection>
+        <Heading>{title}</Heading>
+        <StyledDescriptionList>
+          <div>
+            <StyledDescriptionListTitle>Tag:</StyledDescriptionListTitle>
+            <dd>{tag}</dd>
+          </div>
+          <div>
+            <StyledDescriptionListTitle>Created at:</StyledDescriptionListTitle>
+            <dd>{date}</dd>
+          </div>
+          <div>
+            <StyledDescriptionListTitle>Priority :</StyledDescriptionListTitle>
+            <StyledPriorityTag>
+              <StyledPriorityButtons />
+              <StyledPriorityLabel htmlFor={priority[0]}>
+                {priority}
+              </StyledPriorityLabel>
+            </StyledPriorityTag>
+          </div>
+        </StyledDescriptionList>
 
-        </div>
-        <div>
-          <StyledDescriptionListTitle>Priority :</StyledDescriptionListTitle>
-          <StyledPriorityTag>
-            <StyledPriorityButtons />
-            <StyledPriorityLabel htmlFor={priority[0]}>
-              {priority}
-            </StyledPriorityLabel>
-          </StyledPriorityTag>
-
-        </div>
-      </StyledDescriptionList>
-
-      <StyledArticle>
-        <StyledDescriptionListTitle>Task:</StyledDescriptionListTitle>
-        <dd>{description}</dd>
-      </StyledArticle>
+        <StyledArticle>
+          <StyledDescriptionListTitle>Task:</StyledDescriptionListTitle>
+          <dd>{description}</dd>
+        </StyledArticle>
+      </StyledSection>
     </>
   );
 }

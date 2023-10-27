@@ -1,17 +1,18 @@
-import Task from "./Task";
+import TaskMobile from "./TaskMobile";
 import styled from "styled-components";
 import { useEffect } from "react";
 import useLocalStorageState from "use-local-storage-state";
-import { AddTaskLink } from "./Buttons";
+import { AddTaskLink } from "../Buttons";
 
 const StyledContainer = styled.div`
   width: 100%;
   margin-top: 2rem;
+  margin-bottom: 10vh;
+  padding-inline: 2.5rem;
 `;
 
 const StyledTaskList = styled.ul`
   margin-top: 2rem;
-  margin-inline: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -36,7 +37,6 @@ const StyledEmptyMessage = styled.p`
 `;
 
 const StyledListTitle = styled.select`
-  margin-inline: 1rem;
   font-size: 1.3rem;
   font-weight: bold;
   color: var(--color-brand-900);
@@ -55,7 +55,7 @@ const StyledDropdown = styled.option`
   background: var(--color-gray-50);
 `;
 
-export default function TaskList({ id, tasks }) {
+export default function TaskListMobile({ id, tasks }) {
   const [selectedTasks, setSelectedTasks] = useLocalStorageState("tasks", []);
   const [selectedTag, setSelectedTag] = useLocalStorageState("tag", "Backlog");
 
@@ -97,7 +97,7 @@ export default function TaskList({ id, tasks }) {
           </StyledCreateTask>
           {selectedTasks?.length &&
             selectedTasks?.map((task) => (
-              <Task key={task._id} id={id} task={task} />
+              <TaskMobile key={task._id} id={id} task={task} />
             ))}
         </StyledTaskList>
       ) : (
