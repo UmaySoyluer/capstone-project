@@ -1,9 +1,9 @@
 import { mutate } from "swr";
 import { useRouter } from "next/router";
 
-import Form from "@/components/Form";
-import Heading from "@/components/Heading";
+import FormProject from "@/components/FormProject";
 import toast from "react-hot-toast";
+import { StyledFormContainer } from "@/styles/StyledFormContainer";
 
 export default function CreateProjectPage() {
   const router = useRouter();
@@ -24,9 +24,8 @@ export default function CreateProjectPage() {
     }
   }
   return (
-    <>
-      <Heading>Create Project</Heading>
-      <Form onSubmit={createProject} formName="create-project" />
-    </>
+    <StyledFormContainer>
+      <FormProject onSubmit={createProject} formName="Create a Project" />
+    </StyledFormContainer>
   );
 }

@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 
 import FormTask from "@/components/FormTask";
 import toast from "react-hot-toast";
+import { StyledFormContainer } from "@/styles/StyledFormContainer";
 
 export default function CreateTaskPage() {
   const router = useRouter();
@@ -24,5 +25,9 @@ export default function CreateTaskPage() {
     }
   }
 
-  return <FormTask id={id} onSubmit={createTask} formName="Create a task" />;
+  return (
+    <StyledFormContainer>
+      <FormTask id={id} onSubmit={createTask} formName="Create a task" />
+    </StyledFormContainer>
+  );
 }

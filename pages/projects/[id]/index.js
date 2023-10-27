@@ -1,20 +1,26 @@
 import { useRouter } from "next/router";
 import useSWR from "swr";
+import styled from "styled-components";
 
 import Error from "@/components/Error";
 import Loading from "@/components/Loading";
 
-import TaskList from "@/components/TaskList";
+import TaskListMobile from "@/components/mobile/TaskListMobile";
 import toast from "react-hot-toast";
 
 import useWindowDimensions from "@/hooks/useWindowDimensions";
 import TaskListDesktop from "@/components/desktop/TaskListDesktop";
 import ProjectDetailsDesktop from "@/components/desktop/ProjectDetailsDesktop";
-import ProjectDetails from "@/components/ProjectDetails";
-import ButtonBar from "@/components/ButtonBar";
-import NavigationDesktop from "@/components/desktop/NavigationDesktop";
+import ProjectDetailsMobile from "@/components/mobile/ProjectDetailsMobile";
+import ButtonBar from "@/components/mobile/ButtonBar";
 
 import Swal from "sweetalert2";
+
+const StyledMain = styled.main`
+  height: 91vh;
+  display: flex;
+  flex-direction: column;
+`;
 
 export default function ProjectDetailPage() {
   const { width } = useWindowDimensions();
@@ -32,15 +38,16 @@ export default function ProjectDetailPage() {
 
   function handleDelete() {
     Swal.fire({
-      icon: "question",
-      iconColor: "#d1cffd",
-      title: "Are you sure?",
+      title: "Delete Project",
       text: "Do you really want to delete this project? ",
       type: "question",
       showCancelButton: true,
-      confirmButtonColor: "#d1cffd",
+      confirmButtonColor: "#dc2626",
       confirmButtonText: "Delete",
       closeOnConfirm: true,
+      width: 400,
+      background: "var(--color-gray-50)",
+      color: "var(--color-gray-900)",
     }).then(async (result) => {
       if (result.isConfirmed) {
         await fetch(`/api/projects/${id}`, {
@@ -57,16 +64,15 @@ export default function ProjectDetailPage() {
       {width <= 810 && (
         <>
           <ButtonBar handleDelete={handleDelete} id={id} />
-          <ProjectDetails project={project} />
-          <TaskList id={id} tasks={tasks} />
+          <ProjectDetailsMobile project={project} />
+          <TaskListMobile id={id} tasks={tasks} />
         </>
       )}
       {width > 810 && (
-        <>
-          <NavigationDesktop onDelete={handleDelete} />
-          <ProjectDetailsDesktop project={project} />
+        <StyledMain>
+          <ProjectDetailsDesktop project={project} onDelete={handleDelete} />
           <TaskListDesktop id={id} tasks={tasks} />
-        </>
+        </StyledMain>
       )}
     </>
   );

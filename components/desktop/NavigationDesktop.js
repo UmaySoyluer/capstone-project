@@ -1,102 +1,81 @@
-import { HiOutlinePaintBrush, HiOutlineTrash } from "react-icons/hi2";
-import styled, { css } from "styled-components";
-import ProjectFormModal from "../modals/ProjectFormModal";
-import { useState } from "react";
-import useWindowDimensions from "@/hooks/useWindowDimensions";
 import Link from "next/link";
+import styled from "styled-components";
+import { StyledToggleButton } from "../Buttons";
+import { useTheme } from "next-themes";
+import { HiOutlineMoon, HiOutlineSun } from "react-icons/hi2";
 
 const StyledNavigation = styled.nav`
   width: 100%;
-  height: 10vh;
-  padding-block: 0.5rem;
+  height: 7vh;
   padding-inline: 1.5rem;
+  margin-bottom: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-bottom: 1px solid var(--color-gray-300);
 `;
 
-const StyledTools = styled.div`
+const StyledNavigationLink = styled(Link)`
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  color: var(--color-brand-900);
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: 0.3s;
+  &:hover {
+    background-color: var(--color-brand-700);
+    color: var(--color-gray-50);
+  }
+`;
+
+const StyledList = styled.ul`
   display: flex;
   gap: 1rem;
 `;
 
-export const StyledDesktopToolButton = styled.button`
-  border: none;
-  border-radius: 10px;
-  padding-inline: 1.5rem;
-  padding-block: 0.5rem;
-  transition: 0.3s;
+const StyledUserBar = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-
-  ${({ variant }) =>
-    variant === "delete" &&
-    css`
-      background-color: #b91c1c;
-      color: var(--color-gray-50);
-
-      &:hover {
-        background-color: #dc2626;
-      }
-    `}
-
-  ${({ variant }) =>
-    variant === "edit" &&
-    css`
-      background-color: var(--color-brand-900);
-      color: var(--color-gray-50);
-
-      &:hover {
-        background-color: var(--color-brand-700);
-      }
-    `}
+  gap: 2rem;
 `;
 
-export default function NavigationDesktop({ onDelete }) {
-  const { width } = useWindowDimensions();
-  const [showModal, setShowModal] = useState(false);
-
-  if (width <= 810) return setShowModal(false);
-
-  function openModal() {
-    setShowModal(true);
-  }
-
-  function closeModal() {
-    setShowModal(false);
-  }
+export default function NavigationDesktop() {
+  const { theme, setTheme } = useTheme();
 
   return (
     <>
       <StyledNavigation>
-        <Link href={"/"}>Home</Link>
-        <StyledTools>
-          <StyledDesktopToolButton
-            variant="edit"
-            onClick={openModal}
-            type="button"
-          >
-            <HiOutlinePaintBrush
-              size={26}
-              color="#f9fafb"
-              title="Pencil icon for edit"
-            />
-            Edit Project
-          </StyledDesktopToolButton>
-          <StyledDesktopToolButton
-            variant="delete"
-            onClick={onDelete}
-            type="button"
-          >
-            <HiOutlineTrash title="Icon for delete" color="#f9fafb" size={26} />
-            Delete
-          </StyledDesktopToolButton>
-        </StyledTools>
-      </StyledNavigation>
+        <StyledList>
+          <li>
+            <StyledNavigationLink href={"/"}>ProFlow</StyledNavigationLink>
+          </li>
+          <li>
+            <StyledNavigationLink href={"/"}>Projects</StyledNavigationLink>
+          </li>
+        </StyledList>
 
-      {showModal && <ProjectFormModal onClose={closeModal} />}
+        <StyledUserBar>
+          <StyledToggleButton
+            onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+          >
+            <>
+              {theme === "light" ? (
+                <HiOutlineMoon
+                  size={30}
+                  style={{ color: "var(--color-brand-900)" }}
+                />
+              ) : (
+                <HiOutlineSun
+                  size={30}
+                  style={{ color: "var(--color-brand-900)" }}
+                />
+              )}
+            </>
+          </StyledToggleButton>
+          <StyledNavigationLink href={"/"}>User</StyledNavigationLink>
+        </StyledUserBar>
+      </StyledNavigation>
     </>
   );
 }

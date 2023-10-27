@@ -9,7 +9,7 @@ import {
   StyledInput,
   StyledLabel,
   StyledTextArea,
-} from "./Form";
+} from "./FormProject";
 
 const StyledRadioContainer = styled.div`
   display: flex;
@@ -78,7 +78,6 @@ const StyledPriorityLabel = styled.label`
 export default function FormTask({ formName, onSubmit, id, value, onClose }) {
   const [tag, setTag] = useLocalStorageState("tag", "Backlog");
   const [priority, setPriority] = useState("priority", "Neutral");
-
 
   function handleSubmit(event) {
     event.preventDefault();

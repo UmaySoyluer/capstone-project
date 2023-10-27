@@ -7,7 +7,7 @@ import {
   HiCheck,
   HiOutlineXMark,
 } from "react-icons/hi2";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 const StyledBackLink = styled(Link)`
   display: flex;
@@ -23,48 +23,32 @@ const StyledDeleteButton = styled.button`
   border: none;
   cursor: pointer;
 `;
-const StyledToggleButton = styled.input`
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  width: 40px;
-  height: 20px;
-  border-radius: 30px;
-  background-color: #d9d8dc;
-  position: absolute;
-  top: 0.7rem;
-  right: 1.2rem;
-  transition: all 0.5s ease-in;
+const StyledToggleButton = styled.button`
+  background-color: transparent;
+  border: none;
+  transition: 0.3s;
   cursor: pointer;
-  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--color-brand-900);
 
-  &:before {
-    content: "";
-    width: 17px;
-    height: 17px;
-    border-radius: 50%;
-    background: #f1f2f2;
-    position: absolute;
-    top: 50%;
-    left: 3px;
-    transform: translateY(-50%);
-    transition: all 0.5s ease-in;
-  }
-
-  &:checked:before {
-    background: #474748;
-    left: 20px;
-  }
-
-  &:checked {
-    background: #242424;
-  }
+  ${({ variant }) =>
+    variant === "mobile" &&
+    css`
+      padding: 0.5rem 1rem;
+      border-radius: 10px;
+    `}
 `;
 
 export function BackLink({ href }) {
   return (
     <StyledBackLink href={`${href}`}>
-      <HiArrowLeft title="Icon for back to home" color="#1e3a8a" size={26} />
+      <HiArrowLeft
+        title="Icon for back to home"
+        style={{ color: "var(--color-brand-900)" }}
+        size={26}
+      />
     </StyledBackLink>
   );
 }
@@ -72,7 +56,7 @@ export function BackLink({ href }) {
 export function DeleteButton({ handleClick }) {
   return (
     <StyledDeleteButton onClick={handleClick}>
-      <HiOutlineTrash title="Icon for delete" color="#7f1d1d" size={26} />
+      <HiOutlineTrash title="Icon for delete" color="#b91c1c" size={26} />
     </StyledDeleteButton>
   );
 }
@@ -90,7 +74,7 @@ export function EditLink({ url }) {
     <StyledEditProjectLink href={url}>
       <HiOutlinePaintBrush
         size={26}
-        color="#1e3a8a"
+        style={{ color: "var(--color-brand-900)" }}
         title="Pencil icon for edit"
       />
     </StyledEditProjectLink>
@@ -120,11 +104,12 @@ export function AddTaskLink({ url }) {
 const StyledSubmitButton = styled.button`
   background-color: var(--color-brand-900);
   color: var(--color-gray-50);
-  border: 1px solid var(--color-brand-900);
+  border: none;
   border-radius: 10px;
-  padding-inline: 1rem;
-  padding-block: 0.3rem;
-  width: 55%;
+  padding-inline: 0.5rem;
+  padding-block: 0.5rem;
+  height: 2rem;
+  width: 10rem;
   transition: 0.3s;
   display: flex;
   align-items: center;
@@ -141,9 +126,10 @@ const StyledCancelLink = styled(Link)`
   color: var(--color-gray-900);
   border: 1px solid var(--color-gray-500);
   border-radius: 10px;
-  padding-inline: 1rem;
-  padding-block: 0.3rem;
-  width: 40%;
+  padding-inline: 0.5rem;
+  padding-block: 0.5rem;
+  height: 2rem;
+  width: 7rem;
   transition: 0.3s;
   display: flex;
   align-items: center;
@@ -180,9 +166,10 @@ export const ModalCancel = styled.button`
   color: var(--color-gray-900);
   border: 1px solid var(--color-gray-500);
   border-radius: 10px;
-  padding-inline: 1rem;
-  padding-block: 0.3rem;
-  width: 40%;
+  padding-inline: 0.5rem;
+  padding-block: 0.5rem;
+  height: 2rem;
+  width: 7rem;
   transition: 0.3s;
   display: flex;
   align-items: center;
@@ -196,3 +183,40 @@ export const ModalCancel = styled.button`
 
 export { StyledToggleButton };
 
+// Desktop
+
+export const StyledToolButton = styled.button`
+  height: 2rem;
+  width: 7rem;
+  border: none;
+  border-radius: 10px;
+  padding-inline: 0.5rem;
+  padding-block: 0.5rem;
+  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+
+  ${({ variant }) =>
+    variant === "delete" &&
+    css`
+      background-color: #b91c1c;
+      color: #f9fafb;
+
+      &:hover {
+        background-color: #dc2626;
+      }
+    `}
+
+  ${({ variant }) =>
+    variant === "edit" &&
+    css`
+      background-color: var(--color-brand-900);
+      color: var(--color-gray-50);
+
+      &:hover {
+        background-color: var(--color-brand-700);
+      }
+    `}
+`;

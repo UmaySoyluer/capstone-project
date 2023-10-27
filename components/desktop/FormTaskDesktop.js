@@ -6,7 +6,7 @@ import {
   StyledInput,
   StyledLabel,
   StyledTextArea,
-} from "../Form";
+} from "../FormProject";
 
 export default function FormTaskDesktop({
   formName,

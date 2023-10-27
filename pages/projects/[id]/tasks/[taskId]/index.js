@@ -17,9 +17,8 @@ import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 
 const StyledSection = styled.section`
-  margin-top: 1rem;
-  border: 1px solid black;
-  min-height: 5rem;
+  margin-top: 10vh;
+  padding-inline: 2.5rem;
 `;
 
 const StyledDescriptionList = styled.dl`
@@ -28,7 +27,6 @@ const StyledDescriptionList = styled.dl`
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  padding-inline: 1rem;
 `;
 
 const StyledDescriptionListTitle = styled.dt`
@@ -39,7 +37,6 @@ const StyledDescriptionListTitle = styled.dt`
 
 const StyledArticle = styled.article`
   margin-top: 1.5rem;
-  padding-inline: 1rem;
 `;
 
 const StyledPriorityLabel = styled.label`
@@ -113,32 +110,33 @@ export default function TaskDetailPage() {
         </StyledToolBar>
       </StyledButtonContainer>
 
-      <Heading>{title}</Heading>
-      <StyledDescriptionList>
-        <div>
-          <StyledDescriptionListTitle>Tag:</StyledDescriptionListTitle>
-          <dd>{tag}</dd>
-        </div>
-        <div>
-          <StyledDescriptionListTitle>Created at:</StyledDescriptionListTitle>
-          <dd>{date}</dd>
+      <StyledSection>
+        <Heading>{title}</Heading>
+        <StyledDescriptionList>
+          <div>
+            <StyledDescriptionListTitle>Tag:</StyledDescriptionListTitle>
+            <dd>{tag}</dd>
+          </div>
+          <div>
+            <StyledDescriptionListTitle>Created at:</StyledDescriptionListTitle>
+            <dd>{date}</dd>
+          </div>
+          <div>
+            <StyledDescriptionListTitle>Priority :</StyledDescriptionListTitle>
+            <StyledPriorityTag>
+              <StyledPriorityButtons />
+              <StyledPriorityLabel htmlFor={priority[0]}>
+                {priority}
+              </StyledPriorityLabel>
+            </StyledPriorityTag>
+          </div>
+        </StyledDescriptionList>
 
-        </div>
-        <div>
-          <StyledDescriptionListTitle>Priority :</StyledDescriptionListTitle>
-          <StyledPriorityTag>
-            <StyledPriorityButtons />
-            <StyledPriorityLabel htmlFor={priority[0]}>
-              {priority}
-            </StyledPriorityLabel>
-          </StyledPriorityTag>
-
-        </div>
-      </StyledDescriptionList>
-      <StyledArticle>
-        <StyledDescriptionListTitle>Task:</StyledDescriptionListTitle>
-        <dd>{description}</dd>
-      </StyledArticle>
+        <StyledArticle>
+          <StyledDescriptionListTitle>Task:</StyledDescriptionListTitle>
+          <dd>{description}</dd>
+        </StyledArticle>
+      </StyledSection>
     </>
   );
 }

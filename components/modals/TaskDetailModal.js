@@ -1,46 +1,23 @@
+import styled from "styled-components";
 import toast from "react-hot-toast";
 import { mutate } from "swr";
-import styled from "styled-components";
+
 import Heading from "../Heading";
-import { ModalCancel } from "../Buttons";
-import { StyledDesktopToolButton } from "../desktop/NavigationDesktop";
+import { ModalCancel, StyledToolButton } from "../Buttons";
 import { HiOutlinePaintBrush, HiOutlineTrash } from "react-icons/hi2";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import FormTaskDesktop from "../desktop/FormTaskDesktop";
-
-const StyledModal = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  background-color: rgba(17, 24, 39, 0.6);
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const StyledContainer = styled.div`
-  border-radius: 10px;
-  width: 500px;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: var(--color-gray-50);
-  padding-block: 1rem 2rem;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-`;
+import { StyledModal } from "@/styles/StyledModal";
+import { StyledModalContent } from "@/styles/StyledModalContent";
+import Swal from "sweetalert2";
 
 const StyledDescriptionList = styled.dl`
-  margin-top: 2rem;
+  margin-top: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  padding-inline: 2rem;
 `;
 
 const StyledDescriptionListTitle = styled.dt`
@@ -50,14 +27,17 @@ const StyledDescriptionListTitle = styled.dt`
 `;
 
 const StyledArticle = styled.article`
-  margin-block: 1.5rem;
-  padding-inline: 2rem;
+  margin: 1rem 0 2rem 0;
 `;
 
 const StyledButtonContainer = styled.div`
-  padding-inline: 2rem;
   display: flex;
   justify-content: space-between;
+`;
+
+const StyledTools = styled.div`
+  display: flex;
+  gap: 0.5rem;
 `;
 
 export default function TaskDetailModal({ task, onClose }) {
@@ -89,19 +69,35 @@ export default function TaskDetailModal({ task, onClose }) {
     }
   }
 
-  async function handleDelete() {
-    await fetch(`/api/projects/${id}/tasks/${taskId}`, {
-      method: "DELETE",
-    });
+  function handleDelete() {
+    Swal.fire({
+      title: "Delete Task",
+      text: "Do you really want to delete this task? ",
+      type: "question",
+      showCancelButton: true,
+      confirmButtonColor: "#dc2626",
+      confirmButtonText: "Delete",
+      closeOnConfirm: true,
+      width: 400,
+      background: "var(--color-gray-50)",
+      color: "var(--color-gray-900)",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        await fetch(`/api/projects/${id}/tasks/${taskId}`, {
+          method: "DELETE",
+        });
 
-    mutate(`/api/projects/${id}`);
-    onClose();
-    toast.success("Task deleted!");
+        mutate(`/api/projects/${id}`);
+        onClose();
+        toast.success("Task deleted!");
+      }
+    });
   }
+
   return (
     <StyledModal>
       {!editMode && (
-        <StyledContainer>
+        <StyledModalContent>
           <Heading>{title}</Heading>
           <StyledDescriptionList>
             <div>
@@ -124,35 +120,37 @@ export default function TaskDetailModal({ task, onClose }) {
           <StyledButtonContainer>
             <ModalCancel onClick={onClose}>Close</ModalCancel>
 
-            <StyledDesktopToolButton variant="edit" onClick={handleEditMode}>
-              <HiOutlinePaintBrush
-                size={26}
-                color="#f9fafb"
-                title="Pencil icon for edit"
-              />
-              Edit
-            </StyledDesktopToolButton>
-            <StyledDesktopToolButton variant="delete" onClick={handleDelete}>
-              <HiOutlineTrash
-                title="Icon for delete"
-                color="#f9fafb"
-                size={26}
-              />
-              Delete
-            </StyledDesktopToolButton>
+            <StyledTools>
+              <StyledToolButton variant="edit" onClick={handleEditMode}>
+                <HiOutlinePaintBrush
+                  size={20}
+                  style={{ color: "var(--color-gray-50)" }}
+                  title="Pencil icon for edit"
+                />
+                Edit
+              </StyledToolButton>
+              <StyledToolButton variant="delete" onClick={handleDelete}>
+                <HiOutlineTrash
+                  title="Icon for delete"
+                  color="#f9fafb"
+                  size={20}
+                />
+                Delete
+              </StyledToolButton>
+            </StyledTools>
           </StyledButtonContainer>
-        </StyledContainer>
+        </StyledModalContent>
       )}
 
       {editMode && (
-        <StyledContainer>
+        <StyledModalContent>
           <FormTaskDesktop
             task={task}
             onEdit={handleEditMode}
             editTask={editTask}
             formName={"Edit your task"}
           />
-        </StyledContainer>
+        </StyledModalContent>
       )}
     </StyledModal>
   );

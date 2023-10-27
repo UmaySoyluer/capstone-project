@@ -6,7 +6,6 @@ import Heading from "./Heading";
 export const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
-  padding-inline: 1.5rem;
   margin-top: -0.5rem;
 `;
 
@@ -23,6 +22,7 @@ export const StyledInput = styled.input`
   padding-inline: 0.5rem;
   padding-block: 0.3rem;
   border-radius: 10px;
+  background: var(--color-gray-100);
   border: 1px solid var(--color-gray-300);
 
   &:focus {
@@ -35,6 +35,7 @@ export const StyledTextArea = styled.textarea`
   padding-block: 0.3rem;
   resize: none;
   border-radius: 10px;
+  background: var(--color-gray-100);
   border: 1px solid var(--color-gray-300);
 
   &:focus {
@@ -46,7 +47,7 @@ export const StyledSelect = styled.select`
   padding-inline: 0.5rem;
   padding-block: 0.5rem;
   border-radius: 10px;
-  background: white;
+  background: var(--color-gray-100);
   border: 1px solid var(--color-gray-300);
 
   &:focus {
@@ -57,7 +58,7 @@ export const StyledSelect = styled.select`
 const StyledOption = styled.option`
   padding-inline: 0.5rem;
   padding-block: 0.5rem;
-  background-color: var(--color-gray-50);
+  background-color: var(--color-gray-100);
 `;
 
 export const StyledButtonContainer = styled.div`
@@ -67,7 +68,7 @@ export const StyledButtonContainer = styled.div`
   flex-direction: row-reverse;
 `;
 
-export default function Form({ formName, onSubmit, value, onClose }) {
+export default function FormProject({ formName, onSubmit, value, onClose }) {
   function handleSubmit(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
@@ -84,7 +85,7 @@ export default function Form({ formName, onSubmit, value, onClose }) {
     <>
       <Heading>{formName}</Heading>
       <StyledForm onSubmit={handleSubmit}>
-        <StyledLabel htmlFor="title">Project name:</StyledLabel>
+        <StyledLabel htmlFor="title">Project title:</StyledLabel>
 
         <StyledInput
           type="text"
@@ -94,7 +95,7 @@ export default function Form({ formName, onSubmit, value, onClose }) {
           defaultValue={value?.title}
         ></StyledInput>
 
-        <StyledLabel htmlFor="description">Description:</StyledLabel>
+        {/* <StyledLabel htmlFor="description">Description:</StyledLabel>
         <StyledTextArea
           type="text"
           name="description"
@@ -102,15 +103,15 @@ export default function Form({ formName, onSubmit, value, onClose }) {
           rows={3}
           required
           defaultValue={value?.description}
-        ></StyledTextArea>
-        <StyledLabel htmlFor="startDate">Start Date:</StyledLabel>
+        ></StyledTextArea> */}
+        {/* <StyledLabel htmlFor="startDate">Start Date:</StyledLabel>
         <StyledInput
           type="date"
           name="startDate"
           id="startDate"
           required
           defaultValue={value?.startDate}
-        ></StyledInput>
+        ></StyledInput> */}
         <StyledLabel htmlFor="endDate">Due Date:</StyledLabel>
         <StyledInput
           type="date"
@@ -119,7 +120,7 @@ export default function Form({ formName, onSubmit, value, onClose }) {
           required
           defaultValue={value?.endDate}
         ></StyledInput>
-        <StyledLabel htmlFor="department">Select Department:</StyledLabel>
+        <StyledLabel htmlFor="department">Department:</StyledLabel>
         <StyledSelect
           name="department"
           id="department"

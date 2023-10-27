@@ -28,17 +28,18 @@ export default createGlobalStyle`
   --color-brand-950: #172554;
 }
 [data-theme="dark"] {
-  --color-gray-50: #030712;
-  --color-gray-100: #111827;
-  --color-gray-200: #1F2937;
-  --color-gray-300: #374151;
-  --color-gray-400: #4B5563;
-  --color-gray-500: #6B7280;
-  --color-gray-600: #9CA3AF;
-  --color-gray-700: #D1D5DB;
-  --color-gray-800: #E5E7EB;
-  --color-gray-900: #F3F4F6;
-  --color-gray-950: #F9FAFB;
+  /* --color-gray-50: #030712; */
+  --color-gray-50: #111827;
+  --color-gray-100: #1F2937;
+  --color-gray-200: #374151;
+  --color-gray-300: #4B5563;
+  --color-gray-400: #6B7280;
+  --color-gray-500: #9CA3AF;
+  --color-gray-600: #D1D5DB;
+  --color-gray-700: #E5E7EB;
+  --color-gray-800: #F3F4F6;
+  --color-gray-900: #F9FAFB;
+
   --color-brand-50: #172554;
   --color-brand-100: #1E3A8A;
   --color-brand-200: #1E40AF;
