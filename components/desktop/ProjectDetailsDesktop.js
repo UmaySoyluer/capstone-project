@@ -7,11 +7,11 @@ import useWindowDimensions from "@/hooks/useWindowDimensions";
 import ProjectFormModal from "../modals/ProjectFormModal";
 
 const StyledContainer = styled.div`
-  height: 20vh;
+  height: 7vh;
   flex-shrink: 0;
   display: flex;
   justify-content: space-between;
-  align-items: space-around;
+  align-items: center;
   border-radius: 10px;
   margin: 0.5rem 1.5rem;
   padding: 1rem 1rem;
@@ -83,7 +83,7 @@ export default function ProjectDetailsDesktop({ project, onDelete }) {
             <dd>{endDate}</dd>
           </dl>
 
-          <StyledArticle>
+          {/* <StyledArticle>
             <dl>
               <StyledDescriptionListTitle>
                 Description:
@@ -91,7 +91,7 @@ export default function ProjectDetailsDesktop({ project, onDelete }) {
 
               <dd>{description}</dd>
             </dl>
-          </StyledArticle>
+          </StyledArticle> */}
         </StyledDetails>
 
         <StyledTools>

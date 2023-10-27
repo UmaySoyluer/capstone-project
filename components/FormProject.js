@@ -85,7 +85,7 @@ export default function FormProject({ formName, onSubmit, value, onClose }) {
     <>
       <Heading>{formName}</Heading>
       <StyledForm onSubmit={handleSubmit}>
-        <StyledLabel htmlFor="title">Project name:</StyledLabel>
+        <StyledLabel htmlFor="title">Project title:</StyledLabel>
 
         <StyledInput
           type="text"
@@ -95,7 +95,7 @@ export default function FormProject({ formName, onSubmit, value, onClose }) {
           defaultValue={value?.title}
         ></StyledInput>
 
-        <StyledLabel htmlFor="description">Description:</StyledLabel>
+        {/* <StyledLabel htmlFor="description">Description:</StyledLabel>
         <StyledTextArea
           type="text"
           name="description"
@@ -103,15 +103,15 @@ export default function FormProject({ formName, onSubmit, value, onClose }) {
           rows={3}
           required
           defaultValue={value?.description}
-        ></StyledTextArea>
-        <StyledLabel htmlFor="startDate">Start Date:</StyledLabel>
+        ></StyledTextArea> */}
+        {/* <StyledLabel htmlFor="startDate">Start Date:</StyledLabel>
         <StyledInput
           type="date"
           name="startDate"
           id="startDate"
           required
           defaultValue={value?.startDate}
-        ></StyledInput>
+        ></StyledInput> */}
         <StyledLabel htmlFor="endDate">Due Date:</StyledLabel>
         <StyledInput
           type="date"
@@ -120,7 +120,7 @@ export default function FormProject({ formName, onSubmit, value, onClose }) {
           required
           defaultValue={value?.endDate}
         ></StyledInput>
-        <StyledLabel htmlFor="department">Select Department:</StyledLabel>
+        <StyledLabel htmlFor="department">Department:</StyledLabel>
         <StyledSelect
           name="department"
           id="department"

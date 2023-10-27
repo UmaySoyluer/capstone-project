@@ -42,6 +42,9 @@ const StyledListTitle = styled.p`
   font-size: 1.3rem;
   font-weight: bold;
   color: var(--color-brand-900);
+  align-self: flex-start;
+  padding-left: 2rem;
+  padding-top: 0.5rem;
 `;
 
 const StyledCreate = styled.button`
@@ -93,9 +96,7 @@ export default function TaskListDesktop({ tasks }) {
                   .filter((task) => list === task.tag)
                   .map((task) => <TaskDesktop key={task._id} task={task} />)
               ) : (
-                <>
-                  <p>No tasks found...</p>
-                </>
+                <p>No tasks found...</p>
               )}
             </StyledTaskList>
 
