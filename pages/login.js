@@ -25,6 +25,10 @@ const Login = () => {
     }
   };
 
+  const handleBackHome = () => {
+    console.log("Back to home");
+  };
+
   return (
     <div
       style={{
@@ -34,6 +38,26 @@ const Login = () => {
         height: "100vh",
       }}
     >
+      <div style={{ position: "absolute", top: "70px", left: "20px" }}>
+        <button
+          style={{
+            color: "black",
+            backgroundColor: "blue",
+            padding: "10px 20px",
+            border: "none",
+            cursor: "pointer",
+          }}
+          onClick={handleBackHome}
+          onMouseOver={(e) => {
+            e.target.style.backgroundColor = "gray";
+          }}
+          onMouseOut={(e) => {
+            e.target.style.backgroundColor = "blue";
+          }}
+        >
+          Back Home
+        </button>
+      </div>
       <div style={{ textAlign: "center" }}>
         <h2 style={{ color: "blue" }}>Please to log in below</h2>
         <form onSubmit={handleLogin}>
