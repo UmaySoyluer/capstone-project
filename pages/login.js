@@ -62,7 +62,9 @@ const Login = () => {
         <h2 style={{ color: "blue" }}>Please to log in below</h2>
         <form onSubmit={handleLogin}>
           <div style={{ margin: "10px" }}>
-            <label style={{ color: "blue" }}>Username:</label>
+            <label style={{ color: "blue", marginRight: "10px" }}>
+              Username:
+            </label>
             <input
               type="text"
               value={username}
@@ -70,7 +72,9 @@ const Login = () => {
             />
           </div>
           <div style={{ margin: "10px" }}>
-            <label style={{ color: "blue" }}>Password:</label>
+            <label style={{ color: "blue", marginRight: "10px" }}>
+              Password:
+            </label>
             <input
               type="password"
               value={password}
