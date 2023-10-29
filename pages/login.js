@@ -59,7 +59,7 @@ const Login = () => {
         </button>
       </div>
       <div style={{ textAlign: "center" }}>
-        <h2 style={{ color: "blue" }}>Please to log in below</h2>
+        <h2 style={{ color: "blue" }}>Please log in below</h2>
         <form onSubmit={handleLogin}>
           <div style={{ margin: "10px" }}>
             <label style={{ color: "blue", marginRight: "10px" }}>

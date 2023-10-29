@@ -38,7 +38,7 @@ const Signup = () => {
         <div
           style={{
             position: "absolute",
-            top: "10px",
+            top: "70px",
             left: "10px",
           }}
         >
@@ -56,9 +56,9 @@ const Signup = () => {
           </button>
         </div>
         <h2 style={{ color: "blue" }}>Create an account</h2>
-        <form onSubmit={handleSignup}>
-          <div style={{ margin: "10px" }}>
-            <label style={{ color: "blue", marginRight: "10px" }}>
+        <form onSubmit={handleSignup} style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+          <div style={{ margin: "10px", display: "flex", alignItems: "center" }}>
+            <label style={{ color: "blue", marginRight: "10px", width: "100px" }}>
               Username:
             </label>
             <input
@@ -67,16 +67,18 @@ const Signup = () => {
               onChange={(e) => setUsername(e.target.value)}
             />
           </div>
-          <div style={{ margin: "10px" }}>
-            <label style={{ color: "blue", marginRight: "10px" }}>Email:</label>
+          <div style={{ margin: "10px", display: "flex", alignItems: "center" }}>
+            <label style={{ color: "blue", marginRight: "10px", width: "100px" }}>
+              Email:
+            </label>
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
-          <div style={{ margin: "10px" }}>
-            <label style={{ color: "blue", marginRight: "10px" }}>
+          <div style={{ margin: "10px", display: "flex", alignItems: "center" }}>
+            <label style={{ color: "blue", marginRight: "10px", width: "100px" }}>
               Password:
             </label>
             <input
@@ -104,6 +106,8 @@ const Signup = () => {
             >
               Sign Up
             </button>
+          </div>
+          <div style={{ margin: "10px" }}>
             <button
               type="button"
               onClick={handleCancel}
@@ -113,7 +117,6 @@ const Signup = () => {
                 padding: "10px 20px",
                 border: "none",
                 cursor: "pointer",
-                marginLeft: "10px",
               }}
               onMouseOver={(e) => {
                 e.target.style.backgroundColor = "darkred";
