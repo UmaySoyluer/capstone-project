@@ -1,3 +1,5 @@
+"use client";
+
 import styled from "styled-components";
 import ProjectList from "@/components/ProjectList";
 import { StyledToggleButton } from "@/components/Buttons";
