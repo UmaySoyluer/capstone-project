@@ -1,9 +1,6 @@
-import { signIn, signOut, useSession } from "next-auth/react";
+import { signIn, signOut } from "next-auth/react";
 
 const SignInPage = () => {
-  const session = useSession();
-  console.log(session);
-
   return (
     <div
       style={{
