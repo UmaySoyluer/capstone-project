@@ -2,6 +2,8 @@ import Link from "next/link";
 import useSWR from "swr";
 import styled from "styled-components";
 import { HiPlus } from "react-icons/hi2";
+import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
 
 import Project from "./Project";
 import Error from "@/components/Error";
@@ -19,6 +21,12 @@ const StyledProjectsList = styled.ul`
 `;
 
 export default function ProjectList() {
+  const router = useRouter();
+  const { data: session } = useSession();
+  if (!session) {
+    router.push("/Users");
+  }
+
   const { data: projects, isLoading, error } = useSWR("/api/projects");
 
   if (isLoading) {
