@@ -25,10 +25,13 @@ const StyledMain = styled.main`
 
 export default function ProjectDetailPage() {
   const router = useRouter();
+
   const { data: session } = useSession();
-  if (!session) {
-    return <SignInPage />;
-  }
+  useEffect(() => {
+    if (!session) {
+      router.push("/SignIn");
+    }
+  }, [session]);
 
   const { width } = useWindowDimensions();
 

@@ -1,6 +1,9 @@
 import { useRouter } from "next/router";
 import useSWR from "swr";
 import styled from "styled-components";
+import toast from "react-hot-toast";
+import Swal from "sweetalert2";
+import { useSession } from "next-auth/react";
 
 import Error from "@/components/Error";
 import Heading from "@/components/Heading";
@@ -12,9 +15,6 @@ import {
   StyledPriorityButtons,
   StyledPriorityTag,
 } from "@/components/FormTask";
-import toast from "react-hot-toast";
-import Swal from "sweetalert2";
-import { useSession } from "next-auth/react";
 
 const StyledSection = styled.section`
   margin-top: 10vh;
@@ -64,9 +64,11 @@ export default function TaskDetailPage() {
   const router = useRouter();
 
   const { data: session } = useSession();
-  if (!session) {
-    return <SignInPage />;
-  }
+  useEffect(() => {
+    if (!session) {
+      router.push("/SignIn");
+    }
+  }, [session]);
 
   const { isReady } = router;
   const { id, taskId } = router.query;
