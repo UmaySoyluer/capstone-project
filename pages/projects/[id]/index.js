@@ -15,6 +15,7 @@ import ProjectDetailsMobile from "@/components/mobile/ProjectDetailsMobile";
 import ButtonBar from "@/components/mobile/ButtonBar";
 
 import Swal from "sweetalert2";
+import { useSession } from "next-auth/react";
 
 const StyledMain = styled.main`
   height: 91vh;
@@ -23,9 +24,14 @@ const StyledMain = styled.main`
 `;
 
 export default function ProjectDetailPage() {
+  const router = useRouter();
+  const { data: session } = useSession();
+  if (!session) {
+    router.push("/Users");
+  }
+
   const { width } = useWindowDimensions();
 
-  const router = useRouter();
   const { isReady } = router;
   const { id } = router.query;
 

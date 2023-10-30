@@ -1,7 +1,6 @@
 import { useRouter } from "next/router";
 import useSWR from "swr";
 import styled from "styled-components";
-import { mutate } from "swr";
 
 import Error from "@/components/Error";
 import Heading from "@/components/Heading";
@@ -15,6 +14,7 @@ import {
 } from "@/components/FormTask";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
+import { useSession } from "next-auth/react";
 
 const StyledSection = styled.section`
   margin-top: 10vh;
@@ -62,6 +62,12 @@ const StyledPriorityLabel = styled.label`
 
 export default function TaskDetailPage() {
   const router = useRouter();
+
+  const { data: session } = useSession();
+  if (!session) {
+    router.push("/Users");
+  }
+
   const { isReady } = router;
   const { id, taskId } = router.query;
 

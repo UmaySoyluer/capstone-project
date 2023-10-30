@@ -2,6 +2,8 @@ import styled from "styled-components";
 import ProjectList from "@/components/ProjectList";
 import { StyledToggleButton } from "@/components/Buttons";
 import { useTheme } from "next-themes";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
 
 const StyledMainHeadline = styled.h1`
   margin-block: 1rem;
@@ -11,6 +13,12 @@ const StyledMainHeadline = styled.h1`
 `;
 
 export default function ProjectsOverviewPage() {
+  const router = useRouter();
+  const { data: session } = useSession();
+  if (!session) {
+    router.push("/Users");
+  }
+
   const { theme, setTheme } = useTheme();
 
   return (
