@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import useSWR from "swr";
 import styled from "styled-components";
+import { useSession } from "next-auth/react";
 
 import Error from "@/components/Error";
 import Loading from "@/components/Loading";
@@ -28,6 +29,13 @@ export default function ProjectDetailPage() {
   const router = useRouter();
   const { isReady } = router;
   const { id } = router.query;
+
+  const { data: session } = useSession();
+  useEffect(() => {
+    if (!session) {
+      router.push("/SignIn");
+    }
+  }, [session]);
 
   const { data: project, isLoading, error } = useSWR(`/api/projects/${id}`);
 

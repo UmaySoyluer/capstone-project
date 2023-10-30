@@ -2,6 +2,7 @@ import NextAuth from "next-auth";
 import GithubProvider from "next-auth/providers/github";
 import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
 import connect from "../../../db/mongodb";
+
 export const authOptions = {
   adapter: MongoDBAdapter(connect),
   secret: process.env.AUTH_SECRET,
@@ -20,4 +21,3 @@ export const authOptions = {
   },
 };
 export default NextAuth(authOptions);
-MongoDBAdapter;

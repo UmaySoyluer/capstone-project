@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import useSWR from "swr";
 import styled from "styled-components";
 import { mutate } from "swr";
+import { useSession } from "next-auth/react";
 
 import Error from "@/components/Error";
 import Heading from "@/components/Heading";
@@ -64,6 +65,13 @@ export default function TaskDetailPage() {
   const router = useRouter();
   const { isReady } = router;
   const { id, taskId } = router.query;
+
+  const { data: session } = useSession();
+  useEffect(() => {
+    if (!session) {
+      router.push("/SignIn");
+    }
+  }, [session]);
 
   const {
     data: task,
