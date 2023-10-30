@@ -27,7 +27,7 @@ export default function ProjectDetailPage() {
   const router = useRouter();
   const { data: session } = useSession();
   if (!session) {
-    router.push("/Users");
+    return <p>No session</p>;
   }
 
   const { width } = useWindowDimensions();

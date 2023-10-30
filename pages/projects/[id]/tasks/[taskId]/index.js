@@ -65,7 +65,7 @@ export default function TaskDetailPage() {
 
   const { data: session } = useSession();
   if (!session) {
-    router.push("/Users");
+    return <p>No session</p>;
   }
 
   const { isReady } = router;
