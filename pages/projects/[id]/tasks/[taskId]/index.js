@@ -65,7 +65,7 @@ export default function TaskDetailPage() {
 
   const { data: session } = useSession();
   if (!session) {
-    return <p>No session</p>;
+    return <SignInPage />;
   }
 
   const { isReady } = router;
