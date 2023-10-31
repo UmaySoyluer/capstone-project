@@ -1,12 +1,12 @@
 # Description
-*ProFlow* App is a mobile-first task management application designed for Agile teams. It offers a responsive interface with Kanban boards for efficient task tracking.
+**ProFlow** App is a mobile-first task management application designed for Agile teams. It offers a responsive interface with Kanban boards for efficient task tracking.
 
-# Features
-Responsive Mobile-First Design: Access and manage tasks from any device.
-Kanban Boards: Organize tasks visually and track progress.
+## Features
+- Responsive Mobile-First Design: Access and manage tasks from any device.
+- Kanban Boards: Organize tasks visually and track progress.
 
-Tech Stack: Built with JavaScript, React, Next.js, Styled Components, and MongoDB with Mongoose.
-Testing: Ensured reliability with Jest and React Testing Library.
+- Tech Stack: Built with JavaScript, React, Next.js, Styled Components, and MongoDB with Mongoose.
+- Testing: Ensured reliability with Jest and React Testing Library.
 
 You can [🔗 **use this template on CodeSandbox**](https://codesandbox.io/p/sandbox/github/neuefische/web-exercises/tree/main/templates/next?file=/README.md) or locally by running this command in your Terminal:
 
