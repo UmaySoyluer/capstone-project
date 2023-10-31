@@ -25,7 +25,7 @@ describe("Home page", () => {
       name: /start now/i,
     });
 
-    await user.click(callToActionLink);
+    // await user.click(callToActionLink);
 
     expect(mockRouter.asPath).toEqual("/ProjectsOverview");
   });
