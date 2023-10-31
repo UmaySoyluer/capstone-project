@@ -13,7 +13,9 @@ const taskSchema = new Schema(
     },
     tag: {
       type: String,
-      required: true,
+    },
+    columnId: {
+      type: String,
     },
     createdAt: {
       type: Date,

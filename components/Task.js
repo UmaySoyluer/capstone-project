@@ -1,7 +1,6 @@
 import styled from "styled-components";
-import Link from "next/link";
 import { useState } from "react";
-import TaskDetailModal from "../modals/TaskDetailModal";
+import TaskDetailModal from "./modals/TaskDetailModal";
 
 const StyledListItem = styled.li`
   display: flex;
@@ -22,7 +21,7 @@ const StyledListItem = styled.li`
   }
 `;
 
-export default function TaskDesktop({ task, id: projectId }) {
+export default function Task({ task, id: projectId, innerRef, provided }) {
   const [showModal, setShowModal] = useState(false);
 
   function openModal() {
@@ -37,7 +36,14 @@ export default function TaskDesktop({ task, id: projectId }) {
 
   return (
     <>
-      <StyledListItem role="button" tabIndex="0" onClick={openModal}>
+      <StyledListItem
+        role="button"
+        tabIndex="0"
+        onClick={openModal}
+        ref={innerRef}
+        {...provided.dragHandleProps}
+        {...provided.draggableProps}
+      >
         {title}
       </StyledListItem>
       {showModal && <TaskDetailModal task={task} onClose={closeModal} />}

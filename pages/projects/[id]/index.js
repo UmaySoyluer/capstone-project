@@ -1,15 +1,14 @@
 import { useRouter } from "next/router";
-import useSWR from "swr";
+import useSWR, { mutate } from "swr";
 import styled from "styled-components";
-
-import Error from "@/components/Error";
-import Loading from "@/components/Loading";
-
-import TaskListMobile from "@/components/mobile/TaskListMobile";
 import toast from "react-hot-toast";
 
 import useWindowDimensions from "@/hooks/useWindowDimensions";
-import TaskListDesktop from "@/components/desktop/TaskListDesktop";
+
+import Loading from "@/components/Loading";
+import Error from "@/components/Error";
+
+import TaskList from "@/components/TaskList";
 import ProjectDetailsDesktop from "@/components/desktop/ProjectDetailsDesktop";
 import ProjectDetailsMobile from "@/components/mobile/ProjectDetailsMobile";
 import ButtonBar from "@/components/mobile/ButtonBar";
@@ -34,7 +33,7 @@ export default function ProjectDetailPage() {
   if (!isReady || isLoading) return <Loading />;
   if (error) return <Error message={error.message} />;
 
-  const { tasks } = project;
+  const { columns } = project;
 
   function handleDelete() {
     Swal.fire({
@@ -53,7 +52,7 @@ export default function ProjectDetailPage() {
         await fetch(`/api/projects/${id}`, {
           method: "DELETE",
         });
-        router.push("/");
+        router.push("/ProjectsOverview");
         toast.success("Project deleted!");
       }
     });
@@ -62,16 +61,16 @@ export default function ProjectDetailPage() {
   return (
     <>
       {width <= 810 && (
-        <>
+        <StyledMain>
           <ButtonBar handleDelete={handleDelete} id={id} />
           <ProjectDetailsMobile project={project} />
-          <TaskListMobile id={id} tasks={tasks} />
-        </>
+          <TaskList id={id} columns={columns} />
+        </StyledMain>
       )}
       {width > 810 && (
         <StyledMain>
           <ProjectDetailsDesktop project={project} onDelete={handleDelete} />
-          <TaskListDesktop id={id} tasks={tasks} />
+          <TaskList id={id} columns={columns} />
         </StyledMain>
       )}
     </>

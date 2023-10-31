@@ -12,7 +12,10 @@ export default async function handler(request, response) {
       const taskData = request.body;
       const task = await Task.create(taskData);
       const project = await Project.findById(id);
-      project.tasks.push(task._id);
+      const column = project.columns.find(
+        (column) => column._id.toString() === task.columnId
+      );
+      column.tasks.push(task._id);
       await project.save();
 
       return response.status(201).json({ message: "Task created" });

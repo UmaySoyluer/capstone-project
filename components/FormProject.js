@@ -93,25 +93,8 @@ export default function FormProject({ formName, onSubmit, value, onClose }) {
           id="title"
           required
           defaultValue={value?.title}
-        ></StyledInput>
+        />
 
-        {/* <StyledLabel htmlFor="description">Description:</StyledLabel>
-        <StyledTextArea
-          type="text"
-          name="description"
-          id="description"
-          rows={3}
-          required
-          defaultValue={value?.description}
-        ></StyledTextArea> */}
-        {/* <StyledLabel htmlFor="startDate">Start Date:</StyledLabel>
-        <StyledInput
-          type="date"
-          name="startDate"
-          id="startDate"
-          required
-          defaultValue={value?.startDate}
-        ></StyledInput> */}
         <StyledLabel htmlFor="endDate">Due Date:</StyledLabel>
         <StyledInput
           type="date"
@@ -119,7 +102,8 @@ export default function FormProject({ formName, onSubmit, value, onClose }) {
           id="endDate"
           required
           defaultValue={value?.endDate}
-        ></StyledInput>
+        />
+
         <StyledLabel htmlFor="department">Department:</StyledLabel>
         <StyledSelect
           name="department"

@@ -4,6 +4,7 @@ import Heading from "@/components/Heading";
 const StyledDetailsMobile = styled.div`
   margin-top: 10vh;
   padding-inline: 2.5rem;
+  margin-bottom: 1.5rem;
 `;
 
 const StyledDepartment = styled.h3`
@@ -26,12 +27,8 @@ const StyledDescriptionListTitle = styled.dt`
   color: var(--color-brand-900);
 `;
 
-const StyledArticle = styled.article`
-  margin-top: 1.5rem;
-`;
-
 export default function ProjectDetailsMobile({ project }) {
-  const { title, description, endDate, department, teamLead } = project;
+  const { title, endDate, department, teamLead } = project;
   return (
     <StyledDetailsMobile>
       <Heading>{title}</Heading>
@@ -47,10 +44,6 @@ export default function ProjectDetailsMobile({ project }) {
           <dd>{endDate}</dd>
         </div>
       </StyledDescriptionList>
-      <StyledArticle>
-        <StyledDescriptionListTitle>Description</StyledDescriptionListTitle>
-        <dd>{description}</dd>
-      </StyledArticle>
     </StyledDetailsMobile>
   );
 }

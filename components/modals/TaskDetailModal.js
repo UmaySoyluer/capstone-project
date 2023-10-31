@@ -9,7 +9,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import FormTaskDesktop from "../desktop/FormTaskDesktop";
 import { StyledModal } from "@/styles/StyledModal";
-import { StyledModalContent } from "@/styles/StyledModalContent";
+import ModalContent from "@/styles/StyledModalContent";
 import Swal from "sweetalert2";
 
 const StyledDescriptionList = styled.dl`
@@ -97,7 +97,7 @@ export default function TaskDetailModal({ task, onClose }) {
   return (
     <StyledModal>
       {!editMode && (
-        <StyledModalContent>
+        <ModalContent>
           <Heading>{title}</Heading>
           <StyledDescriptionList>
             <div>
@@ -139,18 +139,18 @@ export default function TaskDetailModal({ task, onClose }) {
               </StyledToolButton>
             </StyledTools>
           </StyledButtonContainer>
-        </StyledModalContent>
+        </ModalContent>
       )}
 
       {editMode && (
-        <StyledModalContent>
+        <ModalContent>
           <FormTaskDesktop
             task={task}
             onEdit={handleEditMode}
             editTask={editTask}
             formName={"Edit your task"}
           />
-        </StyledModalContent>
+        </ModalContent>
       )}
     </StyledModal>
   );
