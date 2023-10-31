@@ -184,7 +184,7 @@ export default function TaskList({ columns, id }) {
     }
   }
 
-  function handleDeleteColumn() {
+  function handleDeleteColumn(deleteId) {
     Swal.fire({
       title: "Delete Column",
       text: "Do you really want to delete this column? ",
@@ -198,8 +198,8 @@ export default function TaskList({ columns, id }) {
       color: "var(--color-gray-900)",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        const updatedColumns = columns.filter((column) => {
-          column.id !== column._id;
+        const updatedColumns = dragColumns.filter((column) => {
+          column._id !== deleteId;
         });
         const response = await fetch(`/api/projects/${id}/columns`, {
           method: "PUT",
@@ -232,7 +232,9 @@ export default function TaskList({ columns, id }) {
               >
                 <StyledListTitle>
                   {column.name}
-                  <DeleteButton handleClick={handleDeleteColumn} />
+                  {/* <DeleteButton
+                    handleClick={() => handleDeleteColumn(column._id)}
+                  /> */}
                 </StyledListTitle>
                 <StyledTaskList>
                   {column.tasks?.map((task, index) => (
