@@ -45,13 +45,6 @@ const StyledImageWrapper = styled.div`
   background-color: var(--color-gray-100);
 `;
 
-const StyledLinkWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5rem;
-`;
-
 const StyledBoardlink = styled(Link)`
   background-color: var(--color-brand-600);
   color: var(--color-gray-50);
@@ -72,15 +65,8 @@ const StyledLogOutButton = styled.button`
   background: transparent;
 `;
 
-const StyledText = styled.p`
-  font-size: 0.8rem;
-  color: var(--color-gray-400);
-`;
-
 export default function ProfilePage() {
   const { data: session } = useSession({ required: true });
-
-  console.log(session);
 
   if (session) {
     return (
