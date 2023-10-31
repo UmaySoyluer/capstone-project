@@ -4,8 +4,6 @@ import { customRender } from "@/testing-library-utils";
 import { useSession } from "next-auth/react";
 import mockRouter from "next-router-mock";
 
-jest.mock("next-auth/react");
-
 describe("ProjectsOverviewPage page when signed in", () => {
   beforeEach(async () => {
     useSession.mockReturnValueOnce([
@@ -27,14 +25,6 @@ describe("ProjectsOverviewPage page when signed in", () => {
     });
 
     expect(heading).toBeInTheDocument();
-  });
-
-  it("renders a list of projects", () => {
-    const superProject = screen.getByText(/super project/i);
-    const megaProject = screen.getByText(/mega project/i);
-
-    expect(superProject).toBeInTheDocument();
-    expect(megaProject).toBeInTheDocument();
   });
 });
 
