@@ -1,17 +1,9 @@
 import { useSession, signOut } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/router";
-import Loading from "@/components/Loading";
 import styled from "styled-components";
 
 import { HiArrowRightOnRectangle } from "react-icons/hi2";
-import {
-  FaLinkedin,
-  FaSquareXTwitter,
-  FaGithub,
-  FaGoogle,
-} from "react-icons/fa6";
 
 const StyledWrapper = styled.div`
   background-color: var(--color-gray-100);
@@ -88,6 +80,8 @@ const StyledText = styled.p`
 export default function ProfilePage() {
   const { data: session } = useSession({ required: true });
 
+  console.log(session);
+
   if (session) {
     return (
       <>
@@ -110,20 +104,9 @@ export default function ProfilePage() {
             <h3>
               <b>{session.user.name}</b>
             </h3>
-            <StyledText>Full stack developer</StyledText>
-            <StyledText>North Pole , Arctic </StyledText>
           </StyledImageWrapper>
-          <StyledLinkWrapper>
-            <FaLinkedin color={"var(--color-brand-600)"} />
-            <FaSquareXTwitter color={"var(--color-brand-600)"} />
-            <FaGithub color={"var(--color-brand-600)"} />
-            <FaGoogle color={"var(--color-brand-600)"} />
-          </StyledLinkWrapper>
 
           <StyledInfoWrapper>
-            <p>
-              Department : <b>Moonworks</b>
-            </p>
             <p>
               Contact : <b>{session.user.email}</b>
             </p>
