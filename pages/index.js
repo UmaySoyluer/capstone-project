@@ -69,10 +69,10 @@ export default function HomePage() {
         </CallToActionLink>
 
         <StyledParagraph>
-          Whether you're an individual, a small team, or a large corporation,
+          Whether you are an individual, a small team, or a large corporation,
           ProFlow is your key to streamlined productivity. Access your Kanban
           boards from anywhere, and wave goodbye to missed deadlines. Security,
-          efficiency, and success - it's all within reach.
+          efficiency, and success - it is all within reach.
         </StyledParagraph>
         <CallToActionLink href={"/ProjectsOverview"}>
           <span>🌟 Try ProFlow Now!</span>
@@ -142,11 +142,11 @@ export default function HomePage() {
         <li>
           <strong>A Unique Solution to Your Problem.</strong> Tired of
           compromising between a simple agile-board and a mobile-friendly
-          solution? ProFlow has you covered. We've solved the problem of finding
-          a product that offers flexible layouts that not only work perfectly
-          but also look fantastic on mobile devices. Say goodbye to clunky,
-          hard-to-use mobile apps and embrace a truly agile, visually pleasing
-          solution.
+          solution? ProFlow has you covered. We have solved the problem of
+          finding a product that offers flexible layouts that not only work
+          perfectly but also look fantastic on mobile devices. Say goodbye to
+          clunky, hard-to-use mobile apps and embrace a truly agile, visually
+          pleasing solution.
         </li>
       </StyledList>
       <CallToActionLink href={"/ProjectsOverview"}>
