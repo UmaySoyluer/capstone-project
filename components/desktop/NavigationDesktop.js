@@ -6,7 +6,7 @@ import { HiOutlineMoon, HiOutlineSun } from "react-icons/hi2";
 
 const StyledNavigation = styled.nav`
   width: 100%;
-  height: 7vh;
+  height: 70px;
   padding-inline: 1.5rem;
   margin-bottom: 1rem;
   display: flex;

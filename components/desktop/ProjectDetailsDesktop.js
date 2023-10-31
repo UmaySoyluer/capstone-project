@@ -6,7 +6,7 @@ import { useState } from "react";
 import ProjectFormModal from "../modals/ProjectFormModal";
 
 const StyledContainer = styled.div`
-  height: 7vh;
+  height: 100px;
   flex-shrink: 0;
   display: flex;
   justify-content: space-between;
