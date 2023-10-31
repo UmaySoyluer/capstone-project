@@ -10,7 +10,6 @@ export const authOptions = {
     GithubProvider({
       clientId: process.env.GITHUB_ID,
       clientSecret: process.env.GITHUB_SECRET,
-      allowDangerousEmailAccountLinking: true,
     }),
   ],
   session: {
@@ -20,4 +19,5 @@ export const authOptions = {
     session: ({ session, token }) => ({ ...session, id: token.sub }),
   },
 };
+
 export default NextAuth(authOptions);

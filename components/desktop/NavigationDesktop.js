@@ -51,7 +51,9 @@ export default function NavigationDesktop() {
             <StyledNavigationLink href={"/"}>ProFlow</StyledNavigationLink>
           </li>
           <li>
-            <StyledNavigationLink href={"/"}>Projects</StyledNavigationLink>
+            <StyledNavigationLink href={"/ProjectsOverview"}>
+              Projects
+            </StyledNavigationLink>
           </li>
         </StyledList>
 

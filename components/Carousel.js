@@ -48,7 +48,7 @@ export function Carousel() {
       loop: true,
       mode: "free-snap",
       slides: {
-        perView: width <= 810 ? 1 : 3,
+        perView: width <= 1280 ? 1 : 3,
         spacing: 15,
       },
     },

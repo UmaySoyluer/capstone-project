@@ -25,6 +25,15 @@ export default function ProjectsOverviewPage() {
     }
   }, [session]);
 
+  const router = useRouter();
+
+  const { data: session } = useSession();
+  useEffect(() => {
+    if (!session) {
+      router.push("/SignIn");
+    }
+  }, [session]);
+
   return (
     <>
       <StyledToggleButton
