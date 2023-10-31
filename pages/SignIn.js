@@ -1,6 +1,6 @@
-import { signIn } from "next-auth/react";
+import { signIn, signOut } from "next-auth/react";
 
-const Home = () => {
+const SignInPage = () => {
   return (
     <div
       style={{
@@ -12,7 +12,7 @@ const Home = () => {
         justifyContent: "center",
       }}
     >
-      <h2 style={{ marginBottom: "20px" }}>Welcome to Proflow Management</h2>
+      <h2 style={{ marginBottom: "20px" }}>Welcome to Proflow</h2>
       <button
         style={{
           padding: "10px 20px",
@@ -53,7 +53,7 @@ const Home = () => {
           cursor: "pointer",
           transition: "background-color 0.3s, color 0.3s",
         }}
-        onClick={() => console.log("Back to Home")}
+        onClick={() => signOut()}
         onMouseOver={(e) => {
           e.target.style.backgroundColor = "#7F8C8D";
           e.target.style.color = "black";
@@ -69,4 +69,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default SignInPage;
