@@ -1,9 +1,21 @@
 import { screen, waitForElementToBeRemoved } from "@testing-library/react";
 import ProjectsOverviewPage from "@/pages/ProjectsOverview";
 import { customRender } from "@/testing-library-utils";
+import { useSession } from "next-auth/react";
+import mockRouter from "next-router-mock";
 
-describe("ProjectsOverviewPage page", () => {
+jest.mock("next-auth/react");
+
+describe("ProjectsOverviewPage page when signed in", () => {
   beforeEach(async () => {
+    useSession.mockReturnValueOnce([
+      {
+        user: {
+          email: "foo@bar.com",
+        },
+      },
+      false,
+    ]);
     customRender(<ProjectsOverviewPage />);
 
     await waitForElementToBeRemoved(() => screen.getByTestId("spinnerId"));
@@ -23,5 +35,18 @@ describe("ProjectsOverviewPage page", () => {
 
     expect(superProject).toBeInTheDocument();
     expect(megaProject).toBeInTheDocument();
+  });
+});
+
+describe("ProjectsOverviewPage page when signed out", () => {
+  beforeEach(async () => {
+    useSession.mockReturnValueOnce({ status: "unauthenticated" });
+    customRender(<ProjectsOverviewPage />);
+
+    await waitForElementToBeRemoved(() => screen.getByTestId("spinnerId"));
+  });
+
+  test("redirect to login page", () => {
+    expect(mockRouter.asPath).toEqual("/SignIn");
   });
 });
