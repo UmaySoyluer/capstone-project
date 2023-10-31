@@ -5,7 +5,6 @@
   "extends": [
     "next/core-web-vitals",
     "plugin:jest/recommended",
-    "plugin:testing-library/react",
     "plugin:jest-dom/recommended"
   ],
   "rules": {
@@ -15,10 +14,19 @@
         "allowObject": true
       }
     ],
-    "testing-library/no-render-in-setup": [
+    "testing-library/no-render-in-lifecycle": [
       "error",
       { "allowTestingFrameworkSetupHook": "beforeEach" }
     ]
   },
-  "plugins": ["jest"]
+  "plugins": ["jest"],
+
+  "overrides": [
+    {
+      "files": [
+        "**/__tests__/**/*.[jt]s?(x)', '**/?(*.)+(spec|test).[jt]s?(x)"
+      ],
+      "extends": ["plugin:testing-library/react"]
+    }
+  ]
 }
