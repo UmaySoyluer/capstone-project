@@ -19,7 +19,7 @@ export default function CreateProjectPage() {
 
     if (response.ok) {
       mutate();
-      router.push("/");
+      router.push("/ProjectsOverview");
       toast.success("New project created!");
     }
   }

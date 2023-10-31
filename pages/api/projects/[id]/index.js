@@ -10,7 +10,9 @@ export default async function handler(request, response) {
 
   if (request.method === "GET") {
     try {
-      const project = await Project.findById(id).populate("tasks").exec();
+      const project = await Project.findById(id)
+        .populate("columns.tasks")
+        .exec();
       return response.status(200).json(project);
     } catch (error) {
       console.error(`Can't fetch project with tasks: ${error}`);

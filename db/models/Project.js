@@ -9,14 +9,6 @@ const projectSchema = new Schema(
       type: String,
       required: true,
     },
-    description: {
-      type: String,
-      required: true,
-    },
-    startDate: {
-      type: String,
-      required: true,
-    },
     endDate: {
       type: String,
       required: true,
@@ -29,11 +21,22 @@ const projectSchema = new Schema(
       type: String,
       required: true,
     },
-    tasks: {
-      type: [Schema.Types.ObjectId],
-      ref: "Task",
-    },
+    columns: [
+      {
+        name: {
+          type: String,
+          required: true,
+        },
+        tasks: [
+          {
+            type: Schema.Types.ObjectId,
+            ref: "Task",
+          },
+        ],
+      },
+    ],
   },
+
   { timestamps: true }
 );
 

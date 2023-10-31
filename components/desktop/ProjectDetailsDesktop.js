@@ -3,7 +3,6 @@ import Heading from "@/components/Heading";
 import { StyledToolButton } from "../Buttons";
 import { HiOutlinePaintBrush, HiOutlineTrash } from "react-icons/hi2";
 import { useState } from "react";
-import useWindowDimensions from "@/hooks/useWindowDimensions";
 import ProjectFormModal from "../modals/ProjectFormModal";
 
 const StyledContainer = styled.div`
@@ -38,11 +37,6 @@ const StyledDescriptionListTitle = styled.dt`
   color: var(--color-brand-900);
 `;
 
-const StyledArticle = styled.article`
-  grid-column: -1 / 1;
-  overflow: auto;
-`;
-
 const StyledTools = styled.div`
   display: flex;
   align-self: flex-start;
@@ -50,10 +44,7 @@ const StyledTools = styled.div`
 `;
 
 export default function ProjectDetailsDesktop({ project, onDelete }) {
-  const { width } = useWindowDimensions();
   const [showModal, setShowModal] = useState(false);
-
-  if (width <= 810) return setShowModal(false);
 
   function openModal() {
     setShowModal(true);
@@ -63,7 +54,7 @@ export default function ProjectDetailsDesktop({ project, onDelete }) {
     setShowModal(false);
   }
 
-  const { title, description, endDate, department, teamLead } = project;
+  const { title, endDate, department, teamLead } = project;
   return (
     <>
       <StyledContainer>
@@ -82,16 +73,6 @@ export default function ProjectDetailsDesktop({ project, onDelete }) {
             <StyledDescriptionListTitle>Due date:</StyledDescriptionListTitle>
             <dd>{endDate}</dd>
           </dl>
-
-          {/* <StyledArticle>
-            <dl>
-              <StyledDescriptionListTitle>
-                Description:
-              </StyledDescriptionListTitle>
-
-              <dd>{description}</dd>
-            </dl>
-          </StyledArticle> */}
         </StyledDetails>
 
         <StyledTools>

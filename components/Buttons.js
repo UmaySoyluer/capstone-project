@@ -56,30 +56,20 @@ export function BackLink({ href }) {
 export function DeleteButton({ handleClick }) {
   return (
     <StyledDeleteButton onClick={handleClick}>
-      <HiOutlineTrash title="Icon for delete" color="#b91c1c" size={26} />
+      <HiOutlineTrash title="delete" color="#b91c1c" size={26} />
     </StyledDeleteButton>
   );
 }
 
 // Projects
 
-const StyledEditProjectLink = styled(Link)`
+export const StyledEditProjectButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+  border: none;
+  background: transparent;
 `;
-
-export function EditLink({ url }) {
-  return (
-    <StyledEditProjectLink href={url}>
-      <HiOutlinePaintBrush
-        size={26}
-        style={{ color: "var(--color-brand-900)" }}
-        title="Pencil icon for edit"
-      />
-    </StyledEditProjectLink>
-  );
-}
 
 // Tasks
 

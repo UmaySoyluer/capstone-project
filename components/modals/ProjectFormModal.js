@@ -2,7 +2,7 @@ import useSWR, { mutate } from "swr";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
 import { StyledModal } from "@/styles/StyledModal";
-import { StyledModalContent } from "@/styles/StyledModalContent";
+import ModalContent from "@/styles/StyledModalContent";
 
 import Loading from "@/components/Loading";
 import FormProject from "../FormProject";
@@ -34,14 +34,14 @@ export default function ProjectFormModal({ onClose }) {
 
   return (
     <StyledModal>
-      <StyledModalContent>
+      <ModalContent>
         <FormProject
           value={data}
           onClose={onClose}
           onSubmit={editProject}
           formName="Edit your project"
         />
-      </StyledModalContent>
+      </ModalContent>
     </StyledModal>
   );
 }
