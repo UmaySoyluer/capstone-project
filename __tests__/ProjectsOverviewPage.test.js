@@ -6,14 +6,13 @@ import mockRouter from "next-router-mock";
 
 describe("ProjectsOverviewPage page when signed in", () => {
   beforeEach(async () => {
-    useSession.mockReturnValueOnce([
-      {
+    useSession.mockReturnValue({
+      data: {
         user: {
           email: "foo@bar.com",
         },
       },
-      false,
-    ]);
+    });
     customRender(<ProjectsOverviewPage />);
 
     await waitForElementToBeRemoved(() => screen.getByTestId("spinnerId"));
@@ -30,7 +29,7 @@ describe("ProjectsOverviewPage page when signed in", () => {
 
 describe("ProjectsOverviewPage page when signed out", () => {
   beforeEach(async () => {
-    useSession.mockReturnValueOnce({ status: "unauthenticated" });
+    useSession.mockReturnValue({ status: "unauthenticated" });
     customRender(<ProjectsOverviewPage />);
 
     await waitForElementToBeRemoved(() => screen.getByTestId("spinnerId"));

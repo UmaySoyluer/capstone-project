@@ -16,6 +16,7 @@ import {
   StyledPriorityTag,
 } from "@/components/FormTask";
 import { useEffect } from "react";
+import useEnsureAuth from "@/hooks/useEnsureAuth";
 
 const StyledSection = styled.section`
   margin-top: 10vh;
@@ -62,14 +63,9 @@ const StyledPriorityLabel = styled.label`
 `;
 
 export default function TaskDetailPage() {
-  const router = useRouter();
+  useEnsureAuth();
 
-  const { data: session } = useSession();
-  useEffect(() => {
-    if (!session) {
-      router.push("/SignIn");
-    }
-  }, [session]);
+  const router = useRouter();
 
   const { isReady } = router;
   const { id, taskId } = router.query;
