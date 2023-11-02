@@ -1,5 +1,6 @@
 import Link from "next/link";
 import styled from "styled-components";
+import Image from "next/image";
 import { StyledToggleButton } from "../Buttons";
 import { useTheme } from "next-themes";
 import { HiOutlineMoon, HiOutlineSun } from "react-icons/hi2";
@@ -8,7 +9,6 @@ const StyledNavigation = styled.nav`
   width: 100%;
   height: 70px;
   padding-inline: 1.5rem;
-  margin-bottom: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -29,9 +29,10 @@ const StyledNavigationLink = styled(Link)`
   }
 `;
 
-const StyledList = styled.ul`
+const StyledContainer = styled.div`
   display: flex;
   gap: 1rem;
+  align-items: center;
 `;
 
 const StyledUserBar = styled.div`
@@ -46,16 +47,29 @@ export default function NavigationDesktop() {
   return (
     <>
       <StyledNavigation>
-        <StyledList>
-          <li>
-            <StyledNavigationLink href={"/"}>ProFlow</StyledNavigationLink>
-          </li>
-          <li>
-            <StyledNavigationLink href={"/ProjectsOverview"}>
-              Projects
-            </StyledNavigationLink>
-          </li>
-        </StyledList>
+        <StyledContainer>
+          <Link href={"/"}>
+            {theme === "light" ? (
+              <Image
+                src="/images/logo.svg"
+                alt="Home"
+                width={200}
+                height={200}
+              />
+            ) : (
+              <Image
+                src="/images/logo-dark-theme.svg"
+                alt="Home"
+                width={200}
+                height={200}
+              />
+            )}
+          </Link>
+
+          <StyledNavigationLink href={"/ProjectsOverview"}>
+            Projects
+          </StyledNavigationLink>
+        </StyledContainer>
 
         <StyledUserBar>
           <StyledToggleButton
