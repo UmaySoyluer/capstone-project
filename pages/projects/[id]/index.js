@@ -14,8 +14,6 @@ import ProjectDetailsMobile from "@/components/mobile/ProjectDetailsMobile";
 import ButtonBar from "@/components/mobile/ButtonBar";
 
 import Swal from "sweetalert2";
-import { useSession } from "next-auth/react";
-import { useEffect } from "react";
 import useEnsureAuth from "@/hooks/useEnsureAuth";
 
 const StyledMain = styled.main`
