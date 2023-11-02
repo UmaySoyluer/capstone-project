@@ -78,29 +78,17 @@ export default function ProfilePage() {
   const { data: session } = useSession({ required: true });
   const { width } = useWindowDimensions();
 
-  if (session) {
+  if (session && width <= 810) {
     return (
       <>
-        {width <= 810 && (
-          <StyledLogOutButton>
-            <HiArrowRightOnRectangle
-              size={36}
-              title="log out"
-              color={"var(--color-brand-600)"}
-              onClick={() => signOut()}
-            />
-          </StyledLogOutButton>
-        )}
-        {width > 810 && (
-          <StyledLogOutButtonDesktop>
-            <HiArrowRightOnRectangle
-              size={36}
-              title="log out"
-              color={"var(--color-brand-600)"}
-              onClick={() => signOut()}
-            />
-          </StyledLogOutButtonDesktop>
-        )}
+        <StyledLogOutButton>
+          <HiArrowRightOnRectangle
+            size={36}
+            title="log out"
+            color={"var(--color-brand-600)"}
+            onClick={() => signOut()}
+          />
+        </StyledLogOutButton>
         <StyledWrapper>
           <StyledImageWrapper>
             <StyledImage
@@ -127,11 +115,41 @@ export default function ProfilePage() {
         </StyledWrapper>
       </>
     );
-  } else {
+  } else if (session && width > 810) {
     return (
-      <div>
-        <p>You're not signed in.</p>
-      </div>
+      <>
+        <StyledLogOutButtonDesktop>
+          <HiArrowRightOnRectangle
+            size={36}
+            title="log out"
+            color={"var(--color-brand-600)"}
+            onClick={() => signOut()}
+          />
+        </StyledLogOutButtonDesktop>
+        <StyledWrapper>
+          <StyledImageWrapper>
+            <StyledImage
+              src={session.user.image}
+              alt="Picture of the user"
+              width={80}
+              height={80}
+            />
+            <h3>
+              <b>{session.user.name}</b>
+            </h3>
+          </StyledImageWrapper>
+          <StyledInfoWrapper>
+            <p>
+              Contact : <b>{session.user.email}</b>
+            </p>
+          </StyledInfoWrapper>
+          <div>
+            <StyledBoardlink href={"/ProjectsOverview"}>
+              Go to my Board
+            </StyledBoardlink>
+          </div>
+        </StyledWrapper>
+      </>
     );
-  }
+  } else return;
 }
