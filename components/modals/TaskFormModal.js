@@ -28,8 +28,6 @@ export default function TaskFormModal({ onClose, listId }) {
       columnId: listId,
     };
 
-    console.log(modifiedTask);
-
     const response = await fetch(`/api/projects/${id}/tasks`, {
       method: "POST",
       headers: {
