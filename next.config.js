@@ -14,7 +14,11 @@ const nextConfig = {
     return config;
   },
   images: {
-    domains: ["img.freepik.com", "media.tenor.com"],
+    domains: [
+      "img.freepik.com",
+      "media.tenor.com",
+      "avatars.githubusercontent.com",
+    ],
   },
 };
 

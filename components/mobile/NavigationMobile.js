@@ -96,7 +96,7 @@ export default function NavigationMobile() {
             </StyledToggleButton>
           </StyledListItem>
           <StyledListItem>
-            <StyledNavigationLink href={"/"}>
+            <StyledNavigationLink href={"/account"}>
               <HiOutlineUser
                 size={26}
                 style={{ color: "var(--color-brand-900)" }}
