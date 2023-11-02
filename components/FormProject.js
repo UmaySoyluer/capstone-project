@@ -128,7 +128,7 @@ export default function FormProject({ formName, onSubmit, value, onClose }) {
         <StyledButtonContainer>
           <SubmitButton type="submit">Submit</SubmitButton>
           {value && !onClose && <CancelLink url={`/projects/${value._id}`} />}
-          {!value && <CancelLink url={"/"} />}
+          {!value && <CancelLink url={"/ProjectsOverview"} />}
           {onClose && <ModalCancel onClick={onClose}>Close</ModalCancel>}
         </StyledButtonContainer>
       </StyledForm>
