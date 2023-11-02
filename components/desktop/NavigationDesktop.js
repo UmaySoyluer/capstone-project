@@ -75,7 +75,7 @@ export default function NavigationDesktop() {
               )}
             </>
           </StyledToggleButton>
-          <StyledNavigationLink href={"/"}>User</StyledNavigationLink>
+          <StyledNavigationLink href={"/account"}>User</StyledNavigationLink>
         </StyledUserBar>
       </StyledNavigation>
     </>
