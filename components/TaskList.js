@@ -198,9 +198,9 @@ export default function TaskList({ columns, id }) {
       color: "var(--color-gray-900)",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        const updatedColumns = dragColumns.filter((column) => {
-          column._id !== deleteId;
-        });
+        const updatedColumns = dragColumns.filter(
+          (column) => column._id !== deleteId
+        );
         const response = await fetch(`/api/projects/${id}/columns`, {
           method: "PUT",
           headers: {
@@ -215,7 +215,7 @@ export default function TaskList({ columns, id }) {
           mutate(`/api/projects/${id}`);
         }
 
-        toast.success("Project deleted!");
+        toast.success("Column deleted!");
       }
     });
   }
@@ -232,9 +232,9 @@ export default function TaskList({ columns, id }) {
               >
                 <StyledListTitle>
                   {column.name}
-                  {/* <DeleteButton
+                  <DeleteButton
                     handleClick={() => handleDeleteColumn(column._id)}
-                  /> */}
+                  />
                 </StyledListTitle>
                 <StyledTaskList>
                   {column.tasks?.map((task, index) => (

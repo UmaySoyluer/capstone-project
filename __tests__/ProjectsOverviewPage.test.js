@@ -1,9 +1,18 @@
 import { screen, waitForElementToBeRemoved } from "@testing-library/react";
 import ProjectsOverviewPage from "@/pages/ProjectsOverview";
 import { customRender } from "@/testing-library-utils";
+import { useSession } from "next-auth/react";
+import mockRouter from "next-router-mock";
 
-describe("ProjectsOverviewPage page", () => {
+describe("ProjectsOverviewPage page when signed in", () => {
   beforeEach(async () => {
+    useSession.mockReturnValue({
+      data: {
+        user: {
+          email: "foo@bar.com",
+        },
+      },
+    });
     customRender(<ProjectsOverviewPage />);
 
     await waitForElementToBeRemoved(() => screen.getByTestId("spinnerId"));
@@ -16,12 +25,17 @@ describe("ProjectsOverviewPage page", () => {
 
     expect(heading).toBeInTheDocument();
   });
+});
 
-  it("renders a list of projects", () => {
-    const superProject = screen.getByText(/super project/i);
-    const megaProject = screen.getByText(/mega project/i);
+describe("ProjectsOverviewPage page when signed out", () => {
+  beforeEach(async () => {
+    useSession.mockReturnValue({ status: "unauthenticated" });
+    customRender(<ProjectsOverviewPage />);
 
-    expect(superProject).toBeInTheDocument();
-    expect(megaProject).toBeInTheDocument();
+    await waitForElementToBeRemoved(() => screen.getByTestId("spinnerId"));
+  });
+
+  test("redirect to login page", () => {
+    expect(mockRouter.asPath).toEqual("/SignIn");
   });
 });

@@ -6,12 +6,7 @@ import useWindowDimensions from "@/hooks/useWindowDimensions";
 import { Carousel } from "@/components/Carousel";
 
 const StyledContainer = styled.div`
-  margin: 1rem 2rem;
-  text-align: center;
-`;
-
-const StyledLandscapeContainer = styled.div`
-  margin: 0 20rem;
+  margin: 1rem clamp(2rem, 10vw, 20rem);
   text-align: center;
 `;
 
@@ -39,7 +34,7 @@ const StyledBrandName = styled.span`
 export default function HomePage() {
   const { width } = useWindowDimensions();
 
-  if (width <= 1280) {
+  if (width <= 800) {
     return (
       <StyledContainer>
         <Heading>About the Application</Heading>
@@ -69,10 +64,10 @@ export default function HomePage() {
         </CallToActionLink>
 
         <StyledParagraph>
-          Whether you're an individual, a small team, or a large corporation,
+          Whether you are an individual, a small team, or a large corporation,
           ProFlow is your key to streamlined productivity. Access your Kanban
           boards from anywhere, and wave goodbye to missed deadlines. Security,
-          efficiency, and success - it's all within reach.
+          efficiency, and success - it is all within reach.
         </StyledParagraph>
         <CallToActionLink href={"/ProjectsOverview"}>
           <span>🌟 Try ProFlow Now!</span>
@@ -82,7 +77,7 @@ export default function HomePage() {
   }
 
   return (
-    <StyledLandscapeContainer>
+    <StyledContainer>
       <Heading>About the Application</Heading>
       <StyledParagraph>
         Welcome to <StyledBrandName>ProFlow</StyledBrandName>: Streamline Your
@@ -142,16 +137,16 @@ export default function HomePage() {
         <li>
           <strong>A Unique Solution to Your Problem.</strong> Tired of
           compromising between a simple agile-board and a mobile-friendly
-          solution? ProFlow has you covered. We've solved the problem of finding
-          a product that offers flexible layouts that not only work perfectly
-          but also look fantastic on mobile devices. Say goodbye to clunky,
-          hard-to-use mobile apps and embrace a truly agile, visually pleasing
-          solution.
+          solution? ProFlow has you covered. We have solved the problem of
+          finding a product that offers flexible layouts that not only work
+          perfectly but also look fantastic on mobile devices. Say goodbye to
+          clunky, hard-to-use mobile apps and embrace a truly agile, visually
+          pleasing solution.
         </li>
       </StyledList>
       <CallToActionLink href={"/ProjectsOverview"}>
         <span>🌟 Try ProFlow Now!</span>
       </CallToActionLink>
-    </StyledLandscapeContainer>
+    </StyledContainer>
   );
 }

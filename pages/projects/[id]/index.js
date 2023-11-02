@@ -14,8 +14,7 @@ import ProjectDetailsMobile from "@/components/mobile/ProjectDetailsMobile";
 import ButtonBar from "@/components/mobile/ButtonBar";
 
 import Swal from "sweetalert2";
-import { useSession } from "next-auth/react";
-import { useEffect } from "react";
+import useEnsureAuth from "@/hooks/useEnsureAuth";
 
 const StyledMain = styled.main`
   height: 91vh;
@@ -24,14 +23,9 @@ const StyledMain = styled.main`
 `;
 
 export default function ProjectDetailPage() {
-  const router = useRouter();
+  useEnsureAuth();
 
-  const { data: session } = useSession();
-  useEffect(() => {
-    if (!session) {
-      router.push("/SignIn");
-    }
-  }, [session]);
+  const router = useRouter();
 
   const { width } = useWindowDimensions();
 

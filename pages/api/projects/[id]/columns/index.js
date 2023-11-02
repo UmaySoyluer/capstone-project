@@ -25,7 +25,6 @@ export default async function handler(request, response) {
   if (request.method === "PUT") {
     try {
       const { columns } = request.body;
-
       const updatedProject = await Project.findByIdAndUpdate(
         id,
         { $set: { columns: columns } },
