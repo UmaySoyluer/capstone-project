@@ -6,12 +6,7 @@ import useWindowDimensions from "@/hooks/useWindowDimensions";
 import { Carousel } from "@/components/Carousel";
 
 const StyledContainer = styled.div`
-  margin: 1rem 2rem;
-  text-align: center;
-`;
-
-const StyledLandscapeContainer = styled.div`
-  margin: 0 20rem;
+  margin: 1rem clamp(2rem, 10vw, 20rem);
   text-align: center;
 `;
 
@@ -82,7 +77,7 @@ export default function HomePage() {
   }
 
   return (
-    <StyledLandscapeContainer>
+    <StyledContainer>
       <Heading>About the Application</Heading>
       <StyledParagraph>
         Welcome to <StyledBrandName>ProFlow</StyledBrandName>: Streamline Your
@@ -152,6 +147,6 @@ export default function HomePage() {
       <CallToActionLink href={"/ProjectsOverview"}>
         <span>🌟 Try ProFlow Now!</span>
       </CallToActionLink>
-    </StyledLandscapeContainer>
+    </StyledContainer>
   );
 }
