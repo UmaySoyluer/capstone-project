@@ -37,34 +37,6 @@ const SignInPage = () => {
       >
         Sign in with GitHub
       </button>
-
-      <button
-        style={{
-          position: "absolute",
-          top: "20px",
-          left: "20px",
-          padding: "10px 20px",
-          fontSize: "14px",
-          fontWeight: "bold",
-          backgroundColor: "#E74C3C",
-          color: "white",
-          border: "none",
-          borderRadius: "5px",
-          cursor: "pointer",
-          transition: "background-color 0.3s, color 0.3s",
-        }}
-        onClick={() => signOut()}
-        onMouseOver={(e) => {
-          e.target.style.backgroundColor = "#7F8C8D";
-          e.target.style.color = "black";
-        }}
-        onMouseOut={(e) => {
-          e.target.style.backgroundColor = "#E74C3C";
-          e.target.style.color = "white";
-        }}
-      >
-        Back Home
-      </button>
     </div>
   );
 };
