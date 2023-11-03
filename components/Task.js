@@ -12,6 +12,7 @@ const StyledListItem = styled.li`
   border-radius: 10px;
   color: var(--color-gray-50);
   transition: 0.3s;
+  padding: 0.5rem 1rem;
   cursor: pointer;
 
   &:hover,
