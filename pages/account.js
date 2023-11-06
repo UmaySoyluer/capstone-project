@@ -5,6 +5,8 @@ import styled from "styled-components";
 import useWindowDimensions from "@/hooks/useWindowDimensions";
 
 import { HiArrowRightOnRectangle } from "react-icons/hi2";
+import useEnsureAuth from "@/hooks/useEnsureAuth";
+import { useRouter } from "next/router";
 
 const StyledWrapper = styled.div`
   background-color: var(--color-gray-100);
@@ -75,10 +77,13 @@ const StyledLogOutButtonDesktop = styled.button`
 `;
 
 export default function ProfilePage() {
-  const { data: session } = useSession({ required: true });
+  useEnsureAuth();
+  const router = useRouter();
+  const { data: session } = useSession();
   const { width } = useWindowDimensions();
 
-  if (session && width <= 810) {
+  if (!session) router.push("/SignIn");
+  else if (width <= 810) {
     return (
       <>
         <StyledLogOutButton>
@@ -115,7 +120,7 @@ export default function ProfilePage() {
         </StyledWrapper>
       </>
     );
-  } else if (session && width > 810) {
+  } else if (width > 810) {
     return (
       <>
         <StyledLogOutButtonDesktop>
@@ -151,5 +156,5 @@ export default function ProfilePage() {
         </StyledWrapper>
       </>
     );
-  } else return;
+  }
 }

@@ -18,7 +18,8 @@ describe("ProjectDetailPage when signed in", () => {
 
     mockRouter.useParser(createDynamicRouteParser(["/projects/[id]"]));
 
-    customRender(<ProjectDetailPage />);
+    // customRender(<ProjectDetailPage />);
+    mockRouter.push("/projects/1");
 
     await waitForElementToBeRemoved(() => screen.getByTestId("spinnerId"));
   });
@@ -28,8 +29,6 @@ describe("ProjectDetailPage when signed in", () => {
     //   .spyOn(getWidth, "useDimensions")
     //   .mockImplementation(() => [600, jest.fn()]);
 
-    mockRouter.push("/projects/1");
-
     const projectTitle = screen.getByRole("heading", {
       name: /super project/i,
     });
@@ -38,7 +37,7 @@ describe("ProjectDetailPage when signed in", () => {
 
 describe("ProjectDetailPage page when signed out", () => {
   beforeEach(async () => {
-    useSession.mockReturnValueOnce({ status: "unauthenticated" });
+    useSession.mockReturnValue({ status: "unauthenticated" });
     customRender(<ProjectDetailPage />);
 
     await waitForElementToBeRemoved(() => screen.getByTestId("spinnerId"));
