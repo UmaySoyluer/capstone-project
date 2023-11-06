@@ -19,6 +19,10 @@ const StyledParagraph = styled.p`
   font-size: 1.2rem;
 `;
 
+const StyledLogo = styled(Image)`
+  margin: -3rem 0 -4rem;
+`;
+
 const StyledList = styled.ul`
   padding: 1rem 1rem;
   width: 100%;
@@ -40,13 +44,9 @@ export default function HomePage() {
   if (width <= 800) {
     return (
       <StyledContainer>
-        <Heading>About the Application</Heading>
+        <Heading>Welcome to the Future of Productivity</Heading>
 
-        <StyledParagraph>
-          Welcome to the Future of Productivity:
-        </StyledParagraph>
-
-        <Image
+        <StyledLogo
           src={
             theme === "light"
               ? "/images/logo.svg"
@@ -57,9 +57,6 @@ export default function HomePage() {
           height={200}
         />
 
-        <StyledParagraph>
-          Unlock the Power of Kanban for Ultimate Efficiency.
-        </StyledParagraph>
         <StyledParagraph>
           Are you tired of juggling multiple tasks and projects without a clear
           roadmap to success? Say goodbye to chaos and hello to the organized
