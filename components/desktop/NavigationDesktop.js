@@ -49,21 +49,16 @@ export default function NavigationDesktop() {
       <StyledNavigation>
         <StyledContainer>
           <Link href={"/"}>
-            {theme === "light" ? (
-              <Image
-                src="/images/logo.svg"
-                alt="Home"
-                width={200}
-                height={200}
-              />
-            ) : (
-              <Image
-                src="/images/logo-dark-theme.svg"
-                alt="Home"
-                width={200}
-                height={200}
-              />
-            )}
+            <Image
+              src={
+                theme === "light"
+                  ? "/images/logo.svg"
+                  : "/images/logo-dark-theme.svg"
+              }
+              alt="Home"
+              width={200}
+              height={200}
+            />
           </Link>
 
           <StyledNavigationLink href={"/ProjectsOverview"}>

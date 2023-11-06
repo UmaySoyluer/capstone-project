@@ -4,6 +4,8 @@ import Heading from "@/components/Heading";
 import { CallToActionLink } from "@/components/Buttons";
 import useWindowDimensions from "@/hooks/useWindowDimensions";
 import { Carousel } from "@/components/Carousel";
+import Image from "next/image";
+import { useTheme } from "next-themes";
 
 const StyledContainer = styled.div`
   margin: 1rem clamp(2rem, 10vw, 20rem);
@@ -33,6 +35,7 @@ const StyledBrandName = styled.span`
 
 export default function HomePage() {
   const { width } = useWindowDimensions();
+  const { theme, setTheme } = useTheme();
 
   if (width <= 800) {
     return (
@@ -41,8 +44,21 @@ export default function HomePage() {
 
         <StyledParagraph>
           Welcome to the Future of Productivity:
-          <StyledBrandName> ProFlow</StyledBrandName>! Unlock the Power of
-          Kanban for Ultimate Efficiency.
+        </StyledParagraph>
+
+        <Image
+          src={
+            theme === "light"
+              ? "/images/logo.svg"
+              : "/images/logo-dark-theme.svg"
+          }
+          alt="ProFlow"
+          width={200}
+          height={200}
+        />
+
+        <StyledParagraph>
+          Unlock the Power of Kanban for Ultimate Efficiency.
         </StyledParagraph>
         <StyledParagraph>
           Are you tired of juggling multiple tasks and projects without a clear
